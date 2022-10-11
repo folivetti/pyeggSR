@@ -39,7 +39,7 @@ def showTree(t: Expr) -> str:
         case Add(l, r):
             return showTree(l) + " + " + showTree(r)
         case Mul(l, r):
-            return showTree(l) + " + " + showTree(r)
+            return showTree(l) + " * " + showTree(r)
         case Var(x):
             return f"X{x}"
         case Const(x):
@@ -56,9 +56,12 @@ def applyTree(f: Callable, t: Expr) -> Expr:
         case _ as n:
             return n
 
-def toListChild(t: Expr) -> [Any]:
+def children(t: Expr) -> [Any]:
     match t:
         case Add(l, r) | Mul(l, r):
             return [l, r]
         case _:
             return []
+
+def operator(t: Expr) -> Expr:
+    return applyTree(lambda x: None, t)
