@@ -45,7 +45,7 @@ def showTree(t: Expr) -> str:
         case Const(x):
             return f"{x}"
         case _ as unreachable:
-            assert_never(unreachable)
+            return str(unreachable) # assert_never(unreachable)
 
 def applyTree(f: Callable, t: Expr) -> Expr:
     match t:
