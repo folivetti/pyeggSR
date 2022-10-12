@@ -57,40 +57,45 @@ def matchWithScheduler(db, i, rule_sched, j, rule):
     rule_sched[j] = i + 5  # updateStats schd i rw_id rule_sched[rw_id] stats matches
     return [(rule, match) for match in matches]
 
+def isValidConditions(rule, match, egraph):
+    return True
+
 def applyMatch(egraph, rule, match):
     if isValidConditions(rule, match, egraph):
-        new_eclass = reprPat(egraph, match.subst_map, rule.target)
-        egraph.merge(match.eclass, new_eclass)
+        new_eclass = reprPat(egraph, match[1], rule.target)
+        egraph.merge(match[1], new_eclass)
 
 def reprPat(egraph, subst_map, target):
     def traverse_target(t):
         if isinstance(t, str):
+            t = hashstr(t)
             if t not in subst_map:
-                print("ERROR: NO SUBSTUTION FOR " + t)
+                print("ERROR: NO SUBSTUTION FOR ", t)
                 exit()
             return subst_map[t]
         match t:
             case Add(l, r):
-                return Add(traverse_target(l), traverse_target(r))
+                el = traverse_target(l)
+                er = traverse_target(r)
+                e = egraph.add(Add(el, er))
+                return e
             case Mul(l, r):
-                return Mul(traverse_target(l), traverse_target(r))
+                el = traverse_target(l)
+                er = traverse_target(r)
+                e = egraph.add(Mul(el, er))
+                return e
             case Var(x):
-                return Var(x)
+                return egraph.add(Var(x))
             case Const(x):
-                return Const(x)
+                return egraph.add(Const(x))
             case _ as unreachable:
                 assert_never(unreachable)
-    n = traverse_target(target)
-    eclass_id = egraph.add(n)
-    return eclass_id
+    return traverse_target(target)
 
 
 
 
 
-def ematch(db, source):
-    (q, root) = compileToQuery(source)   
-    #return mapMaybe f (genericJoin db q)
 
 
 

@@ -106,6 +106,18 @@ class Atom:
         self.classIdOrVar = classIdOrVar 
         self.relation = t  # tree of classIdOrVar
 
+def ematch(db, source):
+    (q, root) = compileToQuery(source)
+    substs = genericJoin(db, q)
+    matches = []
+    for s in substs:
+        if len(s) > 0:
+            if root in s:
+                matches.append((s, s[root]))
+            else:
+                print("ROOT NOT IN S!") 
+    return matches
+
 def compileToQuery(pat):
     if isinstance(pat, str):
         return Query([hashstr(pat)],[]), pat
