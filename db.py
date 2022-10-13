@@ -13,6 +13,9 @@ from expr import *
 from egraph import *
 
 def hashstr(x: str):
+    '''
+    deterministic string hash to replace variables with int
+    '''
     acc = 5381
     for c in x:
         acc = 33*acc ^ ord(c)
@@ -22,7 +25,6 @@ def hashstr(x: str):
 
 class Pattern:
     def __init__(self, source, target):
-        self.vars = set(self.getvars(source)).union(self.getvars(target))
         self.source = source
         self.target = target
         self.properties = {}  # maps a var to a tuple of properties (is_not_value, is_value, is_negative, is_not_negative, is_zero,...)
@@ -31,11 +33,6 @@ class Pattern:
     def match(self, egraph):
         for enode, eclass_id in egraph.hashcon.items():
             pass
-
-    def getvars(self, t):
-        if isinstance(t, str):
-            return [t]
-        return [v for c in children(t) for v in self.getvars(c)]
 
 ## DATABASE
 
@@ -149,8 +146,7 @@ def reprPat(egraph, subst_map, target):
 
 ## MATCHING-QUERY
 class Query:
-    def __init__(self, myVars, atoms):
-        self.vars = myVars
+    def __init__(self, atoms):
         self.atoms = atoms  # if this is empty, it is a SelectAllQuery
 
 @dataclass(unsafe_hash=True)
@@ -182,7 +178,7 @@ def ematch(db, source):
 
 def compileToQuery(pat):
     if isinstance(pat, str):
-        return Query([hashstr(pat)],[]), pat
+        return Query([]), pat
 
     v = 0
 
@@ -202,7 +198,7 @@ def compileToQuery(pat):
        return (rt, atoms)
 
     (root, atoms) = aux(pat) 
-    return Query(([root] + unique(getVariables(pat))), atoms), root
+    return Query(atoms), root
 
 def getVariables(pat):
    if isinstance(pat, str):
