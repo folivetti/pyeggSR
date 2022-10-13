@@ -49,9 +49,11 @@ class EGraph:
         else:
             leader, leader_class = eclass_id_2, eclass_2
             sub, sub_class = eclass_id_1, eclass_1
+
         self.union_find[sub] = leader
-        old_leader_data, old_leader_parents = leader.eclass_data, leader.parents
-        old_sub_data, old_sub_parents = sub.eclass_data, sub.parents
+
+        old_leader_data, old_leader_parents = leader_class.eclass_data, leader_class.parents
+        old_sub_data, old_sub_parents = sub_class.eclass_data, sub_class.parents
         leader_class.parents += sub_class.parents
         leader_class.enodes.union(sub_class.enodes)
         # joinA leader_class.eclass_data sub_class.eclass_data

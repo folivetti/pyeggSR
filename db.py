@@ -84,6 +84,119 @@ class IntTrie:
         self.keys = {x}
         self.trie = {}  # {int -> IntTrie()}
 
+## SATURATION
+def costFun(n):
+    match n:
+        case Add(l, r):
+            return 1
+        case Mul(l, r):
+            return 2
+        case Const(x) | Var(x):
+            return 1
+        case _:
+            return 0
+
+def eqSat(scheduler, expr, rules, costFun):
+    egraph = EGraph()
+    eclassId = expr_to_egraph(expr, egraph)
+    runEqSat(egraph, scheduler, rules)
+    return getBest(costFun, egraph, eclassId)[1]
+
+def getBest(costFun, egraph, eclassId):
+    start_eclass = egraph.find(eclassId)
+    cost = None
+    expr = None
+    for n in egraph.map_class[start_eclass].enodes:
+        match n:
+            case Add(l, r):
+                (cl, nl) = getBest(costFun, egraph, l)
+                (cr, nr) = getBest(costFun, egraph, r)
+                c = costFun(n) + cl + cr
+                if cost is None or c < cost:
+                    expr = Add(nl, nr)
+                    cost = c
+            case Mul(l, r):
+                (cl, nl) = getBest(costFun, egraph, l)
+                (cr, nr) = getBest(costFun, egraph, r)
+                c = costFun(n) + cl + cr
+                if cost is None or c < cost:
+                    expr = Mul(nl, nr)
+                    cost = c
+            case Const(x) | Var(x):
+                c = costFun(n)
+                if cost is None or c < cost:
+                    expr = n
+                    cost = c
+    return (cost, expr)
+    
+def runEqSat(egraph, scheduler, rules):
+    rule_sched = {}
+    for i in range(30):
+        old_map_class = egraph.map_class
+        old_hashcon = egraph.hashcon
+        db = DataBase(egraph)
+
+        # step 1: match the rules
+        matches = [] 
+        for j, r in enumerate(rules):
+            m = matchWithScheduler(db, i, rule_sched, j, r) # check if rule_sched is mutable
+            matches += m
+
+        #flatten [match for match in matchWithScheduler(db, i, rule_sched, j, rule) for (j, rule) in enumerate(rules)]
+
+        # step 2: apply matches
+        for match in matches:
+            applyMatch(egraph, *match)  # mutable egraph
+        egraph.rebuild()
+
+        new_map_class = egraph.map_class
+        new_hashcon = egraph.hashcon
+        if (new_map_class == old_map_class) and (new_hashcon == old_hashcon):
+            return egraph
+    return egraph
+
+def matchWithScheduler(db, i, rule_sched, j, rule):
+    if j in rule_sched and rule_sched[j] <= i:
+        return []
+    matches = ematch(db, rule.source)
+    rule_sched[j] = i + 5  # updateStats schd i rw_id rule_sched[rw_id] stats matches
+    return [(rule, match) for match in matches]
+
+def isValidConditions(rule, match, egraph):
+    return True # TODO: check the preconditions of the rule
+
+def applyMatch(egraph, rule, match):
+    if isValidConditions(rule, match, egraph):
+        new_eclass = reprPat(egraph, match[0], rule.target)
+        print(match[1].cid, new_eclass)
+        egraph.merge(match[1].cid, new_eclass)
+
+def reprPat(egraph, subst_map, target):
+    def traverse_target(t):
+        if isinstance(t, str):
+            t = VarId(hashstr(t))
+            if t not in subst_map:
+                print("ERROR: NO SUBSTUTION FOR ", t, subst_map)
+                exit()
+            return subst_map[t].cid
+        match t:
+            case Add(l, r):
+                el = traverse_target(l)
+                er = traverse_target(r)
+                e = egraph.add(Add(el, er))
+                return e
+            case Mul(l, r):
+                el = traverse_target(l)
+                er = traverse_target(r)
+                e = egraph.add(Mul(el, er))
+                return e
+            case Var(x):
+                return egraph.add(Var(x))
+            case Const(x):
+                return egraph.add(Const(x))
+            case _ as unreachable:
+                assert_never(unreachable)
+    return traverse_target(target)
 
 ## MATCHING-QUERY
 class Query:

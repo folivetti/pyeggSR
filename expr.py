@@ -37,9 +37,9 @@ Expr = Add | Mul | Var | Const
 def showTree(t: Expr) -> str:
     match t:
         case Add(l, r):
-            return showTree(l) + " + " + showTree(r)
+            return "(" + showTree(l) + ") + (" + showTree(r) + ")"
         case Mul(l, r):
-            return showTree(l) + " * " + showTree(r)
+            return "(" + showTree(l) + ") * (" + showTree(r) + ")"
         case Var(x):
             return f"X{x}"
         case Const(x):
