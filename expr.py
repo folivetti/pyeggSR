@@ -33,7 +33,6 @@ class Const:
 
 Expr = Add | Mul | Var | Const
 
-
 def showTree(t: Expr) -> str:
     match t:
         case Add(l, r):
@@ -56,6 +55,15 @@ def applyTree(f: Callable, t: Expr) -> Expr:
         case _ as n:
             return n
 
+def replaceChildren(t: Expr, cs: [Any]) -> Expr:
+    match t:
+        case Add(l, r):
+            return Add(*cs)
+        case Mul(l, r):
+            return Mul(*cs)
+        case _ as n:
+            return n
+
 def children(t: Expr) -> [Any]:
     match t:
         case Add(l, r) | Mul(l, r):
@@ -65,3 +73,14 @@ def children(t: Expr) -> [Any]:
 
 def operator(t: Expr) -> Expr:
     return applyTree(lambda x: None, t)
+
+def costFun(n):
+    match n:
+        case Add(l, r):
+            return 1
+        case Mul(l, r):
+            return 2
+        case Const(x) | Var(x):
+            return 1
+        case _:
+            return 0

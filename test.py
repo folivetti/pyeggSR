@@ -13,6 +13,7 @@ from egraph import *
 #tree = Mul(Var(0), Add(Mul(Const(1.2), Var(0)), Var(1))) # Add(Var(0), Mul(Const(1.2), Var(0)))
 tree = Add(Mul(Var(0), Mul(Const(1.2), Var(0))), Mul(Var(0), Var(1))) # x0 * 1.2 * x0 + x0 * x1 => x0 * (1.2 * x0 + x1)
 tree0 = applyTree(lambda x: 0, tree)
+print(showTree(tree))
 
 pattern = Pattern(Add(Mul("x", "y"), Mul("x", "z")), Mul("x", Add("y", "z")))
 egraph = EGraph()

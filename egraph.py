@@ -13,10 +13,10 @@ from expr import *
 class EGraph:
 
     def __init__(self):
-        self.union_find = {}
-        self.map_class = {}
-        self.hashcon = {}
-        self.worklist = []
+        self.union_find = {} # maps an eclass_id to another eclass_id
+        self.map_class = {} # maps an eclass_id to the eclass object
+        self.hashcon = {} # maps an enode to its eclass_id
+        self.worklist = [] # enodes and eclass_ids that needs to be revisited
         self.analysis = []
 
     def canonicalize(self, enode):
@@ -117,17 +117,8 @@ class EClass:
         self.parents = []
 
 def expr_to_egraph(expr, egraph):
-    match expr:
-        case Const(x):
-            return egraph.add(expr)
-        case Var(x):
-            return egraph.add(expr)
-        case Add(l, r):
-            c_id1 = expr_to_egraph(l, egraph)
-            c_id2 = expr_to_egraph(r, egraph)
-            return egraph.add(Add(c_id1, c_id2))
-        case Mul(l, r):
-            c_id1 = expr_to_egraph(l, egraph)
-            c_id2 = expr_to_egraph(r, egraph)
-            return egraph.add(Mul(c_id1, c_id2))
-
+    new_children = []
+    for child in children(expr):
+        new_children.append(expr_to_egraph(child, egraph))
+    n = replaceChildren(expr, new_children)
+    return egraph.add(n)

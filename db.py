@@ -27,29 +27,15 @@ class Pattern:
         self.target = target
         self.properties = {}  # maps a var to a tuple of properties (is_not_value, is_value, is_negative, is_not_negative, is_zero,...)
 
+    # TODO: incorporate match into pattern
     def match(self, egraph):
         for enode, eclass_id in egraph.hashcon.items():
             pass
 
     def getvars(self, t):
-        vars = []
-        match t:
-            case Add(l, r) | Mul(l, r):
-                if isinstance(l, str):
-                    vars.append(l)
-                else:
-                    vars += self.getvars(l)
-                if isinstance(r, str):
-                    vars.append(r)
-                else:
-                    vars += self.getvars(r)
-                return vars
-            case Var(x):
-                return []
-            case Const(x):
-                return []
-            case _ as unreachable:
-                assert_never(unreachable)
+        if isinstance(t, str):
+            return [t]
+        return [v for c in children(t) for v in self.getvars(c)]
 
 ## DATABASE
 
@@ -85,17 +71,6 @@ class IntTrie:
         self.trie = {}  # {int -> IntTrie()}
 
 ## SATURATION
-def costFun(n):
-    match n:
-        case Add(l, r):
-            return 1
-        case Mul(l, r):
-            return 2
-        case Const(x) | Var(x):
-            return 1
-        case _:
-            return 0
-
 def eqSat(scheduler, expr, rules, costFun):
     egraph = EGraph()
     eclassId = expr_to_egraph(expr, egraph)
@@ -107,26 +82,15 @@ def getBest(costFun, egraph, eclassId):
     cost = None
     expr = None
     for n in egraph.map_class[start_eclass].enodes:
-        match n:
-            case Add(l, r):
-                (cl, nl) = getBest(costFun, egraph, l)
-                (cr, nr) = getBest(costFun, egraph, r)
-                c = costFun(n) + cl + cr
-                if cost is None or c < cost:
-                    expr = Add(nl, nr)
-                    cost = c
-            case Mul(l, r):
-                (cl, nl) = getBest(costFun, egraph, l)
-                (cr, nr) = getBest(costFun, egraph, r)
-                c = costFun(n) + cl + cr
-                if cost is None or c < cost:
-                    expr = Mul(nl, nr)
-                    cost = c
-            case Const(x) | Var(x):
-                c = costFun(n)
-                if cost is None or c < cost:
-                    expr = n
-                    cost = c
+        c = costFun(n)
+        new_children = []
+        for child in children(n):
+            (cn, nn) = getBest(costFun, egraph, child)
+            c = c + cn
+            new_children.append(nn)
+        if cost is None or c < cost:
+            cost = c
+            expr = replaceChildren(n, new_children)
     return (cost, expr)
     
 def runEqSat(egraph, scheduler, rules):
@@ -159,7 +123,7 @@ def matchWithScheduler(db, i, rule_sched, j, rule):
     if j in rule_sched and rule_sched[j] <= i:
         return []
     matches = ematch(db, rule.source)
-    rule_sched[j] = i + 5  # updateStats schd i rw_id rule_sched[rw_id] stats matches
+    rule_sched[j] = i + 5  # 5 iterations ban -- updateStats schd i rw_id rule_sched[rw_id] stats matches
     return [(rule, match) for match in matches]
 
 def isValidConditions(rule, match, egraph):
@@ -168,7 +132,6 @@ def isValidConditions(rule, match, egraph):
 def applyMatch(egraph, rule, match):
     if isValidConditions(rule, match, egraph):
         new_eclass = reprPat(egraph, match[0], rule.target)
-        print(match[1].cid, new_eclass)
         egraph.merge(match[1].cid, new_eclass)
 
 def reprPat(egraph, subst_map, target):
@@ -179,23 +142,9 @@ def reprPat(egraph, subst_map, target):
                 print("ERROR: NO SUBSTUTION FOR ", t, subst_map)
                 exit()
             return subst_map[t].cid
-        match t:
-            case Add(l, r):
-                el = traverse_target(l)
-                er = traverse_target(r)
-                e = egraph.add(Add(el, er))
-                return e
-            case Mul(l, r):
-                el = traverse_target(l)
-                er = traverse_target(r)
-                e = egraph.add(Mul(el, er))
-                return e
-            case Var(x):
-                return egraph.add(Var(x))
-            case Const(x):
-                return egraph.add(Const(x))
-            case _ as unreachable:
-                assert_never(unreachable)
+        new_children = [traverse_target(c) for c in children(t)]
+        return egraph.add(replaceChildren(t, new_children))
+
     return traverse_target(target)
 
 ## MATCHING-QUERY
@@ -243,22 +192,13 @@ def compileToQuery(pat):
            return (VarId(hashstr(pat)), [])
        rt = VarId(v)
        v = v + 1
-       match pat:
-           case Add(l, r):
-               (rl, al) = aux(l)
-               (rr, ar) = aux(r)
-               atoms = [Atom(rt, Add(rl, rr))] + al + ar
-           case Mul(l, r):
-               (rl, al) = aux(l)
-               (rr, ar) = aux(r)
-               atoms = [Atom(rt, Mul(rl, rr))] + al + ar
-           case Const(x):
-               atoms = [Atom(rt, Const(x))]
-           case Var(x):
-               atoms = [Atom(rt, Var(x))]
-           case _ as unreachable:
-               print("UNREACH!!!!!!!!!!!!!!!!!", pat)
-               return (rt,[])
+       atoms = []
+       new_children = []
+       for child in children(pat):
+          rc, ac = aux(child)
+          new_children.append(rc)
+          atoms += ac
+       atoms = [Atom(rt, replaceChildren(pat, new_children))] + atoms
        return (rt, atoms)
 
     (root, atoms) = aux(pat) 
@@ -267,20 +207,8 @@ def compileToQuery(pat):
 def getVariables(pat):
    if isinstance(pat, str):
        return [VarId(hashstr(pat))]
-   match pat:
-       case Add(l, r):
-           ls = getVariables(l)
-           rs = getVariables(r)
-           return (ls + rs)
-       case Mul(l, r):
-           ls = getVariables(l)
-           rs = getVariables(r)
-           return (ls + rs)
-       case Var(x):
-           return []
-       case Const(x):
-           return []
-
+   return [var for child in children(pat) for var in getVariables(child)]
+   
 def unique(x):
     return list(set(x))
 
@@ -392,17 +320,8 @@ def update(var, x, atoms):
         atom = Atom(old_atom.classIdOrVar, old_atom.relation)
         if atom.classIdOrVar == var:
             atom.classIdOrVar = x
-        match atom.relation:
-           case Mul(l, r):
-             newl = x if l==var else l
-             newr = x if r==var else r
-             atom.relation = Mul(newl, newr)
-           case Add(l, r):
-             newl = x if l==var else l
-             newr = x if r==var else r
-             atom.relation = Add(newl, newr)
-           case _ as unmatched: 
-             atom.relation = unmatched
+        new_children = [x if c==var else c for c in children(atom.relation)]
+        atom.relation = replaceChildren(atom.relation, new_children)
         return atom
     return [replace(atom) for atom in atoms]
 
