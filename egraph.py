@@ -20,7 +20,17 @@ class EGraph:
         self.analysis = []
 
     def canonicalize(self, enode):
+        '''
+        An enode is a node where its children points to
+        eclasses. Since an eclass may have multiple labels,
+        this function replaces the current ids with the canonical ids.
+        '''
         return applyTree(self.find, enode)
+
+    def find(self, eclass_id):
+        if self.union_find[eclass_id] == eclass_id:
+            return eclass_id
+        return self.find(self.union_find[eclass_id])
 
     def add(self, enode):
         enode = self.canonicalize(enode)
@@ -98,11 +108,6 @@ class EGraph:
             self.analysis = eclass.parents + self.analysis
             self.map_class[canon_id].eclass_data = new_data
             # modifyA(canon_id)
-
-    def find(self, eclass_id):
-        if self.union_find[eclass_id] == eclass_id:
-            return eclass_id
-        return self.find(self.union_find[eclass_id])
 
 
 class EClass:

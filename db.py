@@ -74,6 +74,7 @@ def eqSat(scheduler, expr, rules, costFun):
     runEqSat(egraph, scheduler, rules)
     return getBest(costFun, egraph, eclassId)[1]
 
+# infinite loop in some situations - it seems to be incorrect with the paper
 def getBest(costFun, egraph, eclassId):
     start_eclass = egraph.find(eclassId)
     cost = None
