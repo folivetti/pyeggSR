@@ -74,23 +74,65 @@ def eqSat(scheduler, expr, rules, costFun):
     runEqSat(egraph, scheduler, rules)
     return getBest(costFun, egraph, eclassId)[1]
 
-# infinite loop in some situations - it seems to be incorrect with the paper
 def getBest(costFun, egraph, eclassId):
-    start_eclass = egraph.find(eclassId)
-    cost = None
-    expr = None
-    for n in egraph.map_class[start_eclass].enodes:
-        c = costFun(n)
+    def nodeTotCost(node, cd):
+        c = costFun(node)
         new_children = []
-        for child in children(n):
-            (cn, nn) = getBest(costFun, egraph, child)
-            c = c + cn
-            new_children.append(nn)
-        if cost is None or c < cost:
-            cost = c
-            expr = replaceChildren(n, new_children)
-    return (cost, expr)
-    
+        for child in children(node):
+            if child in cd:
+                (cc, nc) = cd[child]
+                c += cc
+                new_children.append(nc)
+            else:
+                return None
+        return (c, replaceChildren(node, new_children))
+
+    def fillUpCosts(cd, classes):
+        changed = True
+        while changed:
+            changed = False
+            for cid, v in classes.items():
+                nodes = v.enodes
+                currentCost = cd.get(cid, None)
+                newCost = None
+                for n in nodes:
+                    c = nodeTotCost(n, cd)
+                    if newCost is None:
+                        newCost = c
+                    else:
+                        if c is not None:
+                            if c[0] < newCost[0]:
+                                 newCost = c
+                if newCost is not None:
+                    if currentCost is None:
+                        cd[cid] = newCost
+                        changed = True
+                    else:
+                        if newCost[0] < currentCost[0]:
+                            cd[cid] = newCost
+                            changed = True
+                
+    start_eclass = eclassId # egraph.find(eclassId)
+    costDict = {}
+    fillUpCosts(costDict, egraph.map_class)
+    minCD = None
+    changed = True
+    while changed:
+        changed = False
+        if start_eclass in costDict:
+            if minCD is None:
+                minCD = costDict[start_eclass]
+                changed = True
+            else:
+                newCost = costDict[start_eclass]
+                if minCD[0] < newCost[0]:
+                    minCD = newCost
+                    changed = True
+        else:
+            changed = True
+        start_eclass = egraph.union_find[start_eclass]
+    return minCD 
+
 def runEqSat(egraph, scheduler, rules):
     rule_sched = {}
     for i in range(30):

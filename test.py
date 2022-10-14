@@ -35,4 +35,4 @@ query, root = compileToQuery(pattern.source)
 #for j in join:
 #    print(j)
 scheduler = {}
-print(showTree(eqSat(scheduler, tree, [pattern], lambda x: 1)))
+print(showTree(eqSat(scheduler, tree, [pattern], costFun)))
