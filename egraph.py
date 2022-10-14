@@ -13,6 +13,18 @@ from expr import *
 class EGraph:
 
     def __init__(self):
+        '''
+        An e-graph is composed of:
+
+        - union_find: a Union-find structure that maps and e-class id to another e-class id,
+                      whenever we add a new e-node that belongs to an existing e-class, 
+                      it is initially assigned a new e-class id and merged to the existing e-class.
+                      The newly created e-class id points to the original e-class for reference.
+
+        - map_class: is a dictionary that maps an e-class id to the object e-class
+        - hashcon: is a dictionary that maps an e-node to its e-class id
+        - worklist, analysis: stores the e-nodes and e-classes that must be analysed for repair 
+        '''
         self.union_find = {} # maps an eclass_id to another eclass_id
         self.map_class = {} # maps an eclass_id to the eclass object
         self.hashcon = {} # maps an enode to its eclass_id
@@ -21,18 +33,47 @@ class EGraph:
 
     def canonicalize(self, enode):
         '''
-        An enode is a node where its children points to
-        eclasses. Since an eclass may have multiple labels,
-        this function replaces the current ids with the canonical ids.
+        An e-node is a node where its children (if any) points
+        to e-class id. Since every e-node inside an e-class is an
+        equivalent expression, this creates multiple paths in the graph
+        to write equivalent expressions departing from one e-node.
+
+        Examples of e-node:
+            Add(0, 1) - Add any node from e-class 0 to any node of e-class 1
+            Log(0) - apply log to any e-node of e-class 0
+            Const(1.0) - Just the constant value, 
+                          without pointing to any e-class 
+
+        Since during the update of the e-graph, some e-classes may be merged,
+        we need to make sure the e-node childs point to the cannonical e-class.
+
+        This is done by applying `find` to each child.
         '''
         return applyTree(self.find, enode)
 
     def find(self, eclass_id):
-        if self.union_find[eclass_id] == eclass_id:
-            return eclass_id
-        return self.find(self.union_find[eclass_id])
+        '''
+        finds the cannonical e-class id, it just traverse
+        the union_find departing from eclass_id until it finds
+        the id such that union_find[id] = id.
+        '''
+        while self.union_find[eclass_id] != eclass_id:
+            eclass_id = self.union_find[eclass_id]
+        return eclass_id
 
     def add(self, enode):
+        '''
+        Add a new e-node:
+
+            1. Make sure the e-class ids of the children are cannonical
+            2. If after canonicalizing the e-node, one can find it at our hashcon, return the enode
+            3. Otherwise, create a new e-class with this e-node and an unused id 
+            4. Make this e-class id canonical by inserting at union_find 
+            5. Update the parents of the child e-classes to point to this e-node
+            6. Insert the e-node into hashcon
+            7. Append to the worklist so we can repair the graph, if needed.
+            8. Evaluate e-node, if it returns a float then store it on e-class data (TODO)
+        '''
         enode = self.canonicalize(enode)
         if enode in self.hashcon:
             return self.hashcon[enode]
@@ -44,10 +85,23 @@ class EGraph:
                 self.map_class[eclass].parents.append((eclass_id, enode))
             self.hashcon[enode] = eclass_id
             self.worklist.append((enode, eclass_id))
-            # TODO: modifyA eclass_id self
+            # TODO: makeA node egraph
             return eclass_id
 
     def merge(self, eclass_id_1, eclass_id_2):
+        '''
+        Merge two equivalent e-classes.
+
+        If the canonical of both e-classes are the same, they are already linked.
+
+        Select the e-class with more parents as the leader, and the other as sub.
+
+        Link the sub to the leader with the union_find, 
+        add the sub parents and e-nodes to the leader 
+        and remove the sub from map_class. 
+        The union_find will still keep the reference 
+        to the sub e-class id so we can reach their info.
+        '''
         if self.find(eclass_id_1) == self.find(eclass_id_2):
             return self.find(eclass_id_1)
         # must put something on worklist. Check paper
@@ -70,36 +124,57 @@ class EGraph:
         leader_class.eclass_data = None
         self.map_class.pop(sub, None)
         self.map_class[leader] = leader_class
+
+        # store the parents in the worklist for repairing
         self.worklist = sub_class.parents + self.worklist
+        # if the data has changed, add the new data for analysis
         analysis = [] if leader_class.eclass_data == old_leader_data else old_leader_parents
         analysis += [] if sub_class.eclass_data == old_sub_data else old_sub_parents
         self.analysis = analysis + self.analysis
-        # TODO: modifyA leader self
+        # TODO: modifyA leader self -- prune the e-class so it will keep only the constant value
 
         return leader
 
     def rebuild(self):
-        worklist = self.worklist
-        analysis = self.analysis
-        self.worklist, self.analysis = [], []
-        for wl in worklist:
-            self.repair(wl)
-        for al in analysis:
-            self.repair_anaylsis(al)
-        if len(self.worklist) != 0 or len(self.analysis) != 0:
-            self.rebuild()
+        '''
+        rebuild the e-graph by repairing all:
+            e-node, e-class id pairs from the worklist
+            parent e-nodes from analysis
+
+        It can happen that after repairing everything, new items are added to
+        the lists.
+        '''
+        while len(self.worklist) != 0 or len(self.analysis) != 0:
+            worklist = self.worklist
+            analysis = self.analysis
+            self.worklist, self.analysis = [], []
+            for wl in worklist:
+                self.repair(wl)
+            for al in analysis:
+                self.repair_anaylsis(al)
         return
 
     def repair(self, wl):
+        '''
+        Remove the enode from hashcon, canonicalize it
+        and check if the canonical is already in the hashcon,
+        if it is, merge, if it is not, add it to hashcon
+        '''
         enode, eclass_id = wl
         self.hashcon.pop(enode, None)
         enode = self.canonicalize(enode)
         eclass_id = self.find(eclass_id)
         if enode in self.hashcon:
-            self.merge(self.hashcon[enode], eclass_id)
+            self.merge(self.hashcon[enode], eclass_id) # this can insert new items to worklist
+        else:
+            self.hashcon[enode] = eclass_id
         return
 
     def repair_anaylsis(self, al):
+        '''
+        join the data of an e-class with the data obtained by an e-node.
+        This is not fully implemented since we need to implement joinA and modifyA
+        '''
         enode, eclass_id = al
         canon_id = self.find(eclass_id)
         eclass = self.map_class[canon_id]
@@ -111,6 +186,19 @@ class EGraph:
 
 
 class EClass:
+    '''
+    An e-class contains an id and a set of enodes.
+    These enodes evaluates to equivalent expressions, so following any
+    e-node of the same e-class have the same results.
+
+    Eg.:
+    e-class: 1
+    e-nodes: {Add(x0, x0), Mul(2.0, x0)}
+
+    The eclass_data field contains a numerical value in case this eclass evaluates to a constant.
+ 
+    The parents contains a list of e-nodes that points to this e-class. This is used during the merge of two e-classes
+    '''
     def __init__(self, cid, enode):
         self.id = cid
         self.enodes = set([enode])
@@ -118,10 +206,16 @@ class EClass:
             case Const(x):
                 self.eclass_data = x
             case _:
-                self.eclass_data = None  # this should actually expand to recursive calls, need egraph for this
+                self.eclass_data = None
         self.parents = []
 
 def expr_to_egraph(expr, egraph):
+    '''
+    Create an e-graph from an expr.
+
+    For each child of the root node, update egraph, replace the child
+    with the e-class id and add the node.
+    '''
     new_children = []
     for child in children(expr):
         new_children.append(expr_to_egraph(child, egraph))
