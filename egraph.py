@@ -30,6 +30,7 @@ class EGraph:
         self.hashcon = {} # maps an enode to its eclass_id
         self.worklist = [] # enodes and eclass_ids that needs to be revisited
         self.analysis = []
+        self.next_id = 0 # next available e-class id
 
     def canonicalize(self, enode):
         '''
@@ -78,7 +79,8 @@ class EGraph:
         if enode in self.hashcon:
             return self.hashcon[enode]
         else:
-            eclass_id = len(self.map_class)
+            eclass_id = self.next_id # len(self.map_class)
+            self.next_id += 1
             self.map_class[eclass_id] = EClass(eclass_id, enode)
             self.union_find[eclass_id] = eclass_id
             for eclass in children(enode):
