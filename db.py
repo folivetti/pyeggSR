@@ -537,7 +537,7 @@ def intersectTrie(var, xs, trie, ids):
     def isDiffFrom(x, y):
         match y:
             case ClassId(z):
-                return False
+                return True
             case VarId(z):
                 return VarId(x) != y
 
