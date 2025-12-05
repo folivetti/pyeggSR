@@ -64,9 +64,6 @@ def gabor_kernel(ksize, theta, sigma):
     gamma = 0.5  # spatial aspect ratio
     psi = 0  # phase offset
     
-    sigma_x = sigma
-    sigma_y = float(sigma) / gamma
-    
     # Adjust theta to be in radians
     theta_rad = theta * np.pi / 180.0
     
