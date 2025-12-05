@@ -456,20 +456,20 @@ def f_square(args, const_params):
 
 
 def f_exp(args, const_params):
-	return (cv2.exp((args[0] / 255.0).astype(np.float32), 2) * 255).astype(np.uint8)
+	return (cv2.exp((args[0] / 255.0).astype(np.float32)) * 255).astype(np.uint8)
 
 def f_log(args, const_params):
 	return np.log1p(args[0]).astype(np.uint8)
 
 
 def f_median_blur(args, const_params):
-	ksize = correct_ksize(const_params[0])
+	ksize = correct_ksize(const_params[0] if const_params else 5)
 	x = args[0].copy()
 	x = x.astype(np.uint8)
 	return cv2.medianBlur(x, ksize)
 
 def f_gaussian_blur(args, const_params):
-	ksize = correct_ksize(const_params[0])
+	ksize = correct_ksize(const_params[0] if const_params else 5)
 	return cv2.GaussianBlur(args[0], (ksize, ksize), 0)
 
 def f_laplacian(args, const_params):
@@ -590,11 +590,13 @@ def f_fill_holes(args, const_params):
     return cv2.drawContours(image.copy(), contours, selected, color, thickness)
 
 def f_remove_small_objects(args, const_params):
-	return remove_small_objects(args[0] > 0, const_params[0]).astype(np.uint8)
+	result = remove_small_objects(args[0] > 0, const_params[0] if const_params else 64)
+	return (result * 255).astype(np.uint8)
 
 
 def f_remove_small_holes(args, const_params):
-	return remove_small_holes(args[0] > 0, const_params[0]).astype(np.uint8)
+	result = remove_small_holes(args[0] > 0, const_params[0] if const_params else 64)
+	return (result * 255).astype(np.uint8)
 
 def f_threshold(args, const_params):
         if const_params[0] < 128:
