@@ -137,7 +137,7 @@ def replaceChildren(t: Expr, cs: [Any]) -> Expr:
 
 def children(t: Expr) -> [Any]:
     match t:
-        case Add(l, r) | Sub(l,r) | Mul(l, r) | Div(l, r) | Pow(l, r) | Min(l, r) | Max(l, r) | Mean(l, r):
+        case Add(l, r) | Sub(l, r) | Mul(l, r) | Div(l, r) | Pow(l, r) | Min(l, r) | Max(l, r) | Mean(l, r):
             return [l, r]
         case Log(n) | Exp(n) | Sqrt(n):
             return [n]
