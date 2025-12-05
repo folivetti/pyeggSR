@@ -26,21 +26,7 @@ class Exp:
 @dataclass(unsafe_hash=True)
 class Log:
     child: Any
-
-@dataclass(unsafe_hash=True)
-class Mul:
-    left: Any
-    right: Any
-
-@dataclass(unsafe_hash=True)
-class Div:
-    left: Any
-    right: Any
-
-@dataclass(unsafe_hash=True)
-class Const:
-    value: float
-
+    
 @dataclass(unsafe_hash=True)
 class Var:
     idx: int
@@ -242,12 +228,9 @@ class ContourArea:
 Expr = (
     Add
     | Sub
-    | Mul
-    | Div
     | Exp
     | Log
     | Var
-    | Const
     | Erode
     | Dilate
     | Open
@@ -301,10 +284,6 @@ def showTree(t: Expr) -> str:
             return "(" + showTree(l) + ") + (" + showTree(r) + ")"
         case Sub(l, r):
             return "(" + showTree(l) + ") - (" + showTree(r) + ")"
-        case Mul(l, r):
-            return "(" + showTree(l) + ") * (" + showTree(r) + ")"
-        case Div(l, r):
-            return "(" + showTree(l) + ") / (" + showTree(r) + ")"
         case AbsoluteDifference2(l, r):
             return f"AbsoluteDifference2({showTree(l)}, {showTree(r)})"
         case BitwiseAnd(l, r):
@@ -401,8 +380,6 @@ def showTree(t: Expr) -> str:
         # Leaf nodes
         case Var(x):
             return f"X{x}"
-        case Const(x):
-            return f"{x}"
         case _ as unreachable:
             return str(unreachable) # assert_never(unreachable)
 
@@ -417,10 +394,6 @@ def replaceChildren(t: Expr, cs: [Any]) -> Expr:
             return Add(*cs)
         case Sub(l, r):
             return Sub(*cs)
-        case Mul(l, r):
-            return Mul(*cs)
-        case Div(l, r):
-            return Div(*cs)
         case AbsoluteDifference2(l, r):
             return AbsoluteDifference2(*cs)
         case BitwiseAnd(l, r):
@@ -521,7 +494,7 @@ def replaceChildren(t: Expr, cs: [Any]) -> Expr:
 def children(t: Expr) -> [Any]:
     match t:
         # Binary operations
-        case Add(l, r) | Sub(l, r) | Mul(l, r) | Div(l, r):
+        case Add(l, r) | Sub(l, r) :
             return [l, r]
         case AbsoluteDifference2(l, r) | BitwiseAnd(l, r) | BitwiseAndMask(l, r):
             return [l, r]
@@ -560,16 +533,12 @@ def costFun(n):
             return 1
         case Sub(l, r):
             return 1
-        case Mul(l, r):
-            return 2
-        case Div(l, r):
-            return 3
         case Log(n):
             return 2
         case Exp(n):
             return 3
         # Leaf nodes - minimal cost
-        case Const(x) | Var(x):
+        case Var(x):
             return 1
         # Binary image processing operations - moderate cost
         case AbsoluteDifference2(l, r) | BitwiseAnd(l, r) | BitwiseAndMask(l, r):
