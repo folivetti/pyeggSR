@@ -6,10 +6,253 @@ from skimage.morphology import remove_small_objects, remove_small_holes, thin
 import skimage.feature as feature
 import mahotas
 
-import expr
+from expr import *
 
-def evaluate(e : Expr):
-  pass
+# Constants for image processing
+IMAGE_UINT8_POSITIVE = 255
+IMAGE_UINT8_COLOR_3C = (255, 255, 255)
+IMAGE_UINT8_COLOR_1C = 255
+
+# Kernel definitions for various image operations
+ROBERT_CROSS_H_KERNEL = np.array([[1, 0], [0, -1]], dtype=np.float32)
+ROBERT_CROSS_V_KERNEL = np.array([[0, 1], [-1, 0]], dtype=np.float32)
+SHARPEN_KERNEL = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]], dtype=np.float32)
+KERNEL_EMBOSS = np.array([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]], dtype=np.float32)
+KERNEL_KIRSCH_COMPASS = [
+    np.array([[5, 5, 5], [-3, 0, -3], [-3, -3, -3]], dtype=np.float32),
+    np.array([[-3, 5, 5], [-3, 0, 5], [-3, -3, -3]], dtype=np.float32),
+    np.array([[-3, -3, 5], [-3, 0, 5], [-3, -3, 5]], dtype=np.float32),
+    np.array([[-3, -3, -3], [-3, 0, 5], [-3, 5, 5]], dtype=np.float32),
+    np.array([[-3, -3, -3], [-3, 0, -3], [5, 5, 5]], dtype=np.float32),
+    np.array([[-3, -3, -3], [5, 0, -3], [5, 5, -3]], dtype=np.float32),
+    np.array([[5, -3, -3], [5, 0, -3], [5, -3, -3]], dtype=np.float32),
+    np.array([[5, 5, -3], [5, 0, -3], [-3, -3, -3]], dtype=np.float32)
+]
+
+# Helper functions
+def correct_ksize(param):
+    """Ensure kernel size is odd and positive."""
+    ksize = max(1, int(param))
+    if ksize % 2 == 0:
+        ksize += 1
+    return ksize
+
+def kernel_from_parameters(const_params):
+    """Create a morphological kernel from parameters."""
+    if len(const_params) < 2:
+        # Default kernel
+        return cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    
+    shape_param = const_params[0]
+    size_param = max(1, int(const_params[1]))
+    if size_param % 2 == 0:
+        size_param += 1
+    
+    # Select kernel shape based on parameter
+    if shape_param < 85:
+        shape = cv2.MORPH_RECT
+    elif shape_param < 170:
+        shape = cv2.MORPH_ELLIPSE
+    else:
+        shape = cv2.MORPH_CROSS
+    
+    return cv2.getStructuringElement(shape, (size_param, size_param))
+
+def gabor_kernel(ksize, theta, sigma):
+    """Create a Gabor kernel."""
+    lambda_param = 10.0  # wavelength
+    gamma = 0.5  # spatial aspect ratio
+    psi = 0  # phase offset
+    
+    sigma_x = sigma
+    sigma_y = float(sigma) / gamma
+    
+    # Adjust theta to be in radians
+    theta_rad = theta * np.pi / 180.0
+    
+    # Create Gabor kernel
+    kernel = cv2.getGaborKernel((ksize, ksize), sigma, theta_rad, lambda_param, gamma, psi)
+    return kernel
+
+def evaluate(e: Expr, data=None, const_params=None):
+    """
+    Evaluate an expression tree with given data for variables and constant parameters.
+    
+    Args:
+        e: The expression to evaluate
+        data: Dictionary mapping variable indices to their data (numpy arrays)
+        const_params: List of constant parameters for operations that need them
+    
+    Returns:
+        The evaluated result (numpy array for image operations)
+    """
+    if data is None:
+        data = {}
+    if const_params is None:
+        const_params = []
+    
+    match e:
+        # Binary operations
+        case Add(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_add([left_val, right_val], const_params)
+        case Sub(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_sub([left_val, right_val], const_params)
+        case AbsoluteDifference2(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_absolute_difference2([left_val, right_val], const_params)
+        case BitwiseAnd(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_bitwise_and([left_val, right_val], const_params)
+        case BitwiseAndMask(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_bitwise_and_mask([left_val, right_val], const_params)
+        case BitwiseOr(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_bitwise_or([left_val, right_val], const_params)
+        case BitwiseXor(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_bitwise_xor([left_val, right_val], const_params)
+        case Min(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_min([left_val, right_val], const_params)
+        case Max(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_max([left_val, right_val], const_params)
+        case Mean(l, r):
+            left_val = evaluate(l, data, const_params)
+            right_val = evaluate(r, data, const_params)
+            return f_mean([left_val, right_val], const_params)
+        # Unary operations
+        case Exp(x):
+            child_val = evaluate(x, data, const_params)
+            return f_exp([child_val], const_params)
+        case Log(x):
+            child_val = evaluate(x, data, const_params)
+            return f_log([child_val], const_params)
+        case Erode(x):
+            child_val = evaluate(x, data, const_params)
+            return f_erode([child_val], const_params)
+        case Dilate(x):
+            child_val = evaluate(x, data, const_params)
+            return f_dilate([child_val], const_params)
+        case Open(x):
+            child_val = evaluate(x, data, const_params)
+            return f_open([child_val], const_params)
+        case Close(x):
+            child_val = evaluate(x, data, const_params)
+            return f_close([child_val], const_params)
+        case MorphGradient(x):
+            child_val = evaluate(x, data, const_params)
+            return f_morph_gradient([child_val], const_params)
+        case MorphTopHat(x):
+            child_val = evaluate(x, data, const_params)
+            return f_morph_top_hat([child_val], const_params)
+        case MorphBlackHat(x):
+            child_val = evaluate(x, data, const_params)
+            return f_morph_black_hat([child_val], const_params)
+        case FillHoles(x):
+            child_val = evaluate(x, data, const_params)
+            return f_fill_holes([child_val], const_params)
+        case RemoveSmallHoles(x):
+            child_val = evaluate(x, data, const_params)
+            return f_remove_small_holes([child_val], const_params)
+        case RemoveSmallObjects(x):
+            child_val = evaluate(x, data, const_params)
+            return f_remove_small_objects([child_val], const_params)
+        case MedianBlur(x):
+            child_val = evaluate(x, data, const_params)
+            return f_median_blur([child_val], const_params)
+        case GaussianBlur(x):
+            child_val = evaluate(x, data, const_params)
+            return f_gaussian_blur([child_val], const_params)
+        case Laplacian(x):
+            child_val = evaluate(x, data, const_params)
+            return f_laplacian([child_val], const_params)
+        case Sobel(x):
+            child_val = evaluate(x, data, const_params)
+            return f_sobel([child_val], const_params)
+        case RobertCross(x):
+            child_val = evaluate(x, data, const_params)
+            return f_robert_cross([child_val], const_params)
+        case Canny(x):
+            child_val = evaluate(x, data, const_params)
+            return f_canny([child_val], const_params)
+        case Sharpen(x):
+            child_val = evaluate(x, data, const_params)
+            return f_sharpen([child_val], const_params)
+        case Kirsch(x):
+            child_val = evaluate(x, data, const_params)
+            return f_kirsch([child_val], const_params)
+        case Embossing(x):
+            child_val = evaluate(x, data, const_params)
+            return f_embossing([child_val], const_params)
+        case Pyr(x):
+            child_val = evaluate(x, data, const_params)
+            return f_pyr([child_val], const_params)
+        case Denoizing(x):
+            child_val = evaluate(x, data, const_params)
+            return f_denoizing([child_val], const_params)
+        case AbsoluteDifference(x):
+            child_val = evaluate(x, data, const_params)
+            return f_absolute_difference([child_val], const_params)
+        case RelativeDifference(x):
+            child_val = evaluate(x, data, const_params)
+            return f_relative_difference([child_val], const_params)
+        case FluoTopHat(x):
+            child_val = evaluate(x, data, const_params)
+            return f_fluo_top_hat([child_val], const_params)
+        case GaborFilter(x):
+            child_val = evaluate(x, data, const_params)
+            return f_gabor_filter([child_val], const_params)
+        case DistanceTransform(x):
+            child_val = evaluate(x, data, const_params)
+            return f_distance_transform([child_val], const_params)
+        case DistanceTransformAndThresh(x):
+            child_val = evaluate(x, data, const_params)
+            return f_distance_transform_and_thresh([child_val], const_params)
+        case Threshold(x):
+            child_val = evaluate(x, data, const_params)
+            return f_threshold([child_val], const_params)
+        case ThresholdAt1(x):
+            child_val = evaluate(x, data, const_params)
+            return f_threshold_at_1([child_val], const_params)
+        case BinaryInRange(x):
+            child_val = evaluate(x, data, const_params)
+            return f_binary_in_range([child_val], const_params)
+        case InRange(x):
+            child_val = evaluate(x, data, const_params)
+            return f_in_range([child_val], const_params)
+        case BitwiseNot(x):
+            child_val = evaluate(x, data, const_params)
+            return f_bitwise_not([child_val], const_params)
+        case SquareRoot(x):
+            child_val = evaluate(x, data, const_params)
+            return f_square_root([child_val], const_params)
+        case Square(x):
+            child_val = evaluate(x, data, const_params)
+            return f_square([child_val], const_params)
+        case ThresholdOtsu(x):
+            child_val = evaluate(x, data, const_params)
+            return f_threshold_otsu([child_val], const_params)
+        case ContourArea(x):
+            child_val = evaluate(x, data, const_params)
+            return f_contour_area([child_val], const_params)
+        # Leaf nodes
+        case Var(idx):
+            return data.get(idx, None)
+        case _ as unreachable:
+            raise ValueError(f"Unknown expression type: {unreachable}")
 
 def _fill_cnt(image, contours):
 	assert (
