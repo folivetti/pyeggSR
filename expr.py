@@ -38,6 +38,30 @@ class Log:
     child: Any
 
 @dataclass(unsafe_hash=True)
+class Sqrt:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Pow:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Min:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Max:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Mean:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
 class Var:
     idx: int
 
@@ -47,7 +71,7 @@ class Const:
     val: float
 
 
-Expr = Add | Sub | Mul | Div | Log | Exp | Var | Const
+Expr = Add | Sub | Mul | Div | Log | Exp | Sqrt | Pow | Min | Max | Mean | Var | Const
 
 def showTree(t: Expr) -> str:
     match t:
@@ -63,6 +87,16 @@ def showTree(t: Expr) -> str:
             return f"log(" + showTree(x) + ")"
         case Exp(x):
             return f"exp(" + showTree(x) + ")"
+        case Sqrt(x):
+            return f"sqrt(" + showTree(x) + ")"
+        case Pow(l, r):
+            return "(" + showTree(l) + ") ** (" + showTree(r) + ")"
+        case Min(l, r):
+            return "min(" + showTree(l) + ", " + showTree(r) + ")"
+        case Max(l, r):
+            return "max(" + showTree(l) + ", " + showTree(r) + ")"
+        case Mean(l, r):
+            return "mean(" + showTree(l) + ", " + showTree(r) + ")"
         case Var(x):
             return f"X{x}"
         case Const(x):
@@ -88,14 +122,24 @@ def replaceChildren(t: Expr, cs: [Any]) -> Expr:
             return Exp(*cs)
         case Log(n):
             return Log(*cs)
+        case Sqrt(n):
+            return Sqrt(*cs)
+        case Pow(l, r):
+            return Pow(*cs)
+        case Min(l, r):
+            return Min(*cs)
+        case Max(l, r):
+            return Max(*cs)
+        case Mean(l, r):
+            return Mean(*cs)
         case _ as n:
             return n
 
 def children(t: Expr) -> [Any]:
     match t:
-        case Add(l, r) | Sub(l,r) | Mul(l, r) | Div(l, r):
+        case Add(l, r) | Sub(l, r) | Mul(l, r) | Div(l, r) | Pow(l, r) | Min(l, r) | Max(l, r) | Mean(l, r):
             return [l, r]
-        case Log(n) | Exp(n):
+        case Log(n) | Exp(n) | Sqrt(n):
             return [n]
         case _:
             return []
@@ -117,6 +161,16 @@ def costFun(n):
             return 2
         case Exp(n):
             return 3
+        case Sqrt(n):
+            return 2
+        case Pow(l, r):
+            return 3
+        case Min(l, r):
+            return 2
+        case Max(l, r):
+            return 2
+        case Mean(l, r):
+            return 2
         case Const(x) | Var(x):
             return 1
         case _:
