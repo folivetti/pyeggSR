@@ -8,26 +8,31 @@ import mahotas
 
 from expr import *
 
-# Constants for image processing
-IMAGE_UINT8_POSITIVE = 255
-IMAGE_UINT8_COLOR_3C = (255, 255, 255)
-IMAGE_UINT8_COLOR_1C = 255
+SHARPEN_KERNEL = np.array(([0, -1, 0], [-1, 5, -1], [0, -1, 0]), dtype="int")
+ROBERT_CROSS_H_KERNEL = np.array(([0, 1], [-1, 0]), dtype="int")
+ROBERT_CROSS_V_KERNEL = np.array(([1, 0], [0, -1]), dtype="int")
+OPENCV_MIN_KERNEL_SIZE = 3
+OPENCV_MAX_KERNEL_SIZE = 31
+OPENCV_KERNEL_RANGE = OPENCV_MAX_KERNEL_SIZE - OPENCV_MIN_KERNEL_SIZE
+OPENCV_MIN_INTENSITY = 0
+OPENCV_MAX_INTENSITY = 255
+OPENCV_INTENSITY_RANGE = OPENCV_MAX_INTENSITY - OPENCV_MIN_INTENSITY
 
-# Kernel definitions for various image operations
-ROBERT_CROSS_H_KERNEL = np.array([[1, 0], [0, -1]], dtype=np.float32)
-ROBERT_CROSS_V_KERNEL = np.array([[0, 1], [-1, 0]], dtype=np.float32)
-SHARPEN_KERNEL = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]], dtype=np.float32)
-KERNEL_EMBOSS = np.array([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]], dtype=np.float32)
-KERNEL_KIRSCH_COMPASS = [
-    np.array([[5, 5, 5], [-3, 0, -3], [-3, -3, -3]], dtype=np.float32),
-    np.array([[-3, 5, 5], [-3, 0, 5], [-3, -3, -3]], dtype=np.float32),
-    np.array([[-3, -3, 5], [-3, 0, 5], [-3, -3, 5]], dtype=np.float32),
-    np.array([[-3, -3, -3], [-3, 0, 5], [-3, 5, 5]], dtype=np.float32),
-    np.array([[-3, -3, -3], [-3, 0, -3], [5, 5, 5]], dtype=np.float32),
-    np.array([[-3, -3, -3], [5, 0, -3], [5, 5, -3]], dtype=np.float32),
-    np.array([[5, -3, -3], [5, 0, -3], [5, -3, -3]], dtype=np.float32),
-    np.array([[5, 5, -3], [5, 0, -3], [-3, -3, -3]], dtype=np.float32)
-]
+KERNEL_SCALE = OPENCV_KERNEL_RANGE / OPENCV_INTENSITY_RANGE
+
+
+GABOR_SIGMAS = [0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+GABOR_THETAS = np.arange(0, 2, step=1.0 / 8) * np.pi
+GABOR_LAMBDS = [0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+GABOR_GAMMAS = np.arange(0.0625, 1.001, step=1.0 / 16)
+#GABOR_FILTER_KSIZE = 11
+
+#BINARY_FILL_COLOR = 255
+
+IMAGE_UINT8_POSITIVE: int = 255
+IMAGE_UINT8_NEGATIVE: int = 0
+IMAGE_UINT8_COLOR_1C: list = [IMAGE_UINT8_POSITIVE]
+IMAGE_UINT8_COLOR_3C: list = IMAGE_UINT8_COLOR_1C * 3
 
 # Helper functions
 def correct_ksize(param):
