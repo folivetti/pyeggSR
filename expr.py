@@ -20,16 +20,6 @@ class Sub:
     right: Any
 
 @dataclass(unsafe_hash=True)
-class Mul:
-    left: Any
-    right: Any
-
-@dataclass(unsafe_hash=True)
-class Div:
-    left: Any
-    right: Any
-
-@dataclass(unsafe_hash=True)
 class Exp:
     child: Any
 
@@ -42,12 +32,250 @@ class Var:
     idx: int
 
 
+
+# Expanded dataclasses based on pycgp/ipfunctions.py (image-processing ops)
+# Many of these are unary (single child) or binary (left/right). Names chosen
+# to correspond to the f_* functions in ipfunctions.py but as CamelCase types.
+
+# Morphology / structuring ops (unary)
 @dataclass(unsafe_hash=True)
-class Const:
-    val: float
+class Erode:
+    child: Any
 
+@dataclass(unsafe_hash=True)
+class Dilate:
+    child: Any
 
-Expr = Add | Sub | Mul | Div | Log | Exp | Var | Const
+@dataclass(unsafe_hash=True)
+class Open:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Close:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class MorphGradient:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class MorphTopHat:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class MorphBlackHat:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class FillHoles:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class RemoveSmallHoles:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class RemoveSmallObjects:
+    child: Any
+
+# Blur / filters / edge detectors (unary)
+@dataclass(unsafe_hash=True)
+class MedianBlur:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class GaussianBlur:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Laplacian:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Sobel:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class RobertCross:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Canny:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Sharpen:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Kirsch:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Embossing:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Pyr:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Denoizing:
+    child: Any
+
+# Arithmetic / comparison like ops (binary)
+@dataclass(unsafe_hash=True)
+class AbsoluteDifference:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class AbsoluteDifference2:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class RelativeDifference:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class FluoTopHat:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class GaborFilter:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class DistanceTransform:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class DistanceTransformAndThresh:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Threshold:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class ThresholdAt1:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class BinaryInRange:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class InRange:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class BitwiseAnd:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class BitwiseAndMask:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class BitwiseNot:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class BitwiseOr:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class BitwiseXor:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class SquareRoot:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Square:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class Min:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Max:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Mean:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class ThresholdOtsu:
+    child: Any
+
+@dataclass(unsafe_hash=True)
+class ContourArea:
+    child: Any
+
+# Update Expr union to include the expanded operators
+Expr = (
+    Add
+    | Sub
+    | Exp
+    | Log
+    | Var
+    | Erode
+    | Dilate
+    | Open
+    | Close
+    | MorphGradient
+    | MorphTopHat
+    | MorphBlackHat
+    | FillHoles
+    | RemoveSmallHoles
+    | RemoveSmallObjects
+    | MedianBlur
+    | GaussianBlur
+    | Laplacian
+    | Sobel
+    | RobertCross
+    | Canny
+    | Sharpen
+    | Kirsch
+    | Embossing
+    | Pyr
+    | Denoizing
+    | AbsoluteDifference
+    | AbsoluteDifference2
+    | RelativeDifference
+    | FluoTopHat
+    | GaborFilter
+    | DistanceTransform
+    | DistanceTransformAndThresh
+    | Threshold
+    | ThresholdAt1
+    | BinaryInRange
+    | InRange
+    | BitwiseAnd
+    | BitwiseAndMask
+    | BitwiseNot
+    | BitwiseOr
+    | BitwiseXor
+    | SquareRoot
+    | Square
+    | Min
+    | Max
+    | Mean
+    | ThresholdOtsu
+    | ContourArea
+)
 
 def showTree(t: Expr) -> str:
     match t:
