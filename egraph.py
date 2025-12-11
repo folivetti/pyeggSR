@@ -62,7 +62,7 @@ class EGraph:
             eclass_id = self.union_find[eclass_id]
         return eclass_id
 
-    def add(self, enode):
+    def add(self, enode, consts=[]):
         '''
         Add a new e-node:
 
@@ -81,7 +81,10 @@ class EGraph:
         else:
             eclass_id = self.next_id # len(self.map_class)
             self.next_id += 1
-            self.map_class[eclass_id] = EClass(eclass_id, enode)
+
+            h = 0 if len(children(enode)) == 0 else max([self.map_class[eclass].height for eclass in children(enode)])
+
+            self.map_class[eclass_id] = EClass(eclass_id, enode, consts, h+1)
             self.union_find[eclass_id] = eclass_id
             for eclass in children(enode):
                 self.map_class[eclass].parents.append((eclass_id, enode))
@@ -122,6 +125,7 @@ class EGraph:
         old_sub_data, old_sub_parents = sub_class.eclass_data, sub_class.parents
         leader_class.parents += sub_class.parents
         leader_class.enodes = leader_class.enodes.union(sub_class.enodes)
+        leader_class.height = min(leader_class.height, sub_class.height)
         # joinA leader_class.eclass_data sub_class.eclass_data
         leader_class.eclass_data = None
         self.map_class.pop(sub, None)
@@ -201,15 +205,14 @@ class EClass:
  
     The parents contains a list of e-nodes that points to this e-class. This is used during the merge of two e-classes
     '''
-    def __init__(self, cid, enode):
+    def __init__(self, cid, enode, consts=[], height=0):
         self.id = cid
         self.enodes = set([enode])
         match enode:
-            case Const(x):
-                self.eclass_data = x
             case _:
-                self.eclass_data = None
+                self.eclass_data = consts
         self.parents = []
+        self.height = height
 
 def expr_to_egraph(expr, egraph):
     '''

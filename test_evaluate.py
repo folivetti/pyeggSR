@@ -5,8 +5,10 @@ This demonstrates how to use the evaluate function to evaluate expression trees.
 
 import numpy as np
 from expr import *
-from evaluate import evaluate
-
+from egraph import *
+from evaluate import *
+from readimage import _read_inputs, _read_mask
+import cv2 
 
 def test_variable_expression():
     """Test that Var expressions return the correct data."""
@@ -122,6 +124,17 @@ def test_expression_tree_display():
     assert isinstance(tree_str, str), "showTree should return a string"
     print("  ✓ Expression tree display works")
 
+def test_read_file():
+    img = _read_inputs("NVA_19-002.MelanLizaV10_2.S1528447.P4595.png")
+    egraph = EGraph()
+    id0 = egraph.add(Var(0))
+    id1 = egraph.add(Var(1))
+    id2 = egraph.add(Var(2))
+    id3 = egraph.add(GaussianBlur(id0), [200])
+    id4 = egraph.add(BitwiseOr(id3, id2))
+    id5 = egraph.add(BitwiseOr(id4, id1))
+    result = evaluate_egraph(id5, egraph, img) 
+    cv2.imwrite("test_output.png", result)
 
 if __name__ == "__main__":
     print("=" * 60)
@@ -135,6 +148,8 @@ if __name__ == "__main__":
         test_nested_expressions()
         test_morphological_operations()
         test_expression_tree_display()
+        test_read_file()
+        print(expr_to_egraph(Add(Var(0), Var(1)), EGraph()))
         
         print("\n" + "=" * 60)
         print("✓ All tests passed successfully!")
