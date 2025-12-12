@@ -11,8 +11,8 @@ def _read_inputs(input_filename):
     in_image_origin_hsv = cv2.cvtColor(in_image_origin.copy(), cv2.COLOR_BGR2HSV)
 
     new_image_in = [in_image_origin[:,:,i] for i in range(in_image_origin.shape[2])]
-    new_image_in = [in_image_origin_hsv[:,:,i] for i in range(in_image_origin_hsv.shape[2])]
-    return new_image_in, in_image_origin_size
+    new_image_in_hsv = [in_image_origin_hsv[:,:,i] for i in range(in_image_origin_hsv.shape[2])]
+    return new_image_in + new_image_in_hsv, in_image_origin_size
         
             
 def _read_mask(roi_filename, img_size):

@@ -4,6 +4,7 @@ This demonstrates how to use the evaluate function to evaluate expression trees.
 """
 
 import numpy as np
+import pandas as pd
 from expr import *
 from egraph import *
 from evaluate import *
@@ -12,15 +13,17 @@ import cv2
 import random
 from dataclasses import dataclass, fields, is_dataclass
 
-DIM = 3  # number of input channels
+DIM = 6  # number of input channels
 cache_fitness = {}
+cache_params = {}
+count = 0 
 
 def fitness(eg, eclass, params, image, target):
-    result, _ = evaluate_egraph(eclass, eg, params, image)
+    result, _ = evaluate_egraph(eclass, eg, params, image, False)
     iou = compute_iou(target, result)
     return iou
 
-def get_fst_rnd_egraph(depth):
+def get_fst_rnd_egraph(size):
     terminals, operators = get_terminals_and_operators(Expr)
     egraph = EGraph()
     # insert all variables up to d
@@ -30,11 +33,11 @@ def get_fst_rnd_egraph(depth):
         eid = egraph.add(Var(i))
         eids[0].append(eid)
     # choice an operator from Expr
-    for h in range(1, depth + 1):
+    for h in range(1, size + 1):
         # list of children are those children from the the previous level
-        children = eids[h-1] 
+        # children = eids[h-1] 
         # this next line allows children from any previous level
-        # children = [eids[hh][i] for hh in range(h) for i in range(len(eids[hh]))]
+        children = [c for k, v in eids.items() for c in v]
         op = np.random.choice(operators)
         field_values = {}
         for f in fields(op):
@@ -52,13 +55,13 @@ def mutate_node(egraph, eids):
     not_new = True 
 
     while not_new:
-        # choose a random depth
-        depth = np.random.choice(list(eids.keys())[1:])
+        # choose a random point
+        column = np.random.choice(list(eids.keys())[1:])
         # choose a random eid from that depth
-        eid = np.random.choice(eids[depth])
+        eid = np.random.choice(eids[column])
         enode = get_enode(egraph, eid)
         cs = children(enode)
-        csnew = [eids[hh][i] for hh in range(depth) for i in range(len(eids[hh]))]
+        csnew = [c for k, v in eids.items() for c in v]
         cs += [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children
         # choose a random operator
         op = np.random.choice(operators)
@@ -69,11 +72,10 @@ def mutate_node(egraph, eids):
         new_op = op(**field_values)
         evidence = egraph.hashcon.get(new_op, None) is None
         new_eid = egraph.add(new_op)
-        new_depth = egraph.map_class[new_eid].height
-        eids[new_depth] = [new_eid]
+        eids[column] = [new_eid]
 
         # update the other eids dict entries if needed
-        for d in range(new_depth + 1, max(eids.keys()) + 1):
+        for d in range(column + 1, max(eids.keys()) + 1):
             enode = get_enode(egraph, eids[d][0])
             cs = children(enode)
             # replace any occurrence of eid with new_eid
@@ -89,7 +91,7 @@ def mutate_node(egraph, eids):
         if not_new:
             # copy back the original eids 
             eids = {k: v.copy() for k, v in orig_eids.items()}
-    return egraph, eids
+    return egraph, eids, column
 
 def mutate_edge(egraph, eids):
     terminals, operators = get_terminals_and_operators(Expr)
@@ -97,24 +99,24 @@ def mutate_edge(egraph, eids):
     not_new = True 
 
     while not_new:
-        # choose a random depth
-        depth = np.random.choice(list(eids.keys())[1:])
-        # choose a random eid from that depth
-        eid = np.random.choice(eids[depth])
+        # choose a random column
+        column = np.random.choice(list(eids.keys())[1:])
+        # choose a random eid from that column
+        eid = np.random.choice(eids[column])
         enode = get_enode(egraph, eid)
         cs = children(enode)
-        csnew = [eids[hh][i] for hh in range(depth) for i in range(len(eids[hh]))]
-        cs = [np.random.choice(csnew)] if len(cs) == 1 else [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children
+        csnew = [c for k, v in eids.items() for c in v]
+        ix = np.random.randint(0, len(cs))
+        cs[ix] = np.random.choice(csnew)
         # choose a random operator
         new_op = replaceChildren(enode, cs)
 
         evidence = egraph.hashcon.get(new_op, None) is None
         new_eid = egraph.add(new_op)
-        new_depth = egraph.map_class[new_eid].height
-        eids[new_depth] = [new_eid]
+        eids[column] = [new_eid]
 
         # update the other eids dict entries if needed
-        for d in range(new_depth + 1, max(eids.keys()) + 1):
+        for d in range(column + 1, max(eids.keys()) + 1):
             enode = get_enode(egraph, eids[d][0])
             cs = children(enode)
             # replace any occurrence of eid with new_eid
@@ -130,7 +132,7 @@ def mutate_edge(egraph, eids):
         if not_new:
             # copy back the original eids 
             eids = {k: v.copy() for k, v in orig_eids.items()}
-    return egraph, eids
+    return egraph, eids, column
     
 def get_n_params(egraph, root):
     enode = next(iter(egraph.map_class[egraph.find(root)].enodes))
@@ -139,51 +141,89 @@ def get_n_params(egraph, root):
         c += get_n_params(egraph, child)
     return c
 
-def calc_score(egraph, root, img, mask):
+def calc_score(egraph, root, imgs, masks):
+    global count
+
     if root in cache_fitness:
         return cache_fitness[root]
     n_params = get_n_params(egraph, root)
     params = np.random.randint(0, 255, size=(n_params,)).tolist()
-    score = fitness(egraph, root, params, img, mask)
+    score = 0.0
+    for img, mask in zip(imgs, masks):
+        score += fitness(egraph, root, params, img, mask)
+    score /= len(imgs)
+    #scores = [fitness(egraph, root, params, img, mask) for img, mask in zip(imgs, masks)]
     cache_fitness[root] = score
+    cache_params[root] = params
+    count = count + 1
     return score
 
-def step(egraph, eids, img, mask, best_score):
+def calc_test_score(egraph, imgs, masks):
+    # root is the key of the greatest value in cache_fitness 
+    score = 0.0
+    for i in range(len(imgs)):
+        root = max(cache_fitness, key=lambda k: cache_fitness.get(k))
+        params = cache_params[root]
+        score += fitness(egraph, root, params, imgs[i], masks[i])
+    return score / len(imgs)
+
+def step(egraph, eids, imgs, masks, best_score, it):
+    global count
     orig_eids = {k: v.copy() for k, v in eids.items()}
-    if random.random() < 0.5:
-        egraph, eids = mutate_node(egraph, eids)
+    if random.random() < 0.75:
+        egraph, eids, d = mutate_node(egraph, eids)
     else:
-        egraph, eids = mutate_edge(egraph, eids)
-    roots = [v[0] for k,v in eids.items() if len(v)>0]
+        egraph, eids, d = mutate_edge(egraph, eids)
+    roots = [v[0] for k,v in eids.items() if len(v)>0 and k <= d]
     new_best = False
     for root in roots:
-        score = calc_score(egraph, root, img, mask)
-        if score > best_score:
-            print(f"New best score: {score}")
-            print(">>", root, showEGraph(egraph, root))
-            best_score = score
-            new_best = True
+        score = calc_score(egraph, root, imgs, masks)
+        if score >= best_score:
+            if score > best_score:
+                print(f"New best score: {score} at iteration {it} with {count} evaluations")
+                print(">>", root, showEGraph(egraph, root))
+            if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
+                best_score = score
+                new_best = True
     if not new_best:
         return egraph, orig_eids, best_score
     return egraph, eids, best_score
 
+def load_datasets(dirname):
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+    imgs = [_read_inputs(f"datasets/{dirname}/{v}")[0] for v in df[df.set == "training"].input.to_list()]
+    masks = [_read_mask(f"datasets/{dirname}/{v}", imgs[i][0].shape) for i,v in enumerate(df[df.set == "training"]["label"].to_list())]
+
+    test_imgs = [_read_inputs(f"datasets/{dirname}/{v}")[0] for v in df[df.set == "testing"].input.to_list()]
+    test_masks = [_read_mask(f"datasets/{dirname}/{v}", test_imgs[i][0].shape) for i,v in enumerate(df[df.set == "testing"]["label"].to_list())]
+
+    return imgs, masks, test_imgs, test_masks
+
 def test_evo():
-    img, sz = _read_inputs("datasets/MelanLiza/images/NVA_19-002.MelanLizaV10_2.S1528447.P4595.png")
-    mask = _read_mask("datasets/MelanLiza/masks/NVA_19-002.MelanLizaV10_2.S1528447.P4595.zip", img[0].shape)
+    global count
+    imgs, masks, test_imgs, test_masks = load_datasets("melanoma")
 
     best_score = 0.0
-    egraph, eids = get_fst_rnd_egraph(5)
+    egraph, eids = get_fst_rnd_egraph(50)
     roots = [v[0] for k,v in eids.items() if len(v)>0]
     for root in roots:
-        score = calc_score(egraph, root, img, mask)
-        if score > best_score:
+        score = calc_score(egraph, root, imgs, masks)
+        if score >= best_score:
             print(f"New best score: {score}")
             print(">>", root, showEGraph(egraph, root))
             best_score = score
 
-    for iteration in range(100):
-        print(f"=== Iteration {iteration} ===")
-        egraph, eids, best_score = step(egraph, eids, img, mask, best_score)
+    # for iteration in range(1000):
+    iteration = 0 
+    while count < 1000 and iteration < 1500:
+        egraph, eids, best_score = step(egraph, eids, imgs, masks, best_score, iteration)
+        iteration += 1
+    test_score = calc_test_score(egraph, test_imgs, test_masks)
+    print(f"Final test score: {test_score} with {count} evaluations")
+    #for i in range(len(test_imgs)):
+    #    root = max(cache_fitness, key=lambda k: cache_fitness.get(k)[i])
+    #    print(">>", root, showEGraph(egraph, root))
+    # print(">>", max(cache_fitness, key=cache_fitness.get), showEGraph(egraph, max(cache_fitness, key=cache_fitness.get)))
 
 
 def test_opt():

@@ -1,0 +1,4 @@
+BitwiseXor(ThresholdAt1(MorphBlackHat(exp(Min(GaborFilter(Min(m, ThresholdOtsu(X4))), SquareRoot(BinaryInRange(X0)))), X5)))), m, ThresholdOtsu(X4))))
+
+
+m = Sobel(BitWiseAndMask(RemoveSmallHoles(ThresholdAt1(exp(Sobel(MorphTopHat(X4)))))

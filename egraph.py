@@ -205,7 +205,7 @@ class EClass:
  
     The parents contains a list of e-nodes that points to this e-class. This is used during the merge of two e-classes
     '''
-    def __init__(self, cid, enode, consts=[], height=0):
+    def __init__(self, cid, enode, consts=[], height=0, cache=None):
         self.id = cid
         self.enodes = set([enode])
         match enode:
@@ -213,6 +213,7 @@ class EClass:
                 self.eclass_data = consts
         self.parents = []
         self.height = height
+        self.cache = cache
 
 def expr_to_egraph(expr, egraph):
     '''

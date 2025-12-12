@@ -36,12 +36,12 @@ IMAGE_UINT8_COLOR_1C: list = [IMAGE_UINT8_POSITIVE]
 IMAGE_UINT8_COLOR_3C: list = IMAGE_UINT8_COLOR_1C * 3
 
 # Helper functions
-def correct_ksize(param):
-    """Ensure kernel size is odd and positive."""
-    ksize = min(max(1, int(param)), 31)
-    if ksize % 2 == 0:
-        ksize += 1
-    return ksize
+#def correct_ksize(param):
+#    """Ensure kernel size is odd and positive."""
+#    ksize = min(max(1, int(param)), 31)
+#    if ksize % 2 == 0:
+#        ksize += 1
+#    return ksize
 
 def kernel_from_parameters(const_params):
     """Create a morphological kernel from parameters."""
@@ -90,7 +90,7 @@ def compute_iou(y_true, y_pred):
     return np.sum(intersection) / np.sum(union)
 
 
-def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None):
+def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None, useCache=False):
     """
     Evaluate an expression tree with given data for variables and constant parameters.
     
@@ -109,219 +109,222 @@ def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None):
     eclass = egraph.map_class[root]
     e = next(iter(eclass.enodes))
     const_params = []
+    if useCache and eclass.cache is not None:
+        return eclass.cache, consts
     
     match e:
         # Binary operations
         case Add(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_add([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_add([left_val, right_val], const_params)
         case Sub(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_sub([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_sub([left_val, right_val], const_params)
         case AbsoluteDifference2(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_absolute_difference2([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_absolute_difference2([left_val, right_val], const_params)
         case BitwiseAnd(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_bitwise_and([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_bitwise_and([left_val, right_val], const_params)
         case BitwiseAndMask(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_bitwise_and_mask([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_bitwise_and_mask([left_val, right_val], const_params)
         case BitwiseOr(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_bitwise_or([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_bitwise_or([left_val, right_val], const_params)
         case BitwiseXor(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_bitwise_xor([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_bitwise_xor([left_val, right_val], const_params)
         case Min(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_min([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_min([left_val, right_val], const_params)
         case Max(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_max([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_max([left_val, right_val], const_params)
         case Mean(l, r):
             left_val, consts = evaluate_egraph(l, egraph, consts, data)
             right_val, consts = evaluate_egraph(r, egraph, consts, data)
-            return f_mean([left_val, right_val], const_params), consts
+            egraph.map_class[root].cache = f_mean([left_val, right_val], const_params)
         # Unary operations
         case Exp(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_exp([child_val], const_params), consts
+            egraph.map_class[root].cache = f_exp([child_val], const_params)
         case Log(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_log([child_val], const_params), consts
+            egraph.map_class[root].cache = f_log([child_val], const_params)
         case Erode(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_erode([child_val], const_params), consts
+            egraph.map_class[root].cache = f_erode([child_val], const_params)
         case Dilate(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_dilate([child_val], const_params), consts
+            egraph.map_class[root].cache = f_dilate([child_val], const_params)
         case Open(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_open([child_val], const_params), consts
+            egraph.map_class[root].cache = f_open([child_val], const_params)
         case Close(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_close([child_val], const_params), consts
+            egraph.map_class[root].cache = f_close([child_val], const_params)
         case MorphGradient(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_morph_gradient([child_val], const_params), consts
+            egraph.map_class[root].cache = f_morph_gradient([child_val], const_params)
         case MorphTopHat(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_morph_top_hat([child_val], const_params), consts
+            egraph.map_class[root].cache = f_morph_top_hat([child_val], const_params)
         case MorphBlackHat(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_morph_black_hat([child_val], const_params), consts
+            egraph.map_class[root].cache = f_morph_black_hat([child_val], const_params)
         case FillHoles(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_fill_holes([child_val], const_params), consts
+            egraph.map_class[root].cache = f_fill_holes([child_val], const_params)
         case RemoveSmallHoles(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_remove_small_holes([child_val], const_params), consts
+            egraph.map_class[root].cache = f_remove_small_holes([child_val], const_params)
         case RemoveSmallObjects(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_remove_small_objects([child_val], const_params), consts
+            egraph.map_class[root].cache = f_remove_small_objects([child_val], const_params)
         case MedianBlur(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_median_blur([child_val], const_params), consts
+            egraph.map_class[root].cache = f_median_blur([child_val], const_params)
         case GaussianBlur(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_gaussian_blur([child_val], const_params), consts
+            egraph.map_class[root].cache = f_gaussian_blur([child_val], const_params)
         case Laplacian(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_laplacian([child_val], const_params), consts
+            egraph.map_class[root].cache = f_laplacian([child_val], const_params)
         case Sobel(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_sobel([child_val], const_params), consts
+            egraph.map_class[root].cache = f_sobel([child_val], const_params)
         case RobertCross(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_robert_cross([child_val], const_params), consts
+            egraph.map_class[root].cache = f_robert_cross([child_val], const_params)
         case Canny(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_canny([child_val], const_params), consts
+            egraph.map_class[root].cache = f_canny([child_val], const_params)
         case Sharpen(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_sharpen([child_val], const_params), consts
+            egraph.map_class[root].cache = f_sharpen([child_val], const_params)
         case Kirsch(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_kirsch([child_val], const_params), consts
+            egraph.map_class[root].cache = f_kirsch([child_val], const_params)
         case Embossing(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_embossing([child_val], const_params), consts
+            egraph.map_class[root].cache = f_embossing([child_val], const_params)
         case Pyr(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_pyr([child_val], const_params), consts
+            egraph.map_class[root].cache = f_pyr([child_val], const_params)
         case Denoizing(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_denoizing([child_val], const_params), consts
+            egraph.map_class[root].cache = f_denoizing([child_val], const_params)
         case AbsoluteDifference(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_absolute_difference([child_val], const_params), consts
+            egraph.map_class[root].cache = f_absolute_difference([child_val], const_params)
         case RelativeDifference(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_relative_difference([child_val], const_params), consts
+            egraph.map_class[root].cache = f_relative_difference([child_val], const_params)
         case FluoTopHat(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_fluo_top_hat([child_val], const_params), consts
+            egraph.map_class[root].cache = f_fluo_top_hat([child_val], const_params)
         case GaborFilter(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_gabor_filter([child_val], const_params), consts
+            egraph.map_class[root].cache = f_gabor_filter([child_val], const_params)
         case DistanceTransform(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_distance_transform([child_val], const_params), consts
+            egraph.map_class[root].cache = f_distance_transform([child_val], const_params)
         case DistanceTransformAndThresh(x):
             const_params = consts[:1]
             const = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_distance_transform_and_thresh([child_val], const_params), consts
+            egraph.map_class[root].cache = f_distance_transform_and_thresh([child_val], const_params)
         case Threshold(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_threshold([child_val], const_params), consts
+            egraph.map_class[root].cache = f_threshold([child_val], const_params)
         case ThresholdAt1(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_threshold_at_1([child_val], const_params), consts
+            egraph.map_class[root].cache = f_threshold_at_1([child_val], const_params)
         case BinaryInRange(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_binary_in_range([child_val], const_params), consts
+            egraph.map_class[root].cache = f_binary_in_range([child_val], const_params)
         case InRange(x):
             const_params = consts[:2]
             const = consts[2:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_in_range([child_val], const_params), consts
+            egraph.map_class[root].cache = f_in_range([child_val], const_params)
         case BitwiseNot(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_bitwise_not([child_val], const_params), consts
+            egraph.map_class[root].cache = f_bitwise_not([child_val], const_params)
         case SquareRoot(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_square_root([child_val], const_params), consts
+            egraph.map_class[root].cache = f_square_root([child_val], const_params)
         case Square(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_square([child_val], const_params), consts
+            egraph.map_class[root].cache = f_square([child_val], const_params)
         case ThresholdOtsu(x):
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_threshold_otsu([child_val], const_params), consts
+            egraph.map_class[root].cache = f_threshold_otsu([child_val], const_params)
         case ContourArea(x):
             const_params = consts[:1]
             consts = consts[1:]
             child_val, consts = evaluate_egraph(x, egraph, consts, data)
-            return f_contour_area([child_val], const_params), consts
+            egraph.map_class[root].cache = f_contour_area([child_val], const_params)
         # Leaf nodes
         case Var(idx):
             return data[idx], consts
         case _ as unreachable:
             raise ValueError(f"Unknown expression type: {unreachable}")
+    return egraph.map_class[root].cache, consts
 
 def _fill_cnt(image, contours):
 	assert (
