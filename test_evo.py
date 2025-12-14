@@ -170,7 +170,7 @@ def calc_test_score(egraph, imgs, masks):
 def step(egraph, eids, imgs, masks, best_score, it):
     global count
     orig_eids = {k: v.copy() for k, v in eids.items()}
-    if random.random() < 0.75:
+    if random.random() < 0.5:
         egraph, eids, d = mutate_node(egraph, eids)
     else:
         egraph, eids, d = mutate_edge(egraph, eids)
@@ -215,7 +215,7 @@ def test_evo():
 
     # for iteration in range(1000):
     iteration = 0 
-    while count < 1000 and iteration < 1500:
+    while count < 5000 and iteration < 5550:
         egraph, eids, best_score = step(egraph, eids, imgs, masks, best_score, iteration)
         iteration += 1
     test_score = calc_test_score(egraph, test_imgs, test_masks)
