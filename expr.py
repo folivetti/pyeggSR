@@ -32,8 +32,6 @@ class Log:
 class Var:
     idx: int
 
-
-
 # Expanded dataclasses based on pycgp/ipfunctions.py (image-processing ops)
 # Many of these are unary (single child) or binary (left/right). Names chosen
 # to correspond to the f_* functions in ipfunctions.py but as CamelCase types.
