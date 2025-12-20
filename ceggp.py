@@ -185,7 +185,7 @@ def calc_test_score(egraph, imgs, masks):
         score += fitness(egraph, root, params, imgs[i], masks[i], False)
     return score / len(imgs)
 
-def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5):
+def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5, p_accept = 0.2):
     global count
     orig_eids = {k: v.copy() for k, v in eids.items()}
     r = random.random()
@@ -209,7 +209,7 @@ def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge =
             if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
                 best_score = score
                 new_best = True
-    if not new_best:
+    if not new_best and np.random.random() >= p_accept:
         return egraph, orig_eids, best_score, out
     return egraph, eids, best_score, out
 
