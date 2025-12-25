@@ -90,7 +90,7 @@ def compute_iou(y_true, y_pred):
     return np.sum(intersection) / np.sum(union)
 
 
-def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None, useCache=False):
+def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None, useCache=False): 
     """
     Evaluate an expression tree with given data for variables and constant parameters.
     
@@ -109,8 +109,8 @@ def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None, useCach
     eclass = egraph.map_class[root]
     e = next(iter(eclass.enodes))
     const_params = []
-    if useCache and eclass.cache is not None:
-        return eclass.cache, consts
+    #if useCache and eclass.cache is not None:
+    #    return eclass.cache, consts
     
     match e:
         # Binary operations

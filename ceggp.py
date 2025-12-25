@@ -17,13 +17,14 @@ import cProfile
 import io 
 import pstats
 from pstats import SortKey
+import optuna 
 
 DIM = 6  # number of input channels
 cache_fitness = {}
 cache_params = {}
 count = 0 
 
-def fitness(eg, eclass, params, image, target, useCache=False):
+def fitness(eg, eclass, params, image, target, useCache=False, isTest=False):
     result, _ = evaluate_egraph(eclass, eg, params, image, useCache)
     iou = compute_iou(target, result)
     return iou
@@ -37,7 +38,7 @@ def get_fst_rnd_egraph(size):
     for i in range(DIM):
         eid = egraph.add(Var(i))
         eids[0].append(eid)
-    # choice an operator from Expr
+    # choose an operator from Expr
     for h in range(1, size + 1):
         children = [c for k, v in eids.items() for c in v]
         op = np.random.choice(operators)
@@ -46,7 +47,7 @@ def get_fst_rnd_egraph(size):
             field_values[f.name] = np.random.choice(children)
         eid = egraph.add(op(**field_values))
         eids[h] = [eid]
-    out = np.random.choice(size+1)
+    out = np.random.choice(size) + 1
     return egraph, eids, out 
 
 def get_enode(egraph, eid):
@@ -58,15 +59,15 @@ def mutate_node(egraph, eids, out):
     not_new = True 
     attempt = 0
 
-    while not_new and attempt < 10:
+    while not_new and attempt < 5:
         # choose a random point
         column = np.random.choice(list(eids.keys())[1:])
         # choose a random eid from that depth
         eid = np.random.choice(eids[column])
         enode = get_enode(egraph, eid)
         cs = children(enode)
-        csnew = [c for k, v in eids.items() for c in v]
-        cs += [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children
+        csnew = [c for k, v in list(eids.items())[:column] for c in v]
+        cs += [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children in case the new node requires more
         # choose a random operator
         op = np.random.choice(operators)
         field_values = {}
@@ -90,6 +91,7 @@ def mutate_node(egraph, eids, out):
             # check if n is new or not
             evidence = evidence and (egraph.hashcon.get(n, None) is None)
             updated_eid = egraph.add(n)
+            eids[d] = [updated_eid]
 
         not_new = False # not evidence
         attempt += 1
@@ -104,14 +106,14 @@ def mutate_edge(egraph, eids, out):
     not_new = True 
     attempt = 0
 
-    while not_new and attempt < 10:
+    while not_new and attempt < 5:
         # choose a random column
         column = np.random.choice(list(eids.keys())[1:])
         # choose a random eid from that column
         eid = np.random.choice(eids[column])
         enode = get_enode(egraph, eid)
         cs = children(enode)
-        csnew = [c for k, v in eids.items() for c in v]
+        csnew = [c for k, v in list(eids.items())[:column] for c in v]
         ix = np.random.randint(0, len(cs))
         cs[ix] = np.random.choice(csnew)
         # choose a random operator
@@ -133,6 +135,7 @@ def mutate_edge(egraph, eids, out):
             # check if n is new or not
             evidence = evidence and (egraph.hashcon.get(n, None) is None)
             updated_eid = egraph.add(n)
+            eids[d] = [updated_eid]
 
         not_new = False # not evidence
         attempt += 1
@@ -152,65 +155,71 @@ def get_n_params(egraph, root):
         c += get_n_params(egraph, child)
     return c
 
-def calc_score(egraph, root, imgs, masks):
+def calc_score(egraph, root, imgs, masks, recalc=False):
     global count
 
-    if root in cache_fitness:
+    if root in cache_fitness and not recalc:
         return cache_fitness[root]
     n_params = get_n_params(egraph, root)
 
-    best_params = None 
-    best_score = 0.0 
+    for _ in range(1):
+        best_params = None 
+        best_score = 0.0 
 
-    params = np.random.randint(0, 255, size=(n_params,)).tolist()
-    score = 0.0
-    for img, mask in zip(imgs, masks):
-        score += fitness(egraph, root, params, img, mask, False)
-    score /= len(imgs)
-    if score > best_score:
-        best_score = score
-        best_params = copy(params)
+        params = np.random.randint(0, 255, size=(n_params,)).tolist()
+        # params = np.random.choice([10, 50, 100, 150, 200, 250], size=(n_params,)).tolist()
+        score = 0.0
+        for img, mask in zip(imgs, masks):
+            score += fitness(egraph, root, params, img, mask, False)
+        score /= len(imgs)
+        if score > best_score:
+            best_score = score
+            best_params = copy(params)
+        count = count + 1
     #scores = [fitness(egraph, root, params, img, mask) for img, mask in zip(imgs, masks)]
     cache_fitness[root] = best_score
     cache_params[root] = best_params
-    count = count + 1
     return score
 
 def calc_test_score(egraph, imgs, masks):
     # root is the key of the greatest value in cache_fitness 
     score = 0.0
+    root = max(cache_fitness, key=lambda k: cache_fitness.get(k))
+    params = cache_params[root]
     for i in range(len(imgs)):
-        root = max(cache_fitness, key=lambda k: cache_fitness.get(k))
-        params = cache_params[root]
         score += fitness(egraph, root, params, imgs[i], masks[i], False)
     return score / len(imgs)
 
-def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5, p_accept = 0.2):
+def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5, p_accept = 0.1):
     global count
     orig_eids = {k: v.copy() for k, v in eids.items()}
+    orig_out = out
     r = random.random()
+    recalc = False 
     if r < p_node:
         egraph, eids, d, out = mutate_node(egraph, eids, out)
     elif r < p_node + p_edge:
         egraph, eids, d, out = mutate_edge(egraph, eids, out)
     else:
         egraph, eids, out = mutate_out(egraph, eids, out)
+        recalc = True
+
     roots = [eids[out][0]] # [v[0] for k,v in eids.items() if len(v)>0 and k <= d]
     new_best = False
     for root in roots:
         old_count = count
-        score = calc_score(egraph, root, imgs, masks)
-        if count > old_count:
-            print(f"{count},{score}")
-        if score >= best_score:
-            if score > best_score:
+        score = calc_score(egraph, root, imgs, masks, recalc)
+        if score >= best_score and out != orig_out:
+            if score >= best_score:
+                if count > old_count:
+                    print(f"{count},{score}")
                 #print(f"New best score: {score} at iteration {it} with {count} evaluations")
                 print(">>", root, showEGraph(egraph, root))
-            if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
+            #if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
                 best_score = score
                 new_best = True
-    if not new_best and np.random.random() >= p_accept:
-        return egraph, orig_eids, best_score, out
+    #if not new_best and np.random.random() >= p_accept:
+    #    return egraph, orig_eids, best_score, orig_out
     return egraph, eids, best_score, out
 
 def load_datasets(dirname):
@@ -247,8 +256,27 @@ def test_evo(n_nodes, p_node, p_edge, n_evals, max_iter):
     while count < n_evals and iteration < max_iter:
         egraph, eids, best_score, out = step(egraph, eids, out, imgs, masks, best_score, iteration, p_node, p_edge)
         iteration += 1
+        if iteration % 1000 == 0:
+            print(iteration, count)
+    print(f"Final training score: {best_score}")
     test_score = calc_test_score(egraph, test_imgs, test_masks)
     print(f"Final test score: {test_score} with {count} evaluations")
+    return best_score
+
+def objective(trial):
+    global cache_fitness, cache_params, count 
+    cache_fitness = {}
+    cache_params = {}
+    count = 0 
+    p_node = trial.suggest_categorical('p_node', list(np.arange(0.1, 0.9,0.1)))
+    p_out = trial.suggest_categorical('p_edge', list(np.arange(0.1, 0.3, 0.1)))
+    p_edge = min(0.1, 1.0 - p_node - p_out)
+    n_nodes = trial.suggest_categorical('n_nodes', [20, 30, 50, 100])
+    return test_evo(n_nodes, p_node, p_edge, 10000, 10000)
 
 if __name__ == "__main__":
-    test_evo(30, 0.25, 0.5, 100000, 500000)
+
+    test_evo(50, 0.6, 0.3, 100000, 600000)
+    #study = optuna.create_study(direction='maximize')
+    #study.optimize(objective, n_trials=100)
+    #print(study.best_params)
