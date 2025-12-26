@@ -59,45 +59,40 @@ def mutate_node(egraph, eids, out):
     not_new = True 
     attempt = 0
 
-    while not_new and attempt < 5:
-        # choose a random point
-        column = np.random.choice(list(eids.keys())[1:])
-        # choose a random eid from that depth
-        eid = np.random.choice(eids[column])
-        enode = get_enode(egraph, eid)
+    # choose a random point
+    column = np.random.choice(list(eids.keys())[1:])
+    # choose a random eid from that depth
+    eid = np.random.choice(eids[column])
+    enode = get_enode(egraph, eid)
+    cs = children(enode)
+    csnew = [c for k, v in list(eids.items())[:column] for c in v]
+    cs += [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children in case the new node requires more
+    # choose a random operator
+
+    op = np.random.choice(operators)
+    field_values = {}
+
+    for f, c in zip(fields(op), cs):
+        field_values[f.name] = c 
+    new_op = op(**field_values)
+    evidence = egraph.hashcon.get(new_op, None) is None
+    new_eid = egraph.add(new_op)
+    eids[column] = [new_eid]
+
+    # update the other eids dict entries if needed
+    for d in range(column + 1, max(eids.keys()) + 1):
+        enode = get_enode(egraph, eids[d][0])
         cs = children(enode)
-        csnew = [c for k, v in list(eids.items())[:column] for c in v]
-        cs += [np.random.choice(csnew), np.random.choice(csnew)]  # add some new children in case the new node requires more
-        # choose a random operator
-        op = np.random.choice(operators)
-        field_values = {}
+        # replace any occurrence of eid with new_eid
+        for i in range(len(cs)):
+            if cs[i] == eid:
+                cs[i] = new_eid
+        n = replaceChildren(enode, cs)
+        # check if n is new or not
+        evidence = evidence and (egraph.hashcon.get(n, None) is None)
+        updated_eid = egraph.add(n)
+        eids[d] = [updated_eid]
 
-        for f, c in zip(fields(op), cs):
-            field_values[f.name] = c 
-        new_op = op(**field_values)
-        evidence = egraph.hashcon.get(new_op, None) is None
-        new_eid = egraph.add(new_op)
-        eids[column] = [new_eid]
-
-        # update the other eids dict entries if needed
-        for d in range(column + 1, max(eids.keys()) + 1):
-            enode = get_enode(egraph, eids[d][0])
-            cs = children(enode)
-            # replace any occurrence of eid with new_eid
-            for i in range(len(cs)):
-                if cs[i] == eid:
-                    cs[i] = new_eid
-            n = replaceChildren(enode, cs)
-            # check if n is new or not
-            evidence = evidence and (egraph.hashcon.get(n, None) is None)
-            updated_eid = egraph.add(n)
-            eids[d] = [updated_eid]
-
-        not_new = False # not evidence
-        attempt += 1
-        if not_new:
-            # copy back the original eids 
-            eids = {k: v.copy() for k, v in orig_eids.items()}
     return egraph, eids, column, out
 
 def mutate_edge(egraph, eids, out):
