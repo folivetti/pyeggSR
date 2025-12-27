@@ -23,8 +23,6 @@ DIM = 6  # number of input channels
 cache_fitness = {}
 cache_params = {}
 count = 0 
-DEBUG = False 
-EXPLORER = 0.3 
 
 def get_enode(egraph, eid):
     return next(iter(egraph.map_class[eid].enodes))
@@ -58,18 +56,6 @@ def get_fst_rnd_egraph(size):
     out = np.random.choice(size) + 1
     return egraph, eids, out 
 
-def get_active_nodes(egraph, eids, out):
-    active = set()
-    active.add(out)
-    cs = children(get_enode(egraph, eids[out][0]))
-    for i in range(out-1, 0, -1):
-        eclass = eids[i][0]
-        if eclass in cs:
-            active.add(i)
-            enode = get_enode(egraph, eclass)
-            cs += children(enode)
-    return list(active)
-
 def apply_change(egraph, old_eids, column, op, out):
     eids = {k: v.copy() for k, v in old_eids.items()}
     eid = old_eids[column][0]
@@ -84,11 +70,9 @@ def apply_change(egraph, old_eids, column, op, out):
 
     for d in range(column + 1, max(eids.keys()) + 1):
         enode = get_enode(egraph, eids[d][0])
-        if DEBUG:
-            print("eclass ", eids[d][0])
+        print("eclass ", eids[d][0])
         cs = children(enode)
-        if DEBUG:
-            print("children", cs)
+        print("children", cs)
         # replace any occurrence of eid with new_eid
         for i in range(len(cs)):
             if cs[i] in replacements:
@@ -98,11 +82,10 @@ def apply_change(egraph, old_eids, column, op, out):
         if eids[d][0] != updated_eid:
             replacements[eids[d][0]] = updated_eid
         if d == out:
-            if DEBUG:
-                if eids[d][0] != updated_eid:
-                    print("change the root")
-                else:
-                    print("did not change root", out, children(get_enode(egraph, eids[d][0])))
+            if eids[d][0] != updated_eid:
+                print("change the root")
+            else:
+                print("did not change root", out)
         eids[d] = [updated_eid]
     return egraph, eids
 
@@ -110,10 +93,7 @@ def apply_change(egraph, old_eids, column, op, out):
 def mutate_node(egraph, eids, out):
     terminals, operators = get_terminals_and_operators(Expr)
     # choose a random point
-    if random.random() < EXPLORER:
-        column = np.random.choice(list(eids.keys())[1:])
-    else:
-        column = np.random.choice(get_active_nodes(egraph, eids, out))
+    column = np.random.choice(list(eids.keys())[1:])
     # choose a random eid from that depth
     eid = np.random.choice(eids[column])
     enode = get_enode(egraph, eid)
@@ -122,19 +102,13 @@ def mutate_node(egraph, eids, out):
     cs += [np.random.choice(csnew)]  # add a new children in case the original node has only one and the replacement has two
     # choose a random operator
     candidates = []
-    nonchanging = []
     for op in operators:
         egraph, new_eids = apply_change(egraph, eids, column, op, out)
         if new_eids[out][0] not in cache_fitness:
             candidates.append(new_eids)
-        else:
-            nonchanging.append(new_eids)
     if len(candidates) == 0:
-        if DEBUG:
-            print("empty candidates")
-        return egraph, np.random.choice(nonchanging), column, out 
-    if DEBUG:
-        print("non empty")
+        print("empty candidates")
+        return egraph, eids, column, out 
     new_eids = np.random.choice(candidates)
 
     return egraph, new_eids, column, out
@@ -167,35 +141,28 @@ def apply_change_edge(egraph, old_eids, column, c, ix):
 
 def mutate_edge(egraph, eids, out):
     # choose a random column
-    if random.random() < EXPLORER:
-        column = np.random.choice(list(eids.keys())[1:])
-    else:
-        column = np.random.choice(get_active_nodes(egraph, eids, out))
+    column = np.random.choice(list(eids.keys())[1:])
     # choose a random eid from that column
     eid = np.random.choice(eids[column])
     cs = children(get_enode(egraph, eid))
     csnew = [c for k, v in list(eids.items())[:column] for c in v]
     candidates = []
-    nonchanging = []
     for c in csnew:
         for ix in range(len(cs)):
             egraph, new_eids = apply_change_edge(egraph, eids, column, c, ix)
             if new_eids[out][0] not in cache_fitness:
                 candidates.append(new_eids)
-            else:
-                nonchanging.append(new_eids)
 
     if len(candidates) == 0:
-        if DEBUG:
-            print("empty candidates")
-        return egraph, np.random.choice(nonchanging), column, out
+        print("empty candidates")
+        return egraph, eids, column, out
 
     return egraph, np.random.choice(candidates), column, out
     
 def mutate_out(egraph, eids, out):
-    out = np.random.choice(len(eids)-1)+1
+    out = np.random.choice(len(eids))
     enode = get_enode(egraph, eids[out][0])
-    if enode in cache_fitness and DEBUG:
+    if enode in cache_fitness:
         print("out in cache")
     return egraph, eids, out
 
@@ -241,23 +208,20 @@ def calc_test_score(egraph, imgs, masks):
         score += fitness(egraph, root, params, imgs[i], masks[i], False)
     return score / len(imgs)
 
-def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5, p_accept = 0.0):
+def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge = 0.5, p_accept = 1.0):
     global count
     orig_eids = {k: v.copy() for k, v in eids.items()}
     orig_out = out
     r = random.random()
     recalc = False 
     if r < p_node:
-        if DEBUG:
-            print("mut node")
+        print("mut node")
         egraph, eids, d, out = mutate_node(egraph, eids, out)
     elif r < p_node + p_edge:
-        if DEBUG:
-            print("mut edge")
+        print("mut edge")
         egraph, eids, d, out = mutate_edge(egraph, eids, out)
     else:
-        if DEBUG:
-            print("mut out")
+        print("mut out")
         egraph, eids, out = mutate_out(egraph, eids, out)
         recalc = True
 
@@ -275,7 +239,7 @@ def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge =
             #if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
                 best_score = score
                 new_best = True
-    if score < best_score and np.random.random() >= p_accept:
+    if not new_best and np.random.random() >= p_accept:
         return egraph, orig_eids, best_score, orig_out
     return egraph, eids, best_score, out
 
@@ -333,7 +297,7 @@ def objective(trial):
 
 if __name__ == "__main__":
 
-    test_evo(100, 0.7, 0.1, 100000, 100000)
+    test_evo(50, 1.6, 0.3, 100000, 600000)
     #study = optuna.create_study(direction='maximize')
     #study.optimize(objective, n_trials=100)
     #print(study.best_params)

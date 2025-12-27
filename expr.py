@@ -11,6 +11,15 @@ from typing import Any, Callable, get_args
 from dataclasses import dataclass, fields, is_dataclass
 
 @dataclass(unsafe_hash=True)
+class Bin:
+    left: Any
+    right: Any
+
+@dataclass(unsafe_hash=True)
+class Uni:
+    child: Any
+
+@dataclass(unsafe_hash=True)
 class Add:
     left: Any
     right: Any
