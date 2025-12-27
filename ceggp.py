@@ -24,7 +24,7 @@ cache_fitness = {}
 cache_params = {}
 count = 0 
 DEBUG = False 
-EXPLORER = 0.3 
+P_INTRON = 0.1
 
 def get_enode(egraph, eid):
     return next(iter(egraph.map_class[eid].enodes))
@@ -60,7 +60,10 @@ def get_fst_rnd_egraph(size):
 
 def get_active_nodes(egraph, eids, out):
     active = set()
+    inactive = set()
     active.add(out)
+    for i in range(out+1, len(eids)):
+        inactive.add(i)
     cs = children(get_enode(egraph, eids[out][0]))
     for i in range(out-1, 0, -1):
         eclass = eids[i][0]
@@ -68,15 +71,46 @@ def get_active_nodes(egraph, eids, out):
             active.add(i)
             enode = get_enode(egraph, eclass)
             cs += children(enode)
-    return list(active)
+        else:
+            inactive.add(i)
+    return list(active), list(inactive)
 
-def apply_change(egraph, old_eids, column, op, out):
+def check_novelty(egraph, old_eids, column, out, new_enode, active):
+    if new_enode not in egraph.hashcon:
+        return True 
+    old_eid = old_eids[column][0]
+    new_eid = egraph.hashcon[new_enode]
+
+    replacements = {}
+    replacements[old_eid] = new_eid 
+
+    for d in range(column + 1, max(old_eids.keys()) + 1):
+        if d not in active:
+            continue
+        
+        enode = get_enode(egraph, old_eids[d][0])
+        cs = children(enode)
+        # replace any occurrence of eid with new_eid
+        for i in range(len(cs)):
+            if cs[i] in replacements:
+                cs[i] = replacements[cs[i]]
+        n = replaceChildren(enode, cs)
+        if n not in egraph.hashcon:
+            return True 
+        old_eid = old_eids[d][0]
+        new_eid = egraph.hashcon[n]
+        replacements[old_eid] = new_eid 
+        if d == out:
+            if new_eid in cache_fitness:
+                return False
+            else:
+                return True
+    return False
+    
+def apply_change(egraph, old_eids, column, new_enode):
     eids = {k: v.copy() for k, v in old_eids.items()}
     eid = old_eids[column][0]
-    orig_enode = get_enode(egraph, old_eids[column][0])
-    cs = children(orig_enode) + [np.random.choice([c for k, v in list(eids.items())[:column] for c in v])]
-    op = create_operator(op, cs)
-    new_eid = egraph.add(op)
+    new_eid = egraph.add(new_enode)
     eids[column] = [new_eid]
 
     replacements = {}
@@ -84,11 +118,7 @@ def apply_change(egraph, old_eids, column, op, out):
 
     for d in range(column + 1, max(eids.keys()) + 1):
         enode = get_enode(egraph, eids[d][0])
-        if DEBUG:
-            print("eclass ", eids[d][0])
         cs = children(enode)
-        if DEBUG:
-            print("children", cs)
         # replace any occurrence of eid with new_eid
         for i in range(len(cs)):
             if cs[i] in replacements:
@@ -97,100 +127,59 @@ def apply_change(egraph, old_eids, column, op, out):
         updated_eid = egraph.add(n)
         if eids[d][0] != updated_eid:
             replacements[eids[d][0]] = updated_eid
-        if d == out:
-            if DEBUG:
-                if eids[d][0] != updated_eid:
-                    print("change the root")
-                else:
-                    print("did not change root", out, children(get_enode(egraph, eids[d][0])))
         eids[d] = [updated_eid]
     return egraph, eids
 
-
-def mutate_node(egraph, eids, out):
+def mutation(egraph, eids, out, atNode=True):
     terminals, operators = get_terminals_and_operators(Expr)
-    # choose a random point
-    if random.random() < EXPLORER:
-        column = np.random.choice(list(eids.keys())[1:])
+    active, inactive = get_active_nodes(egraph, eids, out)
+    if random.random() < P_INTRON:
+        column = np.random.choice(inactive)
+        isActive = False
     else:
-        column = np.random.choice(get_active_nodes(egraph, eids, out))
-    # choose a random eid from that depth
+        column = np.random.choice(active)
+        isActive = True
     eid = np.random.choice(eids[column])
     enode = get_enode(egraph, eid)
     cs = children(enode)
     csnew = [c for k, v in list(eids.items())[:column] for c in v]
-    cs += [np.random.choice(csnew)]  # add a new children in case the original node has only one and the replacement has two
+    if atNode:
+        cs += [np.random.choice(csnew)]  # add a new children in case the original node has only one and the replacement has two
     # choose a random operator
     candidates = []
-    nonchanging = []
-    for op in operators:
-        egraph, new_eids = apply_change(egraph, eids, column, op, out)
-        if new_eids[out][0] not in cache_fitness:
-            candidates.append(new_eids)
+    if atNode:
+        candidates = [create_operator(op, cs) for op in operators]
+    else:
+        for c in csnew:
+            for ix in range(len(cs)):
+                cs_replace = copy(cs)
+                cs_replace[ix] = c
+                candidates.append(replaceChildren(enode, cs_replace))
+
+
+    final_candidates = []
+
+    for new_enode in candidates:
+        if isActive: 
+            if check_novelty(egraph, eids, column, out, new_enode, active):
+                final_candidates.append(new_enode)
         else:
-            nonchanging.append(new_eids)
-    if len(candidates) == 0:
-        if DEBUG:
-            print("empty candidates")
-        return egraph, np.random.choice(nonchanging), column, out 
-    if DEBUG:
-        print("non empty")
-    new_eids = np.random.choice(candidates)
+            if new_enode not in egraph.hashcon:
+                final_candidates.append(new_enode)
+    if len(final_candidates) == 0:
+        return egraph, eids, column, out
+
+    choice = np.random.choice(final_candidates)
+    egraph, new_eids = apply_change(egraph, eids, column, choice)
 
     return egraph, new_eids, column, out
+    
 
-def apply_change_edge(egraph, old_eids, column, c, ix):
-    eids = {k: v.copy() for k, v in old_eids.items()}
-    eid = old_eids[column][0]
-    orig_enode = get_enode(egraph, old_eids[column][0])
-    cs = children(orig_enode)
-    cs[ix] = c
-    op = replaceChildren(orig_enode, cs)
-    new_eid = egraph.add(op)
-    eids[column] = [new_eid]
-    replacements = {}
-    replacements[eid] = new_eid
-
-    for d in range(column + 1, max(eids.keys()) + 1):
-        enode = get_enode(egraph, eids[d][0])
-        cs = children(enode)
-        # replace any occurrence of eid with new_eid
-        for i in range(len(cs)):
-            if cs[i] in replacements:
-                cs[i] = replacements[cs[i]]
-        n = replaceChildren(enode, cs)
-        updated_eid = egraph.add(n)
-        if eids[d][0] != updated_eid:
-            replacements[eids[d][0]] = updated_eid
-        eids[d] = [updated_eid]
-    return egraph, eids
+def mutate_node(egraph, eids, out):
+    return mutation(egraph, eids, out, atNode=True)
 
 def mutate_edge(egraph, eids, out):
-    # choose a random column
-    if random.random() < EXPLORER:
-        column = np.random.choice(list(eids.keys())[1:])
-    else:
-        column = np.random.choice(get_active_nodes(egraph, eids, out))
-    # choose a random eid from that column
-    eid = np.random.choice(eids[column])
-    cs = children(get_enode(egraph, eid))
-    csnew = [c for k, v in list(eids.items())[:column] for c in v]
-    candidates = []
-    nonchanging = []
-    for c in csnew:
-        for ix in range(len(cs)):
-            egraph, new_eids = apply_change_edge(egraph, eids, column, c, ix)
-            if new_eids[out][0] not in cache_fitness:
-                candidates.append(new_eids)
-            else:
-                nonchanging.append(new_eids)
-
-    if len(candidates) == 0:
-        if DEBUG:
-            print("empty candidates")
-        return egraph, np.random.choice(nonchanging), column, out
-
-    return egraph, np.random.choice(candidates), column, out
+    return mutation(egraph, eids, out, atNode=False)
     
 def mutate_out(egraph, eids, out):
     out = np.random.choice(len(eids)-1)+1
