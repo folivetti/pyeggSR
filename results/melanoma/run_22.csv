@@ -1,0 +1,641 @@
+score: 0.10534703351449275
+>> 6 GaussianBlur(X5)
+5,0.10534703351449275
+>> 10 BitwiseAndMask(X0, X1)
+12,0.10534703351449275
+>> 15 Erode(X1)
+26,0.10534703351449275
+>> 41 (X2) + (Erode(X2))
+42,0.10534703351449275
+>> 16 Open(X5)
+43,0.22442343832602307
+>> 38 Laplacian(InRange(X3))
+45,0.39496302788673127
+>> 128 Close(X3)
+62,0.7070410763707108
+>> 185 Square(Pyr(X4))
+356,0.7327514455063074
+>> 754 BitwiseAnd(Embossing(DistanceTransformAndThresh(ThresholdOtsu(GaussianBlur(X4)))), X5)
+357,0.7512054484937156
+>> 597 ThresholdOtsu(GaussianBlur(X4))
+592,0.7518863145861947
+>> 1208 BitwiseAnd(RemoveSmallHoles(BitwiseNot(X0)), ThresholdOtsu(BitwiseNot(X0)))
+661,0.7518863145861947
+>> 1038 ThresholdOtsu(BitwiseNot(X0))
+1000 698
+708,0.7518863145861947
+>> 1414 BitwiseAnd(RemoveSmallHoles(RemoveSmallObjects(X1)), ThresholdOtsu(BitwiseNot(X0)))
+738,0.7518863145861947
+>> 1038 ThresholdOtsu(BitwiseNot(X0))
+753,0.7519616883698811
+>> 1554 BitwiseAnd(RemoveSmallHoles(X4), ThresholdOtsu(BitwiseNot(X0)))
+1301,0.7771842981070879
+>> 3831 ThresholdAt1(BitwiseAnd(X5, Min(X2, ThresholdOtsu(BitwiseNot(X0)))))
+1324,0.8063850799053931
+>> 3967 BitwiseAndMask(SquareRoot(X1), BitwiseAnd(X5, Min(X2, ThresholdOtsu(BitwiseNot(X0)))))
+1357,0.8063850799053931
+>> 3829 BitwiseAnd(X5, Min(X2, ThresholdOtsu(BitwiseNot(X0))))
+1381,0.8064408884919483
+>> 4074 BitwiseAndMask(X4, BitwiseAnd(X5, Min(X2, ThresholdOtsu(BitwiseNot(X0)))))
+1391,0.8082641439879338
+>> 1700 BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))
+1393,0.808319952574489
+>> 4358 Min(X4, BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+1419,0.8168796729094469
+>> 4388 ContourArea(Min(ThresholdOtsu(BitwiseNot(X0)), GaussianBlur(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))))
+2000 1491
+1586,0.8261828960293481
+>> 5200 FillHoles(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(Max(Mean(X5, X0), Mean(X5, X0))))))
+2079,0.8279375198765685
+>> 7681 ThresholdAt1(RemoveSmallHoles(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(Max(Max(X0, X3), X3))))))
+2101,0.8287524996584829
+>> 7570 RemoveSmallHoles(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(Max(Max(X0, X3), X3)))))
+3000 2274
+4000 2941
+3310,0.8366645503326983
+>> 13012 ThresholdOtsu(ContourArea(BitwiseAnd(X5, ThresholdOtsu(Max(X4, BitwiseNot(Max(X0, X3)))))))
+3490,0.8366645503326983
+>> 13773 DistanceTransform(ContourArea(BitwiseAnd(X5, ThresholdOtsu(Max(X4, BitwiseNot(Max(X0, X3)))))))
+5000 3697
+6000 4495
+5259,0.8381604657792541
+>> 22181 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseOr(BitwiseNot(X0), BitwiseNot(X0)))))
+7000 5287
+5409,0.8381604657792541
+>> 22833 Min(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseAnd(BitwiseNot(X0), BitwiseNot(X0))))), BitwiseOr(X0, BitwiseAnd(BitwiseNot(X0), BitwiseNot(X0))))
+5732,0.8394221723054275
+>> 22686 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseAnd(BitwiseNot(X0), BitwiseNot(X0)))))
+8000 5976
+9000 6376
+10000 6657
+11000 6881
+12000 7106
+13000 7351
+14000 7556
+15000 7765
+16000 7985
+17000 8164
+18000 8356
+19000 8552
+20000 8768
+21000 8952
+22000 9144
+23000 9372
+24000 9557
+25000 9758
+26000 9963
+27000 10199
+28000 10437
+29000 10642
+30000 10928
+10967,0.8399964088602977
+>> 34547 (ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseAnd(BitwiseNot(X0), BitwiseNot(X0)))))) - (BitwiseOr(X0, MedianBlur(Kirsch(BitwiseNot(X0)))))
+31000 11589
+32000 12290
+33000 12694
+34000 12983
+35000 13218
+36000 13424
+37000 13628
+38000 13834
+39000 14035
+14087,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+40000 14433
+41000 14738
+42000 14927
+43000 15141
+44000 15338
+45000 15507
+46000 15705
+47000 15911
+48000 16118
+49000 16322
+50000 16539
+51000 16745
+52000 16954
+53000 17163
+54000 17353
+55000 17551
+56000 17758
+57000 17943
+58000 18151
+18206,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+59000 18376
+60000 18579
+61000 18786
+62000 18985
+63000 19179
+64000 19397
+65000 19566
+66000 19755
+67000 19936
+68000 20144
+69000 20345
+70000 20560
+71000 20766
+72000 20959
+73000 21173
+74000 21367
+75000 21562
+76000 21785
+77000 21999
+78000 22180
+79000 22380
+80000 22570
+81000 22769
+82000 22975
+83000 23182
+84000 23391
+85000 23583
+86000 23794
+87000 23990
+88000 24179
+89000 24387
+24413,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+90000 24580
+91000 24777
+24842,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+92000 25015
+93000 25204
+94000 25397
+95000 25605
+96000 25815
+97000 26019
+98000 26209
+99000 26392
+100000 26592
+101000 26786
+102000 26987
+103000 27181
+104000 27386
+105000 27585
+106000 27783
+107000 27986
+108000 28199
+109000 28395
+110000 28580
+28727,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+111000 28783
+112000 28983
+113000 29172
+114000 29365
+115000 29556
+116000 29748
+117000 29949
+118000 30164
+119000 30365
+120000 30571
+121000 30793
+122000 30988
+123000 31208
+124000 31427
+31468,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+125000 31633
+126000 31830
+127000 32027
+128000 32222
+129000 32423
+130000 32628
+131000 32842
+132000 33020
+133000 33200
+134000 33417
+135000 33599
+136000 33798
+137000 34011
+34176,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+138000 34220
+139000 34399
+140000 34587
+34807,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+141000 34807
+142000 34987
+143000 35193
+144000 35393
+145000 35604
+35687,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+146000 35814
+147000 36013
+148000 36217
+149000 36424
+150000 36626
+151000 36834
+152000 37031
+153000 37230
+154000 37424
+155000 37624
+156000 37810
+157000 38021
+158000 38214
+38365,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+159000 38393
+160000 38594
+161000 38803
+162000 39017
+163000 39224
+164000 39410
+165000 39600
+166000 39810
+167000 40003
+168000 40213
+169000 40397
+170000 40596
+171000 40814
+172000 41036
+173000 41251
+174000 41472
+175000 41668
+176000 41859
+177000 42044
+178000 42231
+179000 42430
+180000 42624
+181000 42827
+182000 43022
+183000 43235
+184000 43421
+185000 43602
+186000 43820
+187000 44020
+188000 44252
+44327,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+189000 44447
+190000 44644
+191000 44840
+44881,0.8403894319053823
+>> 38221 BitwiseAndMask(ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0)))), BitwiseOr(X2, ThresholdOtsu(BitwiseNot(X0))))
+192000 45038
+193000 45240
+194000 45458
+195000 45663
+196000 45858
+45939,0.8403894319053823
+>> 10781 ContourArea(BitwiseAnd(X5, ThresholdOtsu(BitwiseNot(X0))))
+197000 46082
+198000 46282
+199000 46487
+200000 46671
+Final training score: 0.8403894319053823
+Final test score: 0.8480265716658154 with 46671 evaluations
+score: 0.10534703351449275
+>> 10 ThresholdAt1(X2)
+4,0.3313943771302395
+>> 17 Embossing(BitwiseNot((X4) + (X0)))
+27,0.5186460204927912
+>> 6 RemoveSmallObjects(X3)
+136,0.727206907636075
+>> 421 ThresholdOtsu(Close(ThresholdOtsu(X4)))
+1000 784
+927,0.7302567181146283
+>> 2108 RemoveSmallHoles(ThresholdOtsu(X4))
+976,0.7302567181146283
+>> 2387 (RemoveSmallHoles(ThresholdOtsu(X4))) - (Sobel(X5))
+1069,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+1087,0.7395443426347997
+>> 2507 BitwiseXor(FillHoles(ThresholdOtsu(X4)), ThresholdOtsu(X4))
+1372,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+1413,0.7395443426347997
+>> 3079 (FillHoles(ThresholdOtsu(X4))) - (log(SquareRoot(Min(Mean(X1, X0), X1))))
+2000 1587
+1735,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+1916,0.7395443426347997
+>> 4594 BitwiseAndMask(FillHoles(ThresholdOtsu(X4)), BitwiseOr(RelativeDifference(X5), BitwiseAndMask(X5, X4)))
+2055,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+2057,0.7395443426347997
+>> 4909 (FillHoles(ThresholdOtsu(X4))) - (DistanceTransform(GaussianBlur(log((X1) + (X0)))))
+2090,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+2095,0.7395443426347997
+>> 5007 BitwiseXor(FillHoles(ThresholdOtsu(X4)), DistanceTransform(MedianBlur(Square(AbsoluteDifference2(X5, Max(X5, X4))))))
+2207,0.7395443426347997
+>> 2506 FillHoles(ThresholdOtsu(X4))
+3000 2375
+2402,0.7726157290657572
+>> 1252 ThresholdOtsu(Pyr(X4))
+2437,0.7934164802856948
+>> 5547 FillHoles(ThresholdOtsu(Pyr(X4)))
+4000 3131
+3829,0.7979440260504583
+>> 10154 ThresholdOtsu(Close((X1) - (X0)))
+3870,0.8024600460079713
+>> 10155 FluoTopHat(ThresholdOtsu(Close((X1) - (X0))))
+5000 3885
+3920,0.8107998780286686
+>> 10154 ThresholdOtsu(Close((X1) - (X0)))
+4120,0.8234741883893695
+>> 10967 Pyr(ThresholdOtsu(Close((X1) - (X0))))
+6000 4509
+7000 4952
+8000 5323
+9000 5638
+10000 5972
+11000 6236
+12000 6487
+13000 6707
+14000 6956
+7153,0.8299604951848646
+>> 19656 Min(BitwiseAndMask(X5, Close((X1) - (X0))), Pyr(ThresholdOtsu(Close((X1) - (X0)))))
+15000 7324
+16000 8101
+17000 8832
+8982,0.848423932837831
+>> 23516 Embossing(ThresholdOtsu((X5) - (X0)))
+18000 9607
+9970,0.8488797712057492
+>> 30181 Pyr(BitwiseAnd((X5) - (X0), ThresholdOtsu((X5) - (X0))))
+10226,0.85282782744745
+>> 31175 BitwiseAndMask(Pyr(RemoveSmallHoles(BitwiseAnd((X2) - (X0), ThresholdOtsu((X2) - (X0))))), Mean(AbsoluteDifference2(X4, (X3) + (X3)), (X2) - (X0)))
+19000 10408
+11003,0.8704914272850021
+>> 34568 FillHoles(RemoveSmallHoles(Kirsch(ThresholdOtsu((X5) - (X0)))))
+20000 11188
+21000 11959
+22000 12562
+23000 13159
+24000 13675
+25000 14266
+26000 15090
+27000 15822
+28000 16415
+29000 17154
+30000 17954
+31000 18743
+32000 19532
+33000 20325
+34000 21103
+35000 21901
+36000 22618
+37000 23386
+38000 24174
+39000 24969
+40000 25762
+41000 26565
+42000 27357
+27650,0.8771745082793343
+>> 37025 FillHoles(Laplacian(ThresholdOtsu((X2) - (X0))))
+43000 28032
+28280,0.8771745082793343
+>> 107334 SquareRoot(FillHoles(Laplacian(ThresholdOtsu((X2) - (X0)))))
+28341,0.8790981857904633
+>> 36817 FillHoles(Laplacian(ThresholdOtsu((X5) - (X0))))
+28370,0.8790981857904633
+>> 107357 SquareRoot(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))))
+28380,0.8790981857904633
+>> 36817 FillHoles(Laplacian(ThresholdOtsu((X5) - (X0))))
+28445,0.8790981857904633
+>> 107743 FluoTopHat(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))))
+28548,0.8790981857904633
+>> 36817 FillHoles(Laplacian(ThresholdOtsu((X5) - (X0))))
+44000 28610
+28652,0.8790981857904633
+>> 108488 ContourArea(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))))
+28687,0.8790981857904633
+>> 36817 FillHoles(Laplacian(ThresholdOtsu((X5) - (X0))))
+28702,0.8792436012897339
+>> 108706 SquareRoot(Min(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), Square(Dilate(BitwiseXor(FluoTopHat(Square(ContourArea(X1))), ThresholdOtsu((X5) - (X0)))))))
+28907,0.8806651455132227
+>> 109722 BitwiseAnd(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), ThresholdOtsu(exp(ContourArea(X2))))
+45000 29395
+46000 30127
+47000 30886
+48000 31716
+32047,0.8807297291926425
+>> 118335 (FillHoles(Laplacian(ThresholdOtsu((X5) - (X0))))) - (X5)
+32075,0.8808299873152236
+>> 118414 BitwiseAnd(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), Mean(X4, X3))
+49000 32508
+50000 33298
+51000 34106
+52000 34868
+53000 35659
+54000 36460
+55000 37189
+56000 37688
+38346,0.8811464275307426
+>> 143195 RemoveSmallObjects(BitwiseAnd(FillHoles(Laplacian(Min(ThresholdOtsu((X5) - (X0)), ThresholdOtsu((X5) - (X0))))), Pyr((X5) - (X0))))
+57000 38402
+58000 39160
+59000 39759
+39840,0.881151495053674
+>> 151034 BitwiseAnd(FillHoles(Laplacian(BitwiseAndMask(X1, ThresholdOtsu((X5) - (X0))))), BitwiseXor(RemoveSmallHoles(Threshold(BitwiseAndMask(X1, ThresholdOtsu((X5) - (X0))))), X4))
+60000 40561
+61000 41374
+62000 42175
+63000 42956
+64000 43745
+65000 44538
+44735,0.8843976127470482
+>> 174871 Min(BitwiseAnd(FillHoles(Laplacian(BitwiseAndMask(MorphTopHat(ThresholdOtsu((X5) - (X0))), MorphTopHat(ThresholdOtsu((X5) - (X0)))))), FluoTopHat(BitwiseXor((X5) - (X0), X4))), X4)
+44934,0.88439817367364
+>> 175808 BitwiseAnd(FillHoles(Embossing(MorphTopHat(ThresholdOtsu((X5) - (X0))))), Max(BitwiseAndMask(BitwiseXor((X5) - (X0), X4), X4), BitwiseAndMask(BitwiseXor((X5) - (X0), X4), X4)))
+44942,0.88439817367364
+>> 175810 SquareRoot(BitwiseAnd(FillHoles(Embossing(MorphTopHat(ThresholdOtsu((X5) - (X0))))), Max(BitwiseAndMask(BitwiseXor((X5) - (X0), X4), X4), BitwiseAndMask(BitwiseXor((X5) - (X0), X4), X4))))
+66000 45347
+45883,0.8844429368896859
+>> 132721 BitwiseAndMask(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), BitwiseXor((X5) - (X0), X4))
+67000 46162
+68000 46958
+69000 47750
+47790,0.8844429368896859
+>> 190311 ThresholdOtsu(BitwiseAndMask(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), DistanceTransform(BitwiseXor((X5) - (X0), X4))))
+47871,0.8844429368896859
+>> 190182 BitwiseAndMask(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), DistanceTransform(BitwiseXor((X5) - (X0), X4)))
+70000 48513
+71000 49314
+49554,0.8844429368896859
+>> 197587 Threshold(BitwiseAndMask(FillHoles(Laplacian(ThresholdOtsu((X5) - (X0)))), Max(BitwiseXor((X5) - (X0), X4), ThresholdOtsu((X5) - (X0)))))
+72000 50113
+73000 50905
+74000 51689
+75000 52475
+76000 53266
+77000 54073
+78000 54866
+79000 55657
+80000 56404
+81000 57179
+82000 58012
+83000 58699
+84000 59199
+85000 59642
+86000 60055
+87000 60432
+88000 60814
+89000 61158
+90000 61721
+91000 62484
+92000 63221
+93000 63737
+94000 64111
+95000 64408
+96000 64746
+97000 65483
+98000 66291
+99000 67086
+100000 67891
+101000 68704
+102000 69506
+103000 70320
+104000 71102
+105000 71911
+71966,0.8948981538002924
+>> 277658 BitwiseAndMask(Square(FillHoles((Kirsch(Min(ThresholdOtsu((X2) - (X0)), (X2) - (X0)))) - (ThresholdOtsu(X0)))), X0)
+72005,0.8948981538002924
+>> 277561 FillHoles((Kirsch(ThresholdOtsu((X2) - (X0)))) - (ThresholdOtsu(X0)))
+72061,0.8974822640348501
+>> 278547 BitwiseXor(ThresholdOtsu((X5) - (X0)), ThresholdOtsu(FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))))
+72301,0.8974822640348501
+>> 280189 log(BitwiseOr(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), (X5) - (X0)))) - (ThresholdOtsu(X0)))))
+72316,0.8974822640348501
+>> 280378 RelativeDifference(BitwiseOr(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), (X5) - (X0)))) - (ThresholdOtsu(X0)))))
+72455,0.8974822640348501
+>> 280405 BitwiseOr(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu(ThresholdOtsu((X5) - (X0))))) - (ThresholdOtsu(X0))))
+72636,0.898452196415942
+>> 283126 Min(X3, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+106000 72697
+72775,0.898452196415942
+>> 284191 BitwiseAnd(X3, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+73427,0.8985302484139709
+>> 288288 BitwiseAndMask(Min(X4, FillHoles((Kirsch(DistanceTransform(ThresholdOtsu((X5) - (X0))))) - (ThresholdOtsu(X0)))), Threshold(FillHoles((Kirsch(DistanceTransform(ThresholdOtsu((X5) - (X0))))) - (ThresholdOtsu(X0)))))
+107000 73466
+73849,0.8985302484139709
+>> 283524 Min(X4, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+108000 74180
+74294,0.8985302484139709
+>> 293986 Min(Min(X4, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))), X1)
+74316,0.8985302484139709
+>> 283524 Min(X4, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+74317,0.8985302484139709
+>> 294190 BitwiseAndMask(Min(X4, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))), X1)
+74536,0.8985302484139709
+>> 283970 BitwiseAndMask(X4, FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+74774,0.8985302484139709
+>> 297164 DistanceTransform(BitwiseAnd(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X1))) - (ThresholdOtsu(X0)))))
+74867,0.8988003852482006
+>> 297794 Mean(BitwiseAndMask(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))), (Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))
+74923,0.8988003852482006
+>> 298087 DistanceTransform(Mean(BitwiseAndMask(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))), (Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0))))
+74930,0.8988003852482006
+>> 297794 Mean(BitwiseAndMask(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))), (Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))
+109000 74942
+74947,0.8988003852482006
+>> 298087 DistanceTransform(Mean(BitwiseAndMask(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))), (Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0))))
+75026,0.8992262930454525
+>> 298834 Mean(BitwiseAnd(X4, FillHoles((Kirsch(Min(ThresholdOtsu((X5) - (X0)), X5))) - (ThresholdOtsu(X0)))), ThresholdOtsu((X5) - (X0)))
+110000 75731
+111000 76539
+112000 77326
+78016,0.8992262930454525
+>> 316612 DistanceTransform(Mean(BitwiseAndMask(X4, ContourArea(FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), ThresholdOtsu((X5) - (X0))))
+78023,0.8992262930454525
+>> 316611 Mean(BitwiseAndMask(X4, ContourArea(FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), ThresholdOtsu((X5) - (X0)))
+113000 78124
+114000 78913
+115000 79705
+116000 80511
+80987,0.8992262930454525
+>> 335368 DistanceTransform(Mean(BitwiseAnd(X4, Max(FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), ThresholdOtsu((X5) - (X0)))), ThresholdOtsu((X5) - (X0))))
+81002,0.8992262930454525
+>> 313803 Mean(BitwiseAnd(X4, ThresholdAt1(FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), ThresholdOtsu((X5) - (X0)))
+117000 81262
+118000 82015
+119000 82796
+120000 83574
+121000 84375
+84731,0.8992900721552307
+>> 360223 BitwiseAndMask(Mean(BitwiseAndMask(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), X0)
+84737,0.8992900721552307
+>> 358993 Mean(BitwiseAndMask(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+84746,0.8992900721552307
+>> 360255 BitwiseAndMask(Mean(Min(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), X0)
+84828,0.8992900721552307
+>> 360254 Mean(Min(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+84834,0.8992900721552307
+>> 360771 BitwiseAndMask(Mean(Min(X4, Mean(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), X0)
+84872,0.8992900721552307
+>> 360767 Mean(Min(X4, Mean(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+122000 85154
+85373,0.8992900721552307
+>> 363603 BitwiseAndMask(Mean(Min(X4, BitwiseXor(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), Close((Kirsch(ThresholdOtsu((X5) - (X0)))) + (X4)))
+85503,0.8992900721552307
+>> 360254 Mean(Min(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+85538,0.8992900721552307
+>> 364598 FluoTopHat(Mean(Min(X4, (ThresholdOtsu((X5) - (X0))) + (FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+85775,0.8992900721552307
+>> 361151 Mean(Min(X4, Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+85818,0.8992900721552307
+>> 365806 Max(Mean(Min(X4, Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+85878,0.8992900721552307
+>> 361151 Mean(Min(X4, Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))
+123000 85908
+124000 86440
+125000 87146
+87942,0.8994309675090872
+>> 377847 Min(BitwiseAndMask(X4, BitwiseOr(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))), Denoizing((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0))))
+126000 87953
+127000 88751
+128000 89534
+89934,0.9000307053254826
+>> 386988 BitwiseAnd(Square(BitwiseNot(X0)), Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdOtsu(X0)))))
+129000 90267
+130000 90871
+131000 91304
+132000 91677
+133000 91953
+134000 92205
+135000 92416
+136000 92619
+137000 92793
+138000 92995
+139000 93195
+140000 93378
+141000 93573
+142000 93790
+143000 93976
+144000 94158
+145000 94364
+146000 94561
+94643,0.9002586650730612
+>> 396717 Mean(BitwiseAnd(Square(BitwiseNot(X0)), Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdAt1(X0))))), (Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdAt1(X0)))
+147000 95083
+148000 95625
+95855,0.9003689694908875
+>> 387239 BitwiseAnd(Square(BitwiseNot(X0)), Max(ThresholdOtsu((X5) - (X0)), FillHoles((Kirsch(ThresholdOtsu((X5) - (X0)))) - (ThresholdAt1(X0)))))
+149000 95941
+150000 96144
+151000 96327
+152000 96524
+153000 96715
+154000 96919
+155000 97110
+156000 97308
+157000 97524
+158000 97711
+159000 97886
+160000 98085
+161000 98273
+162000 98496
+163000 98687
+164000 98902
+165000 99104
+166000 99301
+167000 99493
+168000 99687
+169000 99883
+Final training score: 0.9003689694908875
+Final test score: 0.8528495065368954 with 100000 evaluations

@@ -24,7 +24,7 @@ cache_fitness = {}
 cache_params = {}
 count = 0 
 DEBUG = False 
-P_INTRON = 0.1
+P_INTRON = 0.25
 
 def get_enode(egraph, eid):
     return next(iter(egraph.map_class[eid].enodes))
@@ -322,7 +322,7 @@ def objective(trial):
 
 if __name__ == "__main__":
 
-    test_evo(100, 0.7, 0.1, 100000, 100000)
+    test_evo(20, 0.5, 0.3, 100000, 200000)
     #study = optuna.create_study(direction='maximize')
     #study.optimize(objective, n_trials=100)
     #print(study.best_params)
