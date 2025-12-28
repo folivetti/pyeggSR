@@ -15,6 +15,7 @@ from dataclasses import dataclass, fields, is_dataclass
 from copy import copy 
 import cProfile 
 import io 
+import sys
 import pstats
 from pstats import SortKey
 import optuna 
@@ -284,7 +285,7 @@ def load_datasets(dirname):
 
 def test_evo(n_nodes, p_node, p_edge, n_evals, max_iter):
     global count
-    imgs, masks, test_imgs, test_masks = load_datasets("melanoma")
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
 
     best_score = 0.0
     egraph, eids, out = get_fst_rnd_egraph(n_nodes)
@@ -322,7 +323,9 @@ def objective(trial):
 
 if __name__ == "__main__":
 
-    test_evo(20, 0.5, 0.3, 100000, 200000)
-    #study = optuna.create_study(direction='maximize')
-    #study.optimize(objective, n_trials=100)
-    #print(study.best_params)
+    if len(sys.argv) < 3 or sys.argv[2] != "optuna":
+        test_evo(20, 0.5, 0.3, 100000, 200000)
+    else:
+        study = optuna.create_study(direction='maximize')
+        study.optimize(objective, n_trials=100)
+        print(study.best_params)
