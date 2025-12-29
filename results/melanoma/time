@@ -338,3 +338,603 @@ Time: 2:49.30, Peak Memory: 413664 KB
   skew1 = np.mean(skew(img))
 Time: 2:31:05, Peak Memory: 444984 KB
 Time: 3:04.08, Peak Memory: 274716 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.95, Peak Memory: 195844 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.02, Peak Memory: 196756 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.99, Peak Memory: 197524 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.94, Peak Memory: 196772 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.01, Peak Memory: 196428 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.02, Peak Memory: 196172 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.05, Peak Memory: 196436 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.03, Peak Memory: 196168 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.09, Peak Memory: 196772 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.16, Peak Memory: 195884 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.21, Peak Memory: 196536 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.24, Peak Memory: 197272 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.14, Peak Memory: 197676 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.27, Peak Memory: 196484 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.38, Peak Memory: 196496 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.17, Peak Memory: 195740 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.22, Peak Memory: 195908 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.04, Peak Memory: 197444 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.10, Peak Memory: 197212 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.07, Peak Memory: 197488 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.26, Peak Memory: 195324 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.09, Peak Memory: 197744 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.96, Peak Memory: 197876 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.04, Peak Memory: 195532 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.00, Peak Memory: 196204 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.94, Peak Memory: 197268 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.04, Peak Memory: 196396 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.05, Peak Memory: 197064 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.03, Peak Memory: 197240 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 328, in <module>
+    test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 288, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 273, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Dent/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:01.03, Peak Memory: 195812 KB

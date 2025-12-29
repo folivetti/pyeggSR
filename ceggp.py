@@ -25,13 +25,14 @@ cache_fitness = {}
 cache_params = {}
 count = 0 
 DEBUG = False 
-P_INTRON = 0.25
+P_INTRON = 0.1 # 0.25
 
 def get_enode(egraph, eid):
     return next(iter(egraph.map_class[eid].enodes))
 
 def fitness(eg, eclass, params, image, target, useCache=False):
     result, _ = evaluate_egraph(eclass, eg, params, image, useCache)
+    eg.cache = {}
     iou = compute_iou(target, result)
     return iou
 
@@ -107,7 +108,7 @@ def check_novelty(egraph, old_eids, column, out, new_enode, active):
             else:
                 return True
     return False
-    
+
 def apply_change(egraph, old_eids, column, new_enode):
     eids = {k: v.copy() for k, v in old_eids.items()}
     eid = old_eids[column][0]
@@ -220,6 +221,7 @@ def calc_score(egraph, root, imgs, masks, recalc=False):
     #scores = [fitness(egraph, root, params, img, mask) for img, mask in zip(imgs, masks)]
     cache_fitness[root] = best_score
     cache_params[root] = best_params
+    clean_cache(egraph)
     return score
 
 def calc_test_score(egraph, imgs, masks):
@@ -319,12 +321,13 @@ def objective(trial):
     p_out = trial.suggest_categorical('p_edge', list(np.arange(0.1, 0.3, 0.1)))
     p_edge = min(0.1, 1.0 - p_node - p_out)
     n_nodes = trial.suggest_categorical('n_nodes', [20, 30, 50, 100])
-    return test_evo(n_nodes, p_node, p_edge, 10000, 10000)
+    return test_evo(n_nodes, p_node, p_edge, 1000, 2000)
 
 if __name__ == "__main__":
 
     if len(sys.argv) < 3 or sys.argv[2] != "optuna":
-        test_evo(20, 0.5, 0.3, 100000, 200000)
+        # test_evo(20, 0.5, 0.3, 100000, 200000) # melanoma
+        test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
     else:
         study = optuna.create_study(direction='maximize')
         study.optimize(objective, n_trials=100)

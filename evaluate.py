@@ -90,6 +90,10 @@ def compute_iou(y_true, y_pred):
     return np.sum(intersection) / np.sum(union)
 
 
+def clean_cache(egraph):
+    for k in egraph.map_class:
+        egraph.map_class[k].cache = None
+
 def evaluate_egraph(root : int, egraph : EGraph, consts = [], data=None, useCache=False): 
     """
     Evaluate an expression tree with given data for variables and constant parameters.

@@ -1,0 +1,1923 @@
+score: 0.13930040096646404
+>> 29 ThresholdOtsu((X4) - (InRange(Square(X0))))
+9,0.19582625699892486
+>> 222 (RobertCross(BitwiseAndMask(X0, X2))) + (Kirsch(X3))
+236,0.2889283784434441
+>> 3911 DistanceTransform(BitwiseXor(BinaryInRange(X1), Dilate((X4) - (MorphGradient(X0)))))
+252,0.344554241394998
+>> 3910 ThresholdOtsu((X4) - (MorphGradient(X0)))
+340,0.34920374470182475
+>> 3970 FillHoles((X4) - (MorphGradient(X0)))
+366,0.3835660529429883
+>> 5655 log((X4) - (Min(X4, MorphGradient(X0))))
+871,0.40048082133313967
+>> 13088 DistanceTransformAndThresh(Mean(GaborFilter(X2), RemoveSmallObjects((X4) - (MorphGradient(X0)))))
+1000 917
+Final training score: 0.40048082133313967
+Final test score: 0.47455611705921275 with 1000 evaluations
+score: 0.16103594204249772
+>> 34 RemoveSmallObjects(FluoTopHat(X0))
+4,0.16203525782716444
+>> 51 BitwiseAnd(Open(SquareRoot(X3)), log(Sharpen(RelativeDifference(X1))))
+8,0.1699744439319592
+>> 19 FillHoles(X4)
+23,0.17814767535254805
+>> 63 log(Sharpen(MorphGradient(X1)))
+46,0.18390708350317428
+>> 24 Kirsch(Square(X5))
+63,0.22202845781339944
+>> 236 GaussianBlur(InRange(Dilate(X1)))
+102,0.30148044766492715
+>> 254 FillHoles(Sobel(AbsoluteDifference(X3)))
+152,0.30597988852598823
+>> 231 InRange(Dilate(X1))
+658,0.32809876931535503
+>> 451 Close(InRange(Dilate(X2)))
+1000 849
+Final training score: 0.32809876931535503
+Final test score: 0.2759379656585389 with 1000 evaluations
+score: 0.16781099716888628
+>> 19 AbsoluteDifference2(Threshold(X4), X4)
+4,0.16781099716888628
+>> 21 Square(AbsoluteDifference2(X0, Erode(X5)))
+11,0.18668178014744113
+>> 25 Laplacian(Max(RobertCross(X4), X0))
+17,0.18772144080536735
+>> 6 RobertCross(X4)
+21,0.19694802712226295
+>> 13 RobertCross(RobertCross(X4))
+30,0.20400805516270015
+>> 175 DistanceTransform(FluoTopHat(RobertCross(AbsoluteDifference2(X4, X0))))
+214,0.23017130311720013
+>> 665 (Close(DistanceTransform(MedianBlur(X4)))) + (Erode(BitwiseXor(Square(Embossing(X0)), Embossing(X0))))
+258,0.24181936031592793
+>> 716 Open(Erode(BitwiseXor(SquareRoot(Embossing(X0)), Embossing(X0))))
+362,0.33252695778539343
+>> 1706 BitwiseOr(Close(DistanceTransform(Close(X2))), Square(Sharpen(DistanceTransform(SquareRoot((X5) - (Close(X1)))))))
+410,0.3527494839988493
+>> 1939 RobertCross(Mean(InRange(DistanceTransform(X4)), ThresholdOtsu((DistanceTransform(SquareRoot((X5) - (Close(X1))))) - (Sharpen((X5) - (Close(X1)))))))
+522,0.486126451410603
+>> 2738 BitwiseAndMask(BitwiseOr(Close((X5) - (BitwiseAndMask(X1, X1))), Min((X5) - (BitwiseAndMask(X1, X1)), X2)), ThresholdOtsu(Denoizing(DistanceTransform(Min((X5) - (BitwiseAndMask(X1, X1)), X2)))))
+830,0.48941799661621693
+>> 4775 BitwiseAndMask(BitwiseAndMask(FillHoles((X5) - (BitwiseNot(Close(X5)))), Close(BitwiseAndMask(Erode(log((X5) - (MedianBlur(X0)))), X1))), Erode(log((X5) - (MedianBlur(X0)))))
+1000 913
+Final training score: 0.48941799661621693
+Final test score: 0.5460456853277283 with 1000 evaluations
+score: 0.0018029054587212884
+>> 102 DistanceTransform(RelativeDifference(BinaryInRange(X2)))
+3,0.17186921422796456
+>> 56 DistanceTransform(X4)
+10,0.2484575499833961
+>> 62 Threshold(SquareRoot(MedianBlur(GaussianBlur(X4))))
+131,0.31179550171172365
+>> 791 GaussianBlur(DistanceTransformAndThresh(Open(X4)))
+293,0.46289854747743264
+>> 1750 Denoizing(DistanceTransformAndThresh(exp(X4)))
+1000 932
+Final training score: 0.46289854747743264
+Final test score: 0.12227296549080734 with 1000 evaluations
+score: 0.0005720278298368279
+>> 28 Kirsch(BinaryInRange(MorphGradient(Open(X2))))
+2,0.16781099716888628
+>> 7 Open(X2)
+4,0.16781099716888628
+>> 53 Denoizing(BitwiseNot(Open(X3)))
+5,0.16781099716888628
+>> 15 (Max(X2, X3)) + (ContourArea(X1))
+6,0.16781099716888628
+>> 53 Denoizing(BitwiseNot(Open(X3)))
+7,0.17680890302651647
+>> 36 Open(X3)
+12,0.1827961054096647
+>> 51 DistanceTransformAndThresh(Denoizing(AbsoluteDifference2(Kirsch(Square(X3)), MorphGradient(Open(X3)))))
+19,0.18864481592325083
+>> 22 MorphGradient(X5)
+24,0.1896739953615567
+>> 45 Min(Open(Open(X3)), RelativeDifference(ContourArea(X1)))
+41,0.2056725522655573
+>> 52 Close(Open(X3))
+185,0.2848639024939895
+>> 287 DistanceTransformAndThresh(Open(X3))
+321,0.30871290963402076
+>> 466 Close(DistanceTransformAndThresh(Open(X4)))
+344,0.31564789345311495
+>> 509 DistanceTransformAndThresh(DistanceTransform(X4))
+447,0.318783456951821
+>> 545 Open(BinaryInRange(X4))
+796,0.32006321317723585
+>> 553 Min(Open(BinaryInRange(X4)), RelativeDifference(ContourArea(X1)))
+1000 959
+Final training score: 0.32006321317723585
+Final test score: 0.4236155527639242 with 1000 evaluations
+score: 0.027748045152510913
+>> 44 BitwiseAndMask(RemoveSmallObjects(DistanceTransformAndThresh(ThresholdAt1(Threshold(X5)))), ThresholdAt1(Threshold(X5)))
+3,0.038729474308278035
+>> 66 MorphGradient(Denoizing(Threshold(X5)))
+4,0.1807853293103851
+>> 10 MorphBlackHat(X2)
+20,0.18678628621670906
+>> 78 Kirsch(MorphBlackHat(DistanceTransformAndThresh(MorphTopHat(X5))))
+33,0.19763712957658142
+>> 44 BitwiseAndMask(RemoveSmallObjects(DistanceTransformAndThresh(ThresholdAt1(Threshold(X5)))), ThresholdAt1(Threshold(X5)))
+65,0.31773167342312
+>> 666 ThresholdAt1(Square(BitwiseAndMask(RemoveSmallObjects(DistanceTransformAndThresh(MorphGradient(X0))), Pyr(Laplacian(X5)))))
+270,0.34568795796792
+>> 398 RemoveSmallObjects(DistanceTransformAndThresh(MorphGradient(X0)))
+1000 935
+Final training score: 0.34568795796792
+Final test score: 0.2324408604205989 with 1000 evaluations
+score: 0.16781099716888628
+>> 19 GaussianBlur(FillHoles(X0))
+5,0.16781099716888628
+>> 17 Max((X5) - (X1), X5)
+8,0.1679568837339874
+>> 28 RemoveSmallObjects(AbsoluteDifference(X2))
+13,0.16918584230880923
+>> 13 Min(Pyr(X3), X1)
+17,0.17681405236829745
+>> 45 MorphBlackHat((X5) - (X1))
+19,0.19130863481594967
+>> 29 Erode(Pyr(X3))
+104,0.1958390223383875
+>> 23 FillHoles(Laplacian(X3))
+114,0.2115295382276428
+>> 246 InRange(Min(X1, FillHoles(X0)))
+528,0.25780894526043313
+>> 336 InRange(X4)
+607,0.29505067823318953
+>> 771 DistanceTransformAndThresh(DistanceTransformAndThresh(X4))
+1000 959
+Final training score: 0.29505067823318953
+Final test score: 0.12462058243184425 with 1000 evaluations
+score: 0.046841070815891034
+>> 16 Embossing(Open(Sobel(BinaryInRange(X4))))
+6,0.16781099716888628
+>> 10 GaussianBlur(X2)
+15,0.16781099716888628
+>> 19 AbsoluteDifference2(X5, RelativeDifference(X2))
+17,0.16806650362497283
+>> 37 MorphGradient(X2)
+18,0.203146155765383
+>> 8 BinaryInRange(X4)
+81,0.2049910517030212
+>> 21 RobertCross(X1)
+131,0.20507909391086496
+>> 276 Sharpen(BitwiseAndMask(X0, RobertCross(X0)))
+280,0.22588924428886487
+>> 395 Embossing(BinaryInRange(X2))
+354,0.2692889871361861
+>> 109 BinaryInRange(X1)
+501,0.27922524572892105
+>> 499 Max(Embossing(BinaryInRange(X1)), Canny(X2))
+921,0.2813077918372971
+>> 109 BinaryInRange(X1)
+1000 935
+Final training score: 0.2813077918372971
+Final test score: 0.4095454346473692 with 1000 evaluations
+score: 0.0008695700259048911
+>> 20 BinaryInRange(Square(X0))
+27,0.1689200823045088
+>> 6 Dilate(X4)
+45,0.17456141696483307
+>> 11 Open(X3)
+65,0.1751755214357047
+>> 137 MorphGradient(GaborFilter(X0))
+122,0.22202482795410994
+>> 209 Sobel(Denoizing(BitwiseNot(X4)))
+476,0.2680876439169252
+>> 93 Square(X4)
+532,0.3128338513638934
+>> 1416 Open(Open(Square(X4)))
+1000 883
+Final training score: 0.3128338513638934
+Final test score: 0.509247321490119 with 1000 evaluations
+score: 0.16781099716888628
+>> 8 (MorphBlackHat(X0)) + (X5)
+5,0.16951349033793886
+>> 16 GaussianBlur(X4)
+9,0.17130810390045803
+>> 21 RemoveSmallHoles(X4)
+34,0.17186921422796456
+>> 42 DistanceTransform(X4)
+43,0.1866818709552018
+>> 120 Laplacian(X0)
+51,0.20698689301940837
+>> 87 Sobel(X4)
+82,0.2076124924327118
+>> 123 ContourArea(BinaryInRange(X1))
+89,0.24583628669172963
+>> 198 BitwiseOr(Laplacian(MedianBlur(X4)), log(BinaryInRange(X1)))
+145,0.2501599588034316
+>> 122 BinaryInRange(X1)
+181,0.30770627388917415
+>> 165 Denoizing(DistanceTransformAndThresh(X4))
+380,0.3159583906503617
+>> 164 DistanceTransformAndThresh(X4)
+464,0.3214908327420984
+>> 653 Embossing(DistanceTransformAndThresh(X4))
+673,0.3589805388256367
+>> 533 DistanceTransformAndThresh(X3)
+1000 909
+Final training score: 0.3589805388256367
+Final test score: 0.26262490101788466 with 1000 evaluations
+score: 0.33053321551207504
+>> 34 Min(Erode(Erode(DistanceTransform(AbsoluteDifference2(X3, RemoveSmallObjects(X2))))), (X5) + (ThresholdOtsu(X1)))
+73,0.3518875854719694
+>> 117 ThresholdOtsu(Erode(DistanceTransform(AbsoluteDifference2(X3, RemoveSmallObjects(X2)))))
+77,0.35354153456857085
+>> 118 RobertCross(ThresholdOtsu(Erode(DistanceTransform(AbsoluteDifference2(X3, RemoveSmallObjects(X2))))))
+87,0.35638017235032715
+>> 117 ThresholdOtsu(Erode(DistanceTransform(AbsoluteDifference2(X3, RemoveSmallObjects(X2)))))
+232,0.36081141149556417
+>> 410 Min(DistanceTransformAndThresh(Erode(DistanceTransform(AbsoluteDifference2(X3, RemoveSmallObjects(X0))))), MorphGradient(X5))
+1000 960
+Final training score: 0.36081141149556417
+Final test score: 0.26603421486547524 with 1000 evaluations
+score: 0.16781099716888628
+>> 101 BitwiseNot(InRange(Laplacian(Square(RemoveSmallHoles(Min(X3, X2))))))
+4,0.17040118163437892
+>> 20 FillHoles(Min(X3, X2))
+10,0.18151862274613945
+>> 87 Sobel(Min(X3, X2))
+25,0.23459376951198335
+>> 40 BinaryInRange((Max(Min(X3, X2), Dilate(X3))) + (Max(Min(X3, X2), Dilate(X3))))
+92,0.30229256716172487
+>> 468 RemoveSmallObjects(Square(AbsoluteDifference2(MedianBlur((Max(GaussianBlur(X3), Dilate(X3))) + (Max(GaussianBlur(X3), Dilate(X3)))), BitwiseNot((Max(GaussianBlur(X3), Dilate(X3))) + (Max(GaussianBlur(X3), Dilate(X3)))))))
+344,0.31553829448917314
+>> 1696 InRange(BitwiseNot((Max(FluoTopHat(MorphGradient(X3)), MorphGradient(X3))) + (Max(FluoTopHat(MorphGradient(X3)), MorphGradient(X3)))))
+1000 972
+Final training score: 0.31553829448917314
+Final test score: 0.2674824442087511 with 1000 evaluations
+score: 0.18952347450883117
+>> 8 MorphTopHat(X5)
+45,0.197841430286348
+>> 185 Kirsch(Mean(MorphBlackHat(X5), Denoizing(X0)))
+213,0.21852390734606764
+>> 668 (MedianBlur(InRange(Dilate(Close(X1))))) + (MorphBlackHat(Dilate(Close(X1))))
+328,0.27688845985565236
+>> 1661 Open(Dilate(InRange(MedianBlur(Close(X1)))))
+750,0.3172979540723101
+>> 5210 BitwiseAnd(X5, RemoveSmallObjects(Mean(InRange(MedianBlur(Open(X1))), InRange(MedianBlur(Open(X1))))))
+1000 907
+Final training score: 0.3172979540723101
+Final test score: 0.37339555231345894 with 1000 evaluations
+score: 0.2099041800559442
+>> 29 Sharpen(Denoizing(FluoTopHat(X4)))
+5,0.23993598261103025
+>> 38 Denoizing(Square(X4))
+18,0.2680876439169252
+>> 36 Square(X4)
+42,0.2935036446676812
+>> 83 Embossing(DistanceTransformAndThresh(X4))
+154,0.31999199517831173
+>> 79 DistanceTransformAndThresh(X4)
+331,0.32027071948438357
+>> 269 DistanceTransform(DistanceTransformAndThresh(X4))
+562,0.4150029478075923
+>> 1269 DistanceTransformAndThresh(Close(ThresholdOtsu(X4)))
+1000 923
+Final training score: 0.4150029478075923
+Final test score: 0.4059990792731025 with 1000 evaluations
+score: 0.16781099716888628
+>> 26 Denoizing(Embossing(RemoveSmallObjects(X5)))
+5,0.16781099716888628
+>> 8 RemoveSmallObjects(X0)
+13,0.18550702923804696
+>> 14 MorphTopHat(X5)
+14,0.2038680550205894
+>> 19 RobertCross(X2)
+138,0.24361831019267136
+>> 9 Threshold(X4)
+172,0.2500236769378661
+>> 22 Square(BitwiseAndMask(Denoizing(X4), MorphTopHat(X5)))
+249,0.2711359421707839
+>> 852 Sobel(ThresholdOtsu(BitwiseXor(X4, Threshold(X4))))
+397,0.27204057269352006
+>> 1638 RemoveSmallObjects(ThresholdOtsu(BitwiseXor(Denoizing(X0), ContourArea(Denoizing(X0)))))
+569,0.2801517680279261
+>> 3336 ThresholdOtsu(BitwiseXor(DistanceTransform(X2), Erode(Square(X2))))
+708,0.30525834103672667
+>> 4543 ThresholdOtsu(AbsoluteDifference2(X5, SquareRoot(DistanceTransform(X3))))
+875,0.352567640551833
+>> 6438 InRange(DistanceTransform(Erode(X3)))
+1000 951
+Final training score: 0.352567640551833
+Final test score: 0.28203303859174905 with 1000 evaluations
+score: 0.17200317696140438
+>> 15 RemoveSmallObjects(Min(X4, Sobel(X0)))
+48,0.1823076783414203
+>> 21 Sharpen(X4)
+83,0.18760781737506965
+>> 208 BitwiseAndMask(BitwiseXor(X4, BitwiseXor(X4, FluoTopHat(X1))), FluoTopHat(X1))
+111,0.1946145214804971
+>> 129 RobertCross(MorphTopHat(X1))
+116,0.2037216418595224
+>> 204 Kirsch(X4)
+138,0.2050252363635466
+>> 203 BitwiseXor(RobertCross(FluoTopHat(X1)), RobertCross(ContourArea(X4)))
+176,0.259249100391275
+>> 241 ThresholdOtsu(X4)
+423,0.27591780237100116
+>> 681 DistanceTransformAndThresh(MorphGradient(X2))
+1000 891
+909,0.2795158553779292
+>> 468 InRange(X2)
+Final training score: 0.2795158553779292
+Final test score: 0.5787749109133575 with 1000 evaluations
+score: 0.19164668505558052
+>> 58 RobertCross(SquareRoot(Sharpen(X3)))
+4,0.19356091218061777
+>> 39 Embossing(Sobel(Close(Sharpen(X1))))
+8,0.19802582626546275
+>> 69 Laplacian(X4)
+138,0.20823524460650694
+>> 270 Open(Embossing((RelativeDifference(X0)) - (X3)))
+729,0.24694233178364072
+>> 8891 log(InRange(AbsoluteDifference2(Laplacian(X0), X4)))
+1000 933
+Final training score: 0.24694233178364072
+Final test score: 0.27221204437434277 with 1000 evaluations
+score: 0.16781099716888628
+>> 46 ThresholdOtsu(RemoveSmallHoles(X0))
+20,0.1678329979333261
+>> 20 Embossing(X5)
+26,0.1725995307840993
+>> 75 Min(RemoveSmallHoles(X3), RemoveSmallHoles(X3))
+51,0.2049910517030212
+>> 17 RobertCross(X1)
+127,0.22843006195089183
+>> 35 MedianBlur(RobertCross(X1))
+196,0.2473369109475266
+>> 345 Sobel(Open(Pyr(FluoTopHat(X5))))
+371,0.25017459624130806
+>> 196 InRange(X1)
+889,0.3070338075839447
+>> 2524 Open(Sobel(RobertCross(Pyr(AbsoluteDifference2(X4, X2)))))
+1000 915
+Final training score: 0.3070338075839447
+Final test score: 0.3680428379254661 with 1000 evaluations
+score: 0.1928438071006301
+>> 19 Laplacian(Embossing(Kirsch(AbsoluteDifference2(X2, X1))))
+17,0.1954392349683305
+>> 18 Embossing(Kirsch(AbsoluteDifference2(X2, X1)))
+23,0.2680876439169252
+>> 28 Square(X4)
+957,0.3363652283931614
+>> 1025 Embossing(ThresholdOtsu(AbsoluteDifference2(Threshold(X3), MorphGradient(X1))))
+1000 974
+Final training score: 0.3363652283931614
+Final test score: 0.19757309157111533 with 1000 evaluations
+score: 0.12795278394945153
+>> 19 MorphBlackHat(Dilate(BitwiseAnd(X3, Close(X2))))
+2,0.16781099716888628
+>> 16 (Close(X2)) + (RelativeDifference(Square(X4)))
+4,0.1678611710863967
+>> 72 MorphGradient(BitwiseXor(Max(BitwiseAnd(X3, Close(X2)), Min(RemoveSmallObjects(Close(X2)), X1)), Max(RelativeDifference(Square(X4)), MorphGradient(Dilate(BitwiseAnd(X3, Close(X2)))))))
+8,0.16885986418763066
+>> 77 Embossing(RelativeDifference(Dilate(MedianBlur(X3))))
+12,0.17105682095101568
+>> 83 Close(MedianBlur(X3))
+13,0.21321665446928484
+>> 90 Open(DistanceTransformAndThresh(log(MedianBlur(X3))))
+22,0.24361831019267136
+>> 75 Mean(MorphTopHat(RemoveSmallObjects((Close(X2)) + (RelativeDifference(Square(X4))))), Square(X4))
+133,0.33968935524345734
+>> 374 DistanceTransformAndThresh(FillHoles(Square(X4)))
+1000 964
+Final training score: 0.33968935524345734
+Final test score: 0.5204393829916966 with 1000 evaluations
+score: 0.22211493409196806
+>> 31 Denoizing(DistanceTransformAndThresh(Embossing(X4)))
+13,0.259249100391275
+>> 23 ThresholdOtsu(X4)
+23,0.2730702690469082
+>> 24 Pyr(Erode(X3))
+130,0.34342049321127577
+>> 146 DistanceTransformAndThresh(InRange(X4))
+175,0.34830105434433706
+>> 31 Denoizing(DistanceTransformAndThresh(Embossing(X4)))
+538,0.38220131509582844
+>> 30 Threshold(Open(InRange(X2)))
+872,0.4028119432169571
+>> 832 DistanceTransformAndThresh(Sharpen(MedianBlur(X4)))
+1000 965
+Final training score: 0.4028119432169571
+Final test score: 0.4780701751268713 with 1000 evaluations
+score: 0.16781099716888628
+>> 25 Denoizing(X1)
+21,0.17268655300359068
+>> 11 BitwiseXor(X2, X0)
+34,0.1849515397355949
+>> 91 SquareRoot(Kirsch(X3))
+35,0.1862653624273613
+>> 85 Pyr(Kirsch(X3))
+40,0.1897311567738477
+>> 6 MorphTopHat(X2)
+45,0.18984672546561718
+>> 121 BitwiseOr(BitwiseNot(FillHoles(X0)), Kirsch(X2))
+60,0.20690949527153624
+>> 123 Pyr(RobertCross(BitwiseNot(X0)))
+352,0.2241858987861396
+>> 431 FluoTopHat(BinaryInRange(X0))
+365,0.257174888352144
+>> 455 Square(BitwiseXor(X4, Kirsch(X2)))
+434,0.2895713774061816
+>> 566 DistanceTransformAndThresh(X4)
+464,0.3119816361632185
+>> 591 Embossing(DistanceTransformAndThresh(X4))
+800,0.34029707685865096
+>> 967 DistanceTransformAndThresh(Min(X3, X1))
+1000 942
+989,0.36068774106887036
+>> 1122 Min(DistanceTransformAndThresh(Min(X3, Erode(X2))), Pyr(SquareRoot(X0)))
+Final training score: 0.36068774106887036
+Final test score: 0.2830588266483339 with 1000 evaluations
+score: 0.023498388261421373
+>> 34 BitwiseAndMask(Square(BitwiseAnd(RobertCross(X1), X5)), MedianBlur(RobertCross(X1)))
+12,0.16781099716888628
+>> 84 MedianBlur(BitwiseOr(X0, X2))
+14,0.16781099716888628
+>> 97 MedianBlur(Square(BitwiseAnd(BitwiseOr(X2, X2), X5)))
+15,0.1678750738154314
+>> 104 BitwiseAndMask(Square(BitwiseAnd(BitwiseOr(X2, X2), X5)), MedianBlur(BitwiseOr(X2, X2)))
+25,0.16808695051215428
+>> 25 AbsoluteDifference(X3)
+31,0.18984672546561718
+>> 31 Kirsch(X2)
+70,0.2252979821882942
+>> 155 BinaryInRange(MorphGradient(X2))
+110,0.29664215343370165
+>> 267 log(BinaryInRange(X1))
+1000 883
+1000,0.3265103075555276
+>> 155 BinaryInRange(MorphGradient(X2))
+Final training score: 0.3265103075555276
+Final test score: 0.2868521452119182 with 1000 evaluations
+score: 0.005507632945043492
+>> 29 InRange(FluoTopHat(ThresholdAt1(FluoTopHat(Laplacian(X0)))))
+16,0.16781771882625623
+>> 7 BitwiseNot(X0)
+17,0.1681632660492642
+>> 34 AbsoluteDifference(Laplacian(MedianBlur(X1)))
+31,0.1713517268001689
+>> 12 log(X3)
+49,0.17216089840708937
+>> 229 BitwiseAndMask(RemoveSmallObjects(X4), Sharpen(Denoizing(BitwiseNot(X0))))
+52,0.3159583906503617
+>> 18 DistanceTransformAndThresh(RemoveSmallObjects(X4))
+120,0.35846955130079283
+>> 14 DistanceTransformAndThresh(X3)
+184,0.3675670660472915
+>> 33 Dilate(DistanceTransformAndThresh(X3))
+380,0.3805152533547903
+>> 920 BinaryInRange(SquareRoot(Open((X2) - (X0))))
+595,0.4532414354679295
+>> 1199 Pyr(DistanceTransformAndThresh((X2) - (X0)))
+660,0.511933910035903
+>> 1081 Square(DistanceTransformAndThresh((X2) - (X0)))
+755,0.5230032496565585
+>> 1199 Pyr(DistanceTransformAndThresh((X2) - (X0)))
+773,0.5741297106592153
+>> 635 DistanceTransformAndThresh((X2) - (X0))
+921,0.5823892235171673
+>> 1199 Pyr(DistanceTransformAndThresh((X2) - (X0)))
+1000 932
+Final training score: 0.5823892235171673
+Final test score: 0.5861242966156911 with 1000 evaluations
+score: 0.17479744754325108
+>> 9 RemoveSmallObjects(Open(X4))
+3,0.1764598475676847
+>> 24 log(RemoveSmallObjects(Open(X4)))
+30,0.19718203066179044
+>> 228 FluoTopHat(X5)
+168,0.21141220627959334
+>> 1811 Max(Laplacian(X3), Embossing(BinaryInRange(X1)))
+248,0.23392713636191145
+>> 2692 RelativeDifference(ThresholdOtsu(BinaryInRange(X1)))
+264,0.26908337423767087
+>> 2898 ThresholdAt1(X4)
+1000 535
+2000 733
+Final training score: 0.26908337423767087
+Final test score: 0.2243968652972793 with 733 evaluations
+score: 0.04563103417749742
+>> 62 MorphTopHat((Erode(log(X4))) - (X3))
+2,0.17319951403026163
+>> 69 BitwiseAndMask((X1) - (GaussianBlur(Erode(X4))), Min(X2, MedianBlur(RelativeDifference(X1))))
+4,0.2150428961934559
+>> 6 Erode(X3)
+22,0.23163358030392783
+>> 48 Denoizing(MedianBlur(Erode(log(X4))))
+24,0.23419172548257766
+>> 11 Open(Kirsch(X5))
+26,0.23552853316554573
+>> 175 FillHoles(Open(Erode(log(X4))))
+35,0.23965069783707546
+>> 187 Embossing(FillHoles(Open(Erode(log(X4)))))
+62,0.27858300749059517
+>> 6 Erode(X3)
+116,0.29946587450167084
+>> 661 RelativeDifference(RemoveSmallHoles(Erode(Embossing(Erode(log(X4))))))
+128,0.304865467373444
+>> 671 Embossing(Erode(Embossing(Erode(log(X4)))))
+174,0.3168518440230542
+>> 836 Erode(Erode(Embossing(Erode(log(X4)))))
+186,0.33329857566900906
+>> 666 GaussianBlur(Erode(Embossing(Erode(log(X4)))))
+209,0.5092435194203929
+>> 1435 Open(Erode(Erode(ThresholdOtsu(Erode(log(X4))))))
+623,0.5388691469702572
+>> 5941 ContourArea(MedianBlur(DistanceTransformAndThresh(ThresholdOtsu(Erode(log(X4))))))
+1000 935
+Final training score: 0.5388691469702572
+Final test score: 0.5267090999698719 with 1000 evaluations
+score: 0.0
+>> 7 (X2) - (X5)
+3,0.20314213850160998
+>> 13 RobertCross(X5)
+6,0.21898073579584337
+>> 30 FluoTopHat(X4)
+34,0.26686176600800615
+>> 20 InRange(X0)
+1000 682
+762,0.27192602804666255
+>> 49 Open(FluoTopHat(X4))
+Final training score: 0.27192602804666255
+Final test score: 0.4325744227814612 with 1000 evaluations
+score: 0.15079444262108788
+>> 21 BitwiseAnd(X1, BitwiseXor(log(X1), DistanceTransform(X2)))
+4,0.16781099716888628
+>> 18 SquareRoot(log(X1))
+6,0.16781099716888628
+>> 15 AbsoluteDifference2(X1, log(X1))
+25,0.1832557246173307
+>> 72 FluoTopHat(Dilate(X2))
+37,0.2038680550205894
+>> 104 RobertCross(X2)
+56,0.22378252105989138
+>> 120 Sharpen(RemoveSmallObjects(FluoTopHat(RobertCross(X2))))
+59,0.22381825261446148
+>> 108 RemoveSmallObjects(FluoTopHat(RobertCross(X2)))
+63,0.22547897205884487
+>> 120 Sharpen(RemoveSmallObjects(FluoTopHat(RobertCross(X2))))
+198,0.22623558146506442
+>> 543 RemoveSmallObjects(RemoveSmallHoles(FluoTopHat(X4)))
+209,0.2313914070527388
+>> 591 log(FluoTopHat(X4))
+218,0.23436910613516382
+>> 550 Min(FluoTopHat(X4), InRange(X0))
+1000 913
+Final training score: 0.23436910613516382
+Final test score: 0.30862571662344934 with 1000 evaluations
+score: 0.16354490314178718
+>> 25 BitwiseAnd(Sobel(X2), X1)
+6,0.23067791664206488
+>> 33 Mean(DistanceTransformAndThresh(Threshold(X3)), Open(X3))
+28,0.3159583906503617
+>> 85 DistanceTransformAndThresh(X4)
+743,0.32881477784949753
+>> 807 Threshold(DistanceTransformAndThresh(X3))
+872,0.3719647909992277
+>> 1116 DistanceTransformAndThresh(BitwiseAnd(((RemoveSmallHoles(X2)) - (X1)) - (X3), (X0) + (X4)))
+1000 888
+Final training score: 0.3719647909992277
+Final test score: 0.25798778162957975 with 1000 evaluations
+score: 0.16781099716888628
+>> 44 Square(RelativeDifference(X0))
+5,0.16787981141571234
+>> 6 AbsoluteDifference(X3)
+25,0.20218609779468855
+>> 92 FillHoles(RobertCross((X1) + (Threshold(BitwiseAnd(X3, log(X5))))))
+118,0.20591747730551954
+>> 713 BitwiseOr(DistanceTransformAndThresh(Threshold(AbsoluteDifference(X1))), DistanceTransform(Sobel(X0)))
+243,0.21022185624122813
+>> 10 Erode(X4)
+288,0.24332923955339414
+>> 1633 Erode(BitwiseAnd(X5, X4))
+293,0.25375812821199395
+>> 1661 RemoveSmallHoles(BitwiseOr(Erode(BitwiseAnd(X5, X4)), DistanceTransform(X0)))
+1000 926
+Final training score: 0.25375812821199395
+Final test score: 0.21440842566154716 with 1000 evaluations
+score: 0.16781099716888628
+>> 76 FillHoles(Mean(X3, X5))
+10,0.16781099716888628
+>> 51 BitwiseNot(RemoveSmallObjects(Canny((X2) + (X5))))
+14,0.16781099716888628
+>> 29 Denoizing(X5)
+26,0.16781099716888628
+>> 16 log(X5)
+29,0.16785223203389948
+>> 91 Sobel(AbsoluteDifference2(MorphGradient(X3), exp(Pyr(X5))))
+36,0.1776980794721795
+>> 40 MorphGradient(X3)
+40,0.1863090787711314
+>> 11 FluoTopHat(X5)
+51,0.1967963220345077
+>> 62 SquareRoot(MorphTopHat(X4))
+97,0.2790798785900927
+>> 102 BinaryInRange(exp(Pyr(X5)))
+124,0.32179205682107687
+>> 481 Open(Square(X4))
+1000 946
+Final training score: 0.32179205682107687
+Final test score: 0.2816044775488123 with 1000 evaluations
+score: 0.18981263932031484
+>> 15 ContourArea(FluoTopHat(X2))
+31,0.21150764114209303
+>> 73 Open(X3)
+226,0.2136851314155178
+>> 837 BitwiseAnd(DistanceTransformAndThresh(Max(MorphBlackHat(X1), FluoTopHat(X2))), SquareRoot(MorphBlackHat(X1)))
+246,0.2661089465090833
+>> 39 BinaryInRange(X0)
+317,0.27435376657958305
+>> 968 BitwiseAndMask(Sobel(FluoTopHat(X2)), Max(Kirsch(X1), FluoTopHat(X2)))
+380,0.30538291424829833
+>> 973 BitwiseAnd(DistanceTransformAndThresh(Max(Kirsch(X1), FluoTopHat(X2))), SquareRoot(Kirsch(X1)))
+1000 933
+Final training score: 0.30538291424829833
+Final test score: 0.011582990450097369 with 1000 evaluations
+score: 0.0
+>> 92 log(BitwiseAnd(Open(FillHoles(Canny(X3))), FillHoles(Canny(X3))))
+2,0.16781099716888628
+>> 17 Denoizing(X1)
+7,0.16842465111838675
+>> 14 Sharpen(X0)
+9,0.1685440875210619
+>> 66 Denoizing(Close(X4))
+33,0.1718829458472126
+>> 152 RemoveSmallObjects(X4)
+51,0.17591058334646423
+>> 85 Erode(AbsoluteDifference(FillHoles(InRange(X4))))
+63,0.19802582626546275
+>> 304 Laplacian(X4)
+73,0.2351651429601615
+>> 10 MorphTopHat(InRange(X4))
+115,0.2351829530573331
+>> 801 (Sobel(MedianBlur(exp(Open(FluoTopHat(X4)))))) - (MedianBlur(exp(Open(FluoTopHat(X4)))))
+128,0.2630737067016753
+>> 811 MedianBlur(RemoveSmallHoles(Open(FluoTopHat(X4))))
+202,0.31097639391756904
+>> 541 ThresholdOtsu(Open(InRange(X4)))
+665,0.3744928902985922
+>> 2932 Square(Erode(X4))
+1000 933
+Final training score: 0.3744928902985922
+Final test score: 0.25129138091371456 with 1000 evaluations
+score: 0.0
+>> 43 Threshold(ThresholdOtsu(X3))
+2,0.17237275086337145
+>> 27 GaussianBlur(MorphBlackHat(RobertCross(X5)))
+12,0.17846066709025757
+>> 67 BitwiseNot(Embossing(X0))
+21,0.19441490529617117
+>> 105 RemoveSmallObjects(MorphBlackHat(exp(X3)))
+64,0.20314213850160998
+>> 9 RobertCross(X5)
+126,0.24388183688953685
+>> 786 (Square(SquareRoot(BitwiseAndMask(X4, exp(BitwiseXor(X2, X4)))))) - (Open(GaussianBlur(Canny(RobertCross(X0)))))
+468,0.3212244560109335
+>> 1770 DistanceTransformAndThresh(X4)
+1000 937
+Final training score: 0.3212244560109335
+Final test score: 0.2836066334048995 with 1000 evaluations
+score: 0.23865452465149092
+>> 43 AbsoluteDifference2(BitwiseAnd(AbsoluteDifference2(Kirsch(ContourArea(Erode(X2))), ThresholdOtsu(X1)), BitwiseAnd(AbsoluteDifference2(Kirsch(ContourArea(Erode(X2))), ThresholdOtsu(X1)), X1)), ContourArea(GaussianBlur(Dilate(X1))))
+41,0.24220041669007183
+>> 67 Threshold(ContourArea(Max(Dilate(X1), AbsoluteDifference2(ThresholdOtsu(X1), BitwiseAndMask(ContourArea(Erode(X2)), FillHoles((X4) - (Erode(X2))))))))
+142,0.25862861822290056
+>> 28 Dilate(Open(InRange(X2)))
+184,0.276482068630866
+>> 68 Erode(BitwiseAnd(AbsoluteDifference2(Kirsch(ContourArea(Erode(X2))), ThresholdOtsu(X1)), X1))
+456,0.30555969635620983
+>> 30 Erode(X3)
+594,0.3170828075552511
+>> 32 ThresholdAt1(FillHoles(Open(InRange(X2))))
+758,0.32133422907932835
+>> 1866 Embossing(Open(InRange(X2)))
+975,0.3555100519147364
+>> 3093 Threshold(BitwiseAnd(AbsoluteDifference2(FluoTopHat(BinaryInRange(X5)), ThresholdOtsu(X0)), X1))
+1000 981
+Final training score: 0.3555100519147364
+Final test score: 0.3373520403859145 with 1000 evaluations
+score: 0.16781099716888628
+>> 16 Pyr(Embossing(X0))
+2,0.17200674866944893
+>> 13 BitwiseXor(GaborFilter(X4), Embossing(X0))
+3,0.17556909494924405
+>> 35 AbsoluteDifference2(Min(BitwiseAnd(MorphTopHat(X0), MorphTopHat(X0)), X1), ContourArea(BitwiseXor(GaborFilter(X4), Embossing(X0))))
+5,0.18082393096706456
+>> 34 Min(BitwiseAnd(MorphTopHat(X0), MorphTopHat(X0)), X1)
+62,0.1828754085736145
+>> 288 Denoizing(MorphTopHat(X2))
+78,0.18688590085713805
+>> 233 MorphTopHat(X2)
+208,0.2535151167459403
+>> 1234 Pyr(RemoveSmallObjects(ThresholdOtsu(X4)))
+278,0.2680876439169252
+>> 984 Square(X4)
+417,0.38038318110255426
+>> 1452 Erode(Square(X4))
+1000 822
+Final training score: 0.38038318110255426
+Final test score: 0.1618218236747313 with 1000 evaluations
+score: 0.0
+>> 22 RelativeDifference(Canny(MedianBlur(X5)))
+9,0.1681129887094323
+>> 63 Dilate(MorphTopHat(X5))
+42,0.17246564049332327
+>> 401 MorphTopHat(Max(Laplacian(MorphTopHat(ThresholdOtsu(X2))), Sobel(X4)))
+147,0.19847143123824765
+>> 46 BinaryInRange(Denoizing(BitwiseNot(X2)))
+257,0.23044732554381858
+>> 32 DistanceTransformAndThresh(X3)
+1000 902
+Final training score: 0.23044732554381858
+Final test score: 0.24754881057213363 with 1000 evaluations
+score: 0.0
+>> 34 Min(BitwiseOr(X0, AbsoluteDifference(X4)), DistanceTransform(X0))
+3,0.09198920619175581
+>> 45 BitwiseAndMask(ThresholdOtsu(X3), X1)
+6,0.1021331074102771
+>> 100 BitwiseAnd(RelativeDifference(FillHoles(AbsoluteDifference(X4))), Threshold(Dilate(Sharpen(BinaryInRange(X3)))))
+8,0.16853770801088674
+>> 129 Pyr(GaussianBlur(X3))
+12,0.18209692244424217
+>> 21 RobertCross((X3) + (X5))
+55,0.1907502792775181
+>> 295 RemoveSmallHoles(BitwiseAndMask(BitwiseXor(X4, X3), Erode(X3)))
+101,0.2158371584528794
+>> 107 RemoveSmallHoles(InRange(X0))
+128,0.28402262652214205
+>> 684 BitwiseAnd(RelativeDifference(FillHoles(RemoveSmallHoles(X4))), BitwiseNot(Dilate(Sharpen(AbsoluteDifference(X3)))))
+162,0.3198183208178371
+>> 777 BitwiseNot(Dilate(Sharpen(FluoTopHat(X3))))
+842,0.3207498454404552
+>> 605 Square(Open(X4))
+1000 959
+Final training score: 0.3207498454404552
+Final test score: 0.18060782679009071 with 1000 evaluations
+score: 0.0
+>> 19 DistanceTransformAndThresh(X1)
+5,0.16787520474665665
+>> 20 Denoizing(Embossing(Sharpen(X3)))
+9,0.17277955445873577
+>> 32 DistanceTransform(X3)
+28,0.1895723385505736
+>> 9 Kirsch(BitwiseOr(X1, X3))
+58,0.19127863123486902
+>> 75 Denoizing(Embossing(Laplacian(X3)))
+72,0.25014516052047353
+>> 114 BinaryInRange(X1)
+224,0.27110124669501384
+>> 15 InRange(Embossing(BitwiseOr(X1, X3)))
+1000 915
+Final training score: 0.27110124669501384
+Final test score: 0.25513687988292655 with 1000 evaluations
+score: 0.18984672546561718
+>> 30 RemoveSmallObjects(Kirsch(X2))
+26,0.18984672546561718
+>> 22 Kirsch(X2)
+53,0.20588926491921403
+>> 24 BinaryInRange(MedianBlur(X5))
+179,0.2722428853443383
+>> 125 BitwiseAnd(Sobel(X3), Kirsch(X0))
+224,0.31216595730550906
+>> 168 GaussianBlur(DistanceTransformAndThresh(X3))
+245,0.34029707685865096
+>> 167 DistanceTransformAndThresh(X3)
+319,0.36202845515515714
+>> 183 BitwiseAnd(DistanceTransformAndThresh(X3), AbsoluteDifference2(X4, X4))
+383,0.3629972198830697
+>> 184 MedianBlur(BitwiseAnd(DistanceTransformAndThresh(X3), AbsoluteDifference2(X4, X4)))
+420,0.3678101939393132
+>> 168 GaussianBlur(DistanceTransformAndThresh(X3))
+1000 926
+Final training score: 0.3678101939393132
+Final test score: 0.23992611037055123 with 1000 evaluations
+score: 0.19891963933757464
+>> 100 RobertCross(MorphTopHat(X4))
+26,0.19905689938069807
+>> 21 Sobel(MedianBlur(X3))
+71,0.22249283819675308
+>> 57 FillHoles(MorphBlackHat(X4))
+82,0.26043257912664475
+>> 728 MedianBlur(ThresholdOtsu(X4))
+396,0.3181469937603755
+>> 1211 DistanceTransform(DistanceTransformAndThresh(X4))
+426,0.3230812417173376
+>> 34 BinaryInRange(FluoTopHat(X4))
+1000 925
+Final training score: 0.3230812417173376
+Final test score: 0.15705031283708384 with 1000 evaluations
+score: 0.19241158856970486
+>> 6 BitwiseAnd(X3, X4)
+3,0.19444502918561052
+>> 21 MorphBlackHat(X2)
+15,0.20308352123000425
+>> 11 FillHoles(FluoTopHat(X4))
+110,0.21253141112376475
+>> 296 Pyr(RobertCross(BitwiseAnd(X3, X4)))
+300,0.21529304185364198
+>> 831 MedianBlur(BitwiseAnd(X3, X4))
+494,0.28804154869628523
+>> 1096 Erode(X3)
+549,0.36017876468209326
+>> 1555 DistanceTransformAndThresh(Erode(X3))
+1000 895
+Final training score: 0.36017876468209326
+Final test score: 0.26762502890452017 with 1000 evaluations
+score: 0.10344600974570337
+>> 19 Laplacian(Threshold(X3))
+6,0.11623256638682551
+>> 21 MorphGradient(ThresholdAt1(ThresholdOtsu(X3)))
+9,0.17061741472341546
+>> 34 ThresholdAt1(X2)
+30,0.20166374090116848
+>> 24 Erode(MorphGradient(X3))
+95,0.21500394148612462
+>> 27 InRange(X4)
+161,0.341671719114768
+>> 164 Max(BitwiseAndMask(X2, RemoveSmallHoles(Open(BitwiseAndMask(X3, BitwiseAnd(AbsoluteDifference2(X1, X3), DistanceTransformAndThresh(X3)))))), BitwiseAnd(AbsoluteDifference2(X1, X3), DistanceTransformAndThresh(X3)))
+266,0.35996044410453865
+>> 380 BitwiseAndMask(X1, DistanceTransformAndThresh(X3))
+500,0.3628045196775611
+>> 154 DistanceTransformAndThresh(X3)
+1000 732
+Final training score: 0.3628045196775611
+Final test score: 0.22237727434032872 with 1000 evaluations
+score: 0.1414216123041613
+>> 19 GaborFilter(X5)
+8,0.16781099716888628
+>> 31 AbsoluteDifference2(MorphGradient(X3), ThresholdAt1(MorphGradient(X3)))
+9,0.16895126962451087
+>> 14 MorphGradient(X1)
+10,0.2724214650713025
+>> 23 AbsoluteDifference2(DistanceTransformAndThresh(X5), ThresholdAt1(MorphGradient(X3)))
+360,0.2986413166012009
+>> 1488 DistanceTransformAndThresh(ThresholdAt1(MorphGradient(Square(X2))))
+1000 873
+Final training score: 0.2986413166012009
+Final test score: 0.2544647669401537 with 1000 evaluations
+score: 2.347582289625894e-05
+>> 7 Sobel(X3)
+2,0.0008823416679530751
+>> 33 DistanceTransformAndThresh(Canny(Dilate(ThresholdOtsu(Sobel(X3)))))
+5,0.16792803120798838
+>> 45 BitwiseXor(Dilate(DistanceTransformAndThresh(Sobel(X3))), X5)
+14,0.1781683347151754
+>> 83 (MedianBlur(Denoizing(Sobel(X3)))) - (X3)
+15,0.24940851501464154
+>> 82 MedianBlur(Denoizing(Sobel(X3)))
+236,0.2665809731608165
+>> 81 DistanceTransformAndThresh(BitwiseXor(exp(FillHoles(Sobel(X3))), X5))
+370,0.3443084382405606
+>> 75 MedianBlur(FillHoles(Sobel(X3)))
+1000 929
+Final training score: 0.3443084382405606
+Final test score: 0.25364764800929446 with 1000 evaluations
+score: 0.15308671737968527
+>> 19 ThresholdAt1(ThresholdOtsu(X5))
+15,0.16781099716888628
+>> 13 Square(X1)
+19,0.16781099716888628
+>> 60 AbsoluteDifference2(Pyr(X5), RemoveSmallObjects(InRange(ContourArea(Sobel(X2)))))
+25,0.16782035818805935
+>> 72 BitwiseAnd(SquareRoot(X2), X2)
+37,0.2680876439169252
+>> 28 BitwiseAndMask(Square(X4), X1)
+378,0.2744262530267823
+>> 214 DistanceTransformAndThresh(X4)
+390,0.31893329183374125
+>> 661 Sharpen(DistanceTransformAndThresh(X4))
+1000 907
+Final training score: 0.31893329183374125
+Final test score: 0.1884600620850215 with 1000 evaluations
+score: 0.16781099716888628
+>> 31 Dilate(AbsoluteDifference(exp(X3)))
+3,0.16781099716888628
+>> 37 Close(Dilate((exp(X3)) + (DistanceTransform(X4))))
+10,0.19197448713778095
+>> 60 MorphTopHat(X3)
+42,0.3509618540464081
+>> 436 Dilate(DistanceTransformAndThresh(X3))
+334,0.35810998168811253
+>> 1659 FluoTopHat(ThresholdOtsu(DistanceTransform(X3)))
+378,0.35815032546040176
+>> 1656 ThresholdOtsu(DistanceTransform(X3))
+488,0.36588405054100387
+>> 2022 Pyr(Threshold(DistanceTransform(X3)))
+1000 937
+Final training score: 0.36588405054100387
+Final test score: 0.26324990152166344 with 1000 evaluations
+score: 0.0
+>> 22 FillHoles(RemoveSmallHoles(DistanceTransformAndThresh(X0)))
+4,0.0
+>> 9 DistanceTransformAndThresh(X0)
+33,0.0
+>> 25 DistanceTransformAndThresh(X5)
+48,0.18405860279706482
+>> 454 Sharpen(X3)
+137,0.19452575401822855
+>> 635 Close(Kirsch(Mean(AbsoluteDifference(X0), X3)))
+197,0.20604195883608556
+>> 894 BitwiseAndMask(X3, Kirsch(X4))
+248,0.259249100391275
+>> 998 ThresholdOtsu(X4)
+537,0.31371299572486144
+>> 2293 DistanceTransformAndThresh(Kirsch(Mean(Sharpen(X0), X3)))
+1000 772
+930,0.32121624655285475
+>> 4375 Erode(Kirsch(Embossing((X0) + (X3))))
+Final training score: 0.32121624655285475
+Final test score: 0.32092182484582005 with 1000 evaluations
+score: 4.2981453778712543e-05
+>> 54 Min(AbsoluteDifference2(Kirsch(MorphTopHat(BitwiseNot(Sobel(InRange(X5))))), MorphTopHat(Close(Erode(X1)))), log(MorphTopHat(BitwiseNot(Sobel(InRange(X5))))))
+2,0.16781099716888628
+>> 20 GaussianBlur(BitwiseXor(X0, AbsoluteDifference2(X2, X4)))
+9,0.18604087139713768
+>> 35 InRange(Erode(X1))
+56,0.20919174515999503
+>> 33 MorphGradient(Threshold(Sobel(InRange(X5))))
+107,0.29171877125866597
+>> 21 BinaryInRange(AbsoluteDifference2(X2, X4))
+501,0.31574813098951865
+>> 35 InRange(Erode(X1))
+1000 956
+Final training score: 0.31574813098951865
+Final test score: 0.21352907182492006 with 1000 evaluations
+score: 0.08217669690068743
+>> 35 ThresholdAt1(Min(X5, X1))
+4,0.16781099716888628
+>> 68 BitwiseNot(Pyr(X4))
+7,0.16795842650155288
+>> 84 FillHoles(log(Sobel(Pyr(X5))))
+15,0.20484554618087608
+>> 82 Square(AbsoluteDifference2(FluoTopHat(Canny(X2)), X5))
+446,0.2101201251899866
+>> 5116 SquareRoot(FluoTopHat(AbsoluteDifference(MorphBlackHat(X2))))
+600,0.30960383639175476
+>> 5830 InRange(DistanceTransform(InRange(BitwiseOr(X1, BitwiseOr(log(X3), X1)))))
+776,0.31732215852969886
+>> 4766 DistanceTransformAndThresh(X3)
+1000 924
+Final training score: 0.31732215852969886
+Final test score: 0.5128284334191372 with 1000 evaluations
+score: 0.16781099716888628
+>> 7 FillHoles(X5)
+7,0.1751761417310278
+>> 11 MorphBlackHat(X5)
+15,0.1786617185391673
+>> 24 MorphTopHat(Mean(X5, X5))
+22,0.20314213850160998
+>> 25 RobertCross(X5)
+40,0.30621462068858346
+>> 15 Open(InRange(SquareRoot(X5)))
+88,0.3449676891257011
+>> 188 InRange(Open(X5))
+413,0.42902830387254953
+>> 579 Min((InRange(Open(X5))) - (MorphGradient(X5)), DistanceTransform(BitwiseAnd(X5, Open(X5))))
+821,0.5180577801007581
+>> 572 Sharpen(InRange(Open(X5)))
+1000 929
+Final training score: 0.5180577801007581
+Final test score: 0.28803254041856624 with 1000 evaluations
+score: 0.16781433568259618
+>> 13 AbsoluteDifference(ContourArea(X5))
+4,0.16787163553375906
+>> 21 exp(SquareRoot(RelativeDifference(X5)))
+5,0.23600366849612225
+>> 9 Embossing(Erode(X3))
+45,0.27858300749059517
+>> 6 Erode(X3)
+65,0.35996044410453865
+>> 204 log(DistanceTransformAndThresh(X3))
+627,0.3627396795453378
+>> 203 DistanceTransformAndThresh(X3)
+1000 713
+Final training score: 0.3627396795453378
+Final test score: 0.25798778162957975 with 1000 evaluations
+score: 0.2228385888326488
+>> 26 FluoTopHat(X4)
+58,0.24761523720879497
+>> 21 Erode(X3)
+60,0.2680876439169252
+>> 66 Square(X4)
+379,0.2791800816236418
+>> 262 InRange(Dilate(X1))
+1000 835
+931,0.2964415626576991
+>> 1553 BitwiseAndMask(X4, InRange(BitwiseAnd(X1, X5)))
+Final training score: 0.2964415626576991
+Final test score: 0.22083105490726015 with 1000 evaluations
+score: 0.0
+>> 11 DistanceTransform(X5)
+2,0.2001585970278163
+>> 34 SquareRoot(Mean(InRange(FluoTopHat(Open(DistanceTransformAndThresh(X5)))), MorphBlackHat(X1)))
+85,0.21446369472419455
+>> 223 Mean(MorphTopHat(X5), MorphBlackHat(X1))
+99,0.22169858117240332
+>> 299 DistanceTransformAndThresh(Sharpen(DistanceTransform(X4)))
+426,0.23857878622759676
+>> 1628 ThresholdOtsu((X4) + (X2))
+431,0.24456956781635383
+>> 1702 Embossing(ThresholdOtsu(Pyr(X4)))
+486,0.25017410199798745
+>> 2036 ThresholdAt1(Mean(MedianBlur(X4), MedianBlur(X4)))
+508,0.26632638212531534
+>> 2040 Square(Mean(MedianBlur(X4), MedianBlur(X4)))
+594,0.3224590278049463
+>> 2727 Pyr(DistanceTransformAndThresh((X5) - (exp(X3))))
+642,0.32684545930509645
+>> 2760 Square(Erode(BitwiseNot(X2)))
+1000 942
+Final training score: 0.32684545930509645
+Final test score: 0.27547102599894957 with 1000 evaluations
+score: 0.1678142062998152
+>> 13 exp(ThresholdOtsu(MorphGradient(X1)))
+3,0.1910656573314853
+>> 34 (MorphTopHat(AbsoluteDifference(X4))) + (Threshold(ThresholdOtsu(MorphGradient(X1))))
+30,0.19701756204155604
+>> 22 MorphTopHat(AbsoluteDifference(X4))
+37,0.19749361198176693
+>> 105 ContourArea(MorphTopHat(AbsoluteDifference(X4)))
+99,0.19812826454799565
+>> 119 (MorphTopHat(X4)) + (MorphTopHat(X4))
+104,0.19855736920115868
+>> 171 MorphTopHat(RobertCross(MorphTopHat(X4)))
+106,0.2203274305060589
+>> 120 MedianBlur(MorphTopHat(X4))
+157,0.26383562761738905
+>> 202 DistanceTransformAndThresh(X4)
+195,0.2678825447934826
+>> 239 Open(BitwiseNot(BitwiseOr(X0, X3)))
+356,0.2951987151492304
+>> 202 DistanceTransformAndThresh(X4)
+422,0.3091996634044588
+>> 203 (DistanceTransformAndThresh(X4)) + (DistanceTransformAndThresh(X4))
+656,0.3214573361258418
+>> 202 DistanceTransformAndThresh(X4)
+1000 938
+Final training score: 0.3214573361258418
+Final test score: 0.35147297551903184 with 1000 evaluations
+score: 0.1517225985228137
+>> 29 BitwiseAnd(X1, ThresholdOtsu(Open(log(AbsoluteDifference2(X1, X5)))))
+8,0.16781099716888628
+>> 27 Square(Close(X0))
+10,0.3217668141471121
+>> 11 DistanceTransformAndThresh(X4)
+1000 447
+2000 633
+Final training score: 0.3217668141471121
+Final test score: 0.4090016297293167 with 633 evaluations
+score: 0.16851601111325512
+>> 13 Sharpen(Mean(X2, X1))
+2,0.16975613549137794
+>> 35 Embossing(X3)
+28,0.17943277393518878
+>> 16 Laplacian(Sharpen(Mean(X2, X1)))
+33,0.18424666204829898
+>> 44 RelativeDifference(Laplacian(Sharpen(Mean(X2, X1))))
+69,0.20649246840828658
+>> 30 RobertCross(Mean(X2, X1))
+102,0.23081775217231987
+>> 282 Sobel(Square(Mean(X2, X1)))
+536,0.2328828271507196
+>> 1367 ThresholdOtsu(Erode(ThresholdAt1(X2)))
+857,0.28180429797246814
+>> 1444 Sobel(Square(MorphTopHat(X0)))
+860,0.3691356551629036
+>> 2493 ThresholdOtsu(exp(Mean(RemoveSmallHoles(BitwiseXor(X0, X5)), Dilate(Threshold(X3)))))
+1000 965
+Final training score: 0.3691356551629036
+Final test score: 0.524918054590249 with 1000 evaluations
+score: 0.16781099716888628
+>> 22 Min(X2, Pyr(Max(X3, X1)))
+10,0.16781099716888628
+>> 31 Mean(FillHoles(Max(X3, X1)), X4)
+11,0.16781099716888628
+>> 33 AbsoluteDifference(Sobel(FillHoles(Max(X3, X1))))
+13,0.16781099716888628
+>> 18 Pyr(Max(X3, X1))
+28,0.16781099716888628
+>> 73 AbsoluteDifference2(X3, X3)
+53,0.16781099716888628
+>> 48 FillHoles(X0)
+62,0.16791408170687158
+>> 208 Embossing(AbsoluteDifference2(Kirsch(X2), Embossing(X1)))
+68,0.17367045164485542
+>> 205 MorphTopHat(Embossing(X1))
+71,0.19719781435573627
+>> 37 BinaryInRange(X3)
+92,0.2182104319574345
+>> 206 DistanceTransformAndThresh(Embossing(X1))
+400,0.26001089344756345
+>> 102 ThresholdAt1(X4)
+880,0.2645474618433249
+>> 1559 BinaryInRange(MorphGradient(X5))
+1000 883
+952,0.35767145228676794
+>> 1558 (X4) - (MorphGradient(X5))
+Final training score: 0.35767145228676794
+Final test score: 0.5317134636881603 with 1000 evaluations
+score: 0.16781099716888628
+>> 23 Erode(X2)
+3,0.16798162197633165
+>> 14 AbsoluteDifference2(X3, Canny(X4))
+24,0.19099628195360624
+>> 27 Kirsch(X1)
+31,0.20417700396152508
+>> 34 RobertCross(Min(X0, X5))
+173,0.25347798341005184
+>> 197 InRange(MedianBlur(X4))
+295,0.3520818998155176
+>> 502 Open(DistanceTransformAndThresh(X3))
+653,0.3559936230667742
+>> 829 (ThresholdAt1(Close(DistanceTransformAndThresh(X3)))) - (RobertCross(X4))
+832,0.4213613573664067
+>> 852 Min(DistanceTransformAndThresh(ThresholdAt1(X1)), DistanceTransformAndThresh(X3))
+1000 935
+Final training score: 0.4213613573664067
+Final test score: 0.3139951058504537 with 1000 evaluations
+score: 0.0
+>> 35 BitwiseAndMask(Open(X1), MorphTopHat(Open(X1)))
+5,0.10565860988735656
+>> 6 InRange(X0)
+6,0.16781099716888628
+>> 19 ContourArea(Dilate(X1))
+8,0.16781099716888628
+>> 9 RemoveSmallObjects(X2)
+20,0.19927451778069508
+>> 26 FluoTopHat(X0)
+63,0.25112260713024265
+>> 6 InRange(X0)
+84,0.2663725107954395
+>> 13 MedianBlur(InRange(X0))
+104,0.2684121523947363
+>> 15 Min(X3, MedianBlur(InRange(X0)))
+346,0.2778811575991037
+>> 116 BinaryInRange(X0)
+382,0.3481648590480725
+>> 493 DistanceTransformAndThresh(X3)
+660,0.36365229346062977
+>> 494 Embossing(DistanceTransformAndThresh(X3))
+1000 824
+Final training score: 0.36365229346062977
+Final test score: 0.25968104578013007 with 1000 evaluations
+score: 0.1722374977343249
+>> 19 log(X4)
+16,0.19209062379839942
+>> 47 Sharpen(Sharpen(MedianBlur(Erode(X4))))
+20,0.19462954451355288
+>> 115 BitwiseOr(Close(Erode(X4)), (Close(Erode(X4))) - (X2))
+82,0.23173785784642922
+>> 449 Kirsch(ThresholdOtsu(X4))
+114,0.2680876439169252
+>> 61 Square(X4)
+120,0.2908231340067601
+>> 294 Sharpen(Square(X4))
+509,0.3211359675308419
+>> 787 Threshold(InRange(X1))
+1000 915
+Final training score: 0.3211359675308419
+Final test score: 0.4570948670972898 with 1000 evaluations
+score: 0.16781099716888628
+>> 15 Max(InRange(Laplacian(X2)), X5)
+2,0.19802803906779773
+>> 16 Laplacian(Min(X5, X4))
+266,0.21131739651283699
+>> 1016 Mean(MorphBlackHat(X5), Canny(RemoveSmallObjects(X2)))
+267,0.2120808812929377
+>> 1017 Laplacian(Mean(MorphBlackHat(X5), Canny(RemoveSmallObjects(X2))))
+301,0.21414881178274267
+>> 1079 Threshold(MorphGradient(Mean(MorphBlackHat(X5), Canny(Denoizing(X2)))))
+316,0.2177554166508875
+>> 1078 MorphGradient(Mean(MorphBlackHat(X5), Canny(Denoizing(X2))))
+396,0.22197715753199945
+>> 1507 Sharpen(Denoizing(Mean(MorphBlackHat(X5), Canny(MorphBlackHat(X2)))))
+426,0.22420173535645455
+>> 1621 Mean(MorphBlackHat(X5), Denoizing(MorphBlackHat(X2)))
+594,0.22435159764615134
+>> 2378 MedianBlur(MorphBlackHat(X5))
+607,0.2276524529645066
+>> 2594 Mean(BinaryInRange(Min(X5, MorphBlackHat(X1))), Denoizing(MorphBlackHat(X1)))
+689,0.23537661453557454
+>> 2996 Denoizing(Mean(RelativeDifference(ThresholdAt1(Min(X5, X4))), MedianBlur(MorphBlackHat(X1))))
+761,0.24233540088069305
+>> 3274 Mean(BitwiseAndMask(ThresholdAt1(Min(X5, X4)), log(BitwiseAndMask(MorphBlackHat(X1), X0))), MedianBlur(MorphBlackHat(X1)))
+1000 943
+Final training score: 0.24233540088069305
+Final test score: 0.17634015977400583 with 1000 evaluations
+score: 0.16970953668274658
+>> 24 BitwiseAndMask(Erode(X1), GaussianBlur(X3))
+3,0.19262081259707034
+>> 25 MorphBlackHat(X3)
+167,0.20240175957158096
+>> 380 ContourArea(FluoTopHat(BitwiseNot(X5)))
+249,0.20428099504799696
+>> 494 FluoTopHat(BitwiseNot(X0))
+313,0.24317958197710135
+>> 431 InRange(X0)
+355,0.2562942050417786
+>> 642 FluoTopHat(ThresholdOtsu(InRange(X5)))
+397,0.2842764104140009
+>> 636 ThresholdOtsu(Pyr(Erode(X2)))
+527,0.2925952267429255
+>> 1235 DistanceTransform(ThresholdOtsu(Min(Erode(X2), X5)))
+536,0.34477230507337187
+>> 1363 ThresholdOtsu(Min(Erode(X4), X5))
+539,0.4352099196452537
+>> 1378 Pyr(ThresholdOtsu(Min(Erode(X4), X5)))
+649,0.45564883224676933
+>> 1363 ThresholdOtsu(Min(Erode(X4), X5))
+911,0.4638037766095655
+>> 2414 Erode(Threshold(MedianBlur(DistanceTransform(ThresholdOtsu(Erode(X4))))))
+1000 940
+Final training score: 0.4638037766095655
+Final test score: 0.35631369017607023 with 1000 evaluations
+score: 0.259249100391275
+>> 25 Min(ThresholdOtsu(X4), X4)
+95,0.259249100391275
+>> 18 ThresholdOtsu(X4)
+152,0.2645560487270258
+>> 9 Threshold(X4)
+341,0.2805255564635391
+>> 958 RemoveSmallObjects(InRange((X4) - (MorphGradient(X3))))
+353,0.3152143003903309
+>> 153 Open(ThresholdOtsu(X4))
+366,0.3463327098785989
+>> 1039 RemoveSmallHoles((X4) - (MorphGradient(X3)))
+451,0.4438735685495942
+>> 1292 BitwiseAndMask(MorphGradient((X4) - (MorphGradient(X1))), ThresholdOtsu(X4))
+1000 919
+Final training score: 0.4438735685495942
+Final test score: 0.2884020510214653 with 1000 evaluations
+score: 0.0
+>> 25 GaborFilter((Sharpen(FillHoles(BitwiseXor(BitwiseAndMask(X4, X0), X1)))) + (Max(X5, FillHoles(BitwiseXor(BitwiseAndMask(X4, X0), X1)))))
+4,0.16788991819892152
+>> 42 RemoveSmallHoles(Sharpen(exp(BitwiseXor(BitwiseAndMask(X4, X0), X1))))
+6,0.1684660501729003
+>> 46 MedianBlur(Sharpen(exp(BitwiseXor(BitwiseAndMask(X4, X0), X1))))
+7,0.17659286208209365
+>> 29 RobertCross(Pyr(BitwiseAndMask(X4, X0)))
+27,0.18772144080536735
+>> 151 RobertCross(X4)
+30,0.2096883759588725
+>> 175 RemoveSmallHoles(Sharpen(MorphBlackHat(MorphBlackHat(RobertCross(X0)))))
+40,0.23640265063292126
+>> 259 MorphTopHat(MorphBlackHat(ContourArea(RobertCross(X0))))
+157,0.26636666629922534
+>> 265 FillHoles(Sharpen(MorphBlackHat(ContourArea(RobertCross(X0)))))
+205,0.26813385804167644
+>> 995 Laplacian(Min(MorphBlackHat(ContourArea(RobertCross(X0))), (X5) + (RobertCross(X0))))
+637,0.3247429835102238
+>> 3559 (GaussianBlur(SquareRoot(RobertCross(X2)))) - (MorphGradient(X1))
+720,0.39815837687551126
+>> 4163 FluoTopHat((GaussianBlur(SquareRoot(RobertCross(X4)))) - (MorphGradient(X3)))
+1000 955
+Final training score: 0.39815837687551126
+Final test score: 0.3103166642431129 with 1000 evaluations
+score: 0.16800155203650405
+>> 11 BitwiseAnd(X1, X0)
+16,0.22303091610813644
+>> 51 Square(Kirsch(Sharpen(X5)))
+321,0.2680876439169252
+>> 224 Square(X4)
+481,0.32246313847529795
+>> 703 MorphGradient(FillHoles(MorphBlackHat(X3)))
+1000 896
+Final training score: 0.32246313847529795
+Final test score: 0.10795885043436643 with 1000 evaluations
+score: 0.16761703987245874
+>> 64 Max(InRange((X4) + (X5)), BitwiseAndMask(X3, X0))
+9,0.16781177030564337
+>> 32 BitwiseNot(X1)
+22,0.16809498754743563
+>> 34 Denoizing(Dilate(Max(X4, X3)))
+23,0.16877278024897416
+>> 152 RelativeDifference(Pyr(BitwiseOr(X3, Close(X4))))
+28,0.16917674728550458
+>> 34 Denoizing(Dilate(Max(X4, X3)))
+35,0.18245238855428733
+>> 93 ThresholdAt1(Pyr(X4))
+56,0.30609813531373886
+>> 283 Pyr(ThresholdAt1(BitwiseNot(Dilate(Max(X4, X3)))))
+94,0.3142830898538065
+>> 77 SquareRoot(DistanceTransformAndThresh(X4))
+1000 938
+Final training score: 0.3142830898538065
+Final test score: 0.21792372706038102 with 1000 evaluations
+score: 0.11337882262137082
+>> 30 InRange(Max(Embossing(X0), GaborFilter(Embossing(X0))))
+2,0.16781099716888628
+>> 6 BitwiseOr(X2, X1)
+4,0.16781099716888628
+>> 29 Open(RelativeDifference(X0))
+9,0.16782819943375793
+>> 25 Max(Embossing(X0), GaborFilter(Embossing(X0)))
+18,0.16784375615742186
+>> 7 Embossing(X0)
+22,0.1902567880472499
+>> 14 BitwiseXor(ThresholdOtsu(X0), Embossing(X0))
+38,0.266911558484648
+>> 30 InRange(Max(Embossing(X0), GaborFilter(Embossing(X0))))
+234,0.29620597349322464
+>> 272 InRange(Embossing(X0))
+323,0.34611844164219324
+>> 274 Open(RelativeDifference(InRange(Embossing(X0))))
+1000 968
+Final training score: 0.34611844164219324
+Final test score: 0.23839926502792766 with 1000 evaluations
+score: 0.20663295586331792
+>> 14 RemoveSmallHoles(Laplacian(X4))
+91,0.26582129686003547
+>> 2018 MedianBlur(FluoTopHat(FluoTopHat(Square(X4))))
+699,0.3443997588699878
+>> 5832 Erode(FluoTopHat(X4))
+1000 907
+Final training score: 0.3443997588699878
+Final test score: 0.2687064356057776 with 1000 evaluations
+score: 0.16781099716888628
+>> 31 Dilate(X2)
+5,0.17192662946525666
+>> 11 Sobel(X5)
+35,0.1823076783414203
+>> 22 Sharpen(X4)
+36,0.18841453617280374
+>> 72 MorphGradient(X3)
+42,0.18841453617280374
+>> 73 BitwiseOr(MorphGradient(X3), DistanceTransformAndThresh(X1))
+68,0.20314213850160998
+>> 32 RobertCross(X5)
+72,0.23065827439272377
+>> 28 RemoveSmallHoles(BinaryInRange(X2))
+143,0.33840036678950036
+>> 104 DistanceTransformAndThresh(X3)
+236,0.3621019809872116
+>> 108 BitwiseOr(DistanceTransformAndThresh(X3), DistanceTransformAndThresh(X2))
+1000 878
+Final training score: 0.3621019809872116
+Final test score: 0.2430823639135967 with 1000 evaluations
+score: 0.16781099716888628
+>> 105 BitwiseNot(BitwiseXor(Laplacian(DistanceTransformAndThresh(X1)), InRange(DistanceTransformAndThresh(X1))))
+8,0.17095973317847415
+>> 40 Pyr(MorphBlackHat(Min(Kirsch(GaussianBlur(FluoTopHat(X5))), Denoizing(FluoTopHat(X3)))))
+17,0.19643159625274648
+>> 272 Close(Min(Kirsch(GaussianBlur(Erode(X2))), Close(Erode(X2))))
+87,0.2064979910625894
+>> 75 FluoTopHat(BitwiseAndMask(AbsoluteDifference(X4), X5))
+90,0.24347105525295584
+>> 440 Erode(AbsoluteDifference(X4))
+155,0.2665011836323895
+>> 1441 MedianBlur(log(Erode(Square(ThresholdOtsu(X4)))))
+187,0.32735235500656645
+>> 1999 DistanceTransform(Erode(BitwiseXor(ThresholdOtsu(X4), MorphTopHat(Sobel(X5)))))
+255,0.3595751381288793
+>> 3080 Erode(DistanceTransform(Erode(BitwiseXor(ThresholdOtsu(X4), MorphTopHat((X5) - (X4))))))
+305,0.39590037810859474
+>> 3579 RemoveSmallObjects(GaussianBlur(Erode(BitwiseXor(ThresholdOtsu(X4), RobertCross((X5) - (X4))))))
+717,0.42502796838840984
+>> 9107 FillHoles(Erode(Sharpen(X4)))
+1000 938
+988,0.43920988119398247
+>> 9128 Open(Open(Erode(Erode(Sharpen(X4)))))
+999,0.4646765935380902
+>> 10259 RemoveSmallHoles(Denoizing(Erode(Sharpen(X4))))
+Final training score: 0.4646765935380902
+Final test score: 0.20869840523645403 with 1000 evaluations
+score: 0.16781099716888628
+>> 32 AbsoluteDifference(exp(FillHoles(Close(Sobel(InRange(X1))))))
+16,0.16781099716888628
+>> 89 exp(FluoTopHat(Denoizing(DistanceTransform(X0))))
+19,0.16781099716888628
+>> 210 BitwiseNot(Denoizing(DistanceTransform(X0)))
+28,0.16781099716888628
+>> 48 AbsoluteDifference2(X3, InRange(X1))
+31,0.16781099716888628
+>> 7 RemoveSmallObjects(X5)
+32,0.16784977714397656
+>> 341 BitwiseAnd(X2, Denoizing(BitwiseNot(Denoizing(GaborFilter(X3)))))
+45,0.22047458345924992
+>> 361 Dilate(MedianBlur(MorphGradient(InRange(X1))))
+100,0.22461458373628057
+>> 205 FluoTopHat(X4)
+208,0.2947537719627246
+>> 1159 Mean(RobertCross(Sobel(ThresholdOtsu(X1))), MedianBlur(Sharpen(InRange(X1))))
+279,0.29624411221013813
+>> 886 Sharpen(InRange(X1))
+511,0.3389963116575434
+>> 2801 MedianBlur((InRange(X1)) - (X3))
+758,0.3632631199548082
+>> 8043 SquareRoot(BitwiseAnd(GaussianBlur(X4), ThresholdOtsu(BitwiseNot(MorphGradient(X2)))))
+1000 899
+Final training score: 0.3632631199548082
+Final test score: 0.4894414393247932 with 1000 evaluations
+score: 0.00046638755105373326
+>> 98 Canny(FillHoles(SquareRoot(Embossing(X3))))
+10,0.002780059544125767
+>> 136 Threshold(ContourArea(Pyr(GaborFilter(Laplacian(X3)))))
+13,0.16781099716888628
+>> 97 FillHoles(X1)
+15,0.1827178332004003
+>> 127 ContourArea(Pyr(GaborFilter(Laplacian(X3))))
+21,0.261894678061025
+>> 103 SquareRoot(ThresholdAt1(Denoizing(SquareRoot(X4))))
+566,0.2622068424220728
+>> 2574 Kirsch(Sobel(X3))
+582,0.31724597849460867
+>> 2790 BitwiseAnd((Min(X5, RelativeDifference(X1))) + (GaussianBlur((X1) - (Laplacian(Pyr(GaborFilter(MorphBlackHat(X2))))))), DistanceTransformAndThresh(X4))
+1000 929
+Final training score: 0.31724597849460867
+Final test score: 0.48359813110540956 with 1000 evaluations
+score: 0.16781099716888628
+>> 15 FillHoles(Threshold(X5))
+7,0.20273102593086315
+>> 12 FluoTopHat(Kirsch(X0))
+280,0.2145472890664867
+>> 2039 ContourArea(ContourArea(FluoTopHat(RobertCross(X2))))
+335,0.2900566530060529
+>> 1293 AbsoluteDifference2(DistanceTransformAndThresh(X3), Embossing(Mean(Close(AbsoluteDifference2(X2, X2)), Embossing(RelativeDifference(AbsoluteDifference2(X2, X2))))))
+350,0.30515418450025966
+>> 2347 BitwiseAnd(ContourArea(log(Min(RobertCross(X1), AbsoluteDifference(X0)))), Embossing(RelativeDifference(AbsoluteDifference2(X2, X2))))
+362,0.4469352964015084
+>> 2616 (AbsoluteDifference2(DistanceTransformAndThresh(log(X4)), Open(Mean(Close(AbsoluteDifference2(X2, X2)), Embossing(RelativeDifference(AbsoluteDifference2(X2, X2))))))) + (RelativeDifference(ThresholdOtsu(GaborFilter(FillHoles(Embossing(RelativeDifference(AbsoluteDifference2(X2, X2))))))))
+1000 949
+Final training score: 0.4469352964015084
+Final test score: 0.43406636146638317 with 1000 evaluations
+score: 0.26332870381361523
+>> 74 BitwiseAnd(Sharpen(X5), Open((Sharpen(X5)) - (Min(X1, X2))))
+67,0.2728946768604775
+>> 1158 Open(exp((BitwiseAndMask(X5, X2)) - (Min(X0, X2))))
+114,0.3063068387537105
+>> 1693 DistanceTransform(ThresholdOtsu((BitwiseAndMask(X5, X2)) - (Min(X0, X2))))
+193,0.48270922711452746
+>> 2949 BitwiseAndMask(X2, Open(ThresholdOtsu((X2) - (Denoizing(X0)))))
+1000 844
+Final training score: 0.48270922711452746
+Final test score: 0.3832933722168293 with 1000 evaluations
+score: 0.0
+>> 83 Threshold(MorphGradient(BitwiseOr(Close(Kirsch(ThresholdOtsu(X3))), (SquareRoot(X0)) + (X5))))
+2,0.0
+>> 98 Square(DistanceTransform(SquareRoot(X0)))
+6,0.1691910916349285
+>> 80 Dilate(RemoveSmallObjects(GaborFilter(Pyr(SquareRoot(X4)))))
+8,0.1996662396000654
+>> 133 MorphGradient(BitwiseOr(Close(Kirsch(ThresholdOtsu(X3))), (BinaryInRange(X2)) + (X5)))
+104,0.2231193468966198
+>> 41 FluoTopHat(FluoTopHat(X4))
+305,0.36715449954075496
+>> 2716 Open(Sharpen(Mean(Canny(X3), X4)))
+382,0.4484321467031309
+>> 4220 Square(Open(Sharpen((Canny(X0)) + (X4))))
+894,0.45621190082431395
+>> 7160 Open(InRange((Canny(X5)) + (X4)))
+1000 913
+Final training score: 0.45621190082431395
+Final test score: 0.398240378499003 with 1000 evaluations
+score: 0.0
+>> 70 MorphTopHat(RemoveSmallHoles(Erode(X4)))
+8,0.1683397109746299
+>> 69 Mean(AbsoluteDifference(X3), Pyr((MorphTopHat(Pyr(X0))) - (BitwiseOr(BitwiseOr(ThresholdAt1(X5), X0), X1))))
+37,0.1687775311056118
+>> 496 BitwiseXor(Min(X5, MedianBlur(X3)), Laplacian(BitwiseOr(AbsoluteDifference(X5), X0)))
+48,0.18236684266597336
+>> 553 AbsoluteDifference2(Min(Square(Laplacian(BitwiseOr(AbsoluteDifference(X5), X0))), Max(SquareRoot(Kirsch(X0)), X2)), RemoveSmallObjects(FillHoles(Kirsch(X0))))
+72,0.19262874292529247
+>> 782 BitwiseOr(Sharpen((MorphTopHat(Kirsch(X0))) - (MorphBlackHat(BitwiseAnd(AbsoluteDifference(X5), X0)))), Min(MorphTopHat(MorphBlackHat(BitwiseAnd(AbsoluteDifference(X5), X0))), Kirsch(X0)))
+169,0.22095381616995646
+>> 1907 Square((MedianBlur(X5)) - (BitwiseAndMask(BitwiseAnd(X0, Erode(MedianBlur(X5))), Max(BitwiseAnd(X0, Erode(MedianBlur(X5))), X2))))
+346,0.2524885102988409
+>> 3945 BinaryInRange(Min(Threshold(Min(X2, X4)), X4))
+839,0.2853631692631086
+>> 7432 (AbsoluteDifference2(Square(X2), MedianBlur(Canny(X5)))) - (ThresholdOtsu(AbsoluteDifference2(ContourArea(X2), X0)))
+1000 913
+Final training score: 0.2853631692631086
+Final test score: 0.4654249871179215 with 1000 evaluations
+score: 0.0
+>> 40 SquareRoot(BinaryInRange(BitwiseAnd(AbsoluteDifference(DistanceTransform(X5)), InRange(X5))))
+5,0.09043925606982484
+>> 62 ThresholdAt1(X3)
+6,0.17293012482870765
+>> 20 Sharpen((AbsoluteDifference(X0)) - (InRange(X5)))
+28,0.18446731649034173
+>> 67 Sharpen((X3) + (X4))
+75,0.23257049104428118
+>> 38 DistanceTransformAndThresh(Dilate(Sobel(Denoizing(BitwiseOr(X1, X5)))))
+81,0.2363321195706855
+>> 39 RobertCross(InRange(X5))
+774,0.24005980944186364
+>> 38 DistanceTransformAndThresh(Dilate(Sobel(Denoizing(BitwiseOr(X1, X5)))))
+911,0.2410731868727783
+>> 1674 SquareRoot(Dilate(Sobel(AbsoluteDifference(X3))))
+919,0.26371924289164184
+>> 1670 Pyr(FluoTopHat(Sobel(AbsoluteDifference(X3))))
+1000 941
+Final training score: 0.26371924289164184
+Final test score: 0.1886030701251282 with 1000 evaluations
+score: 0.16781099716888628
+>> 15 AbsoluteDifference2(Close(X3), X3)
+4,0.16781105996838905
+>> 73 FillHoles(BitwiseNot(RobertCross(FluoTopHat(Sobel(Max(X0, RelativeDifference(Mean(BitwiseXor(X2, X3), X0))))))))
+15,0.18561859091225
+>> 131 FillHoles(MorphBlackHat(Mean(BitwiseXor(X2, X3), X0)))
+71,0.20417700396152508
+>> 893 RobertCross(Max(X0, MorphBlackHat(Mean(BitwiseNot(X2), X0))))
+258,0.21034538177171375
+>> 1979 Erode(Kirsch(RelativeDifference(X2)))
+484,0.22820095553635394
+>> 4288 FillHoles(MorphTopHat(Denoizing(X0)))
+503,0.2821264158244714
+>> 4341 Open(BitwiseAndMask((Denoizing(RemoveSmallHoles(RemoveSmallObjects(X4)))) + (Erode(X5)), (X1) - (X0)))
+1000 933
+Final training score: 0.2821264158244714
+Final test score: 0.33775088585189383 with 1000 evaluations
+score: 0.16781099716888628
+>> 95 BitwiseNot(MorphBlackHat(X4))
+3,0.20411694995624557
+>> 97 Min(AbsoluteDifference2(AbsoluteDifference2(DistanceTransform(X3), X0), AbsoluteDifference2(ThresholdOtsu(FillHoles(Laplacian(X5))), Sobel(Max(DistanceTransform(X3), Dilate(X4))))), RobertCross(X0))
+42,0.20807567246881983
+>> 70 Close(MorphBlackHat(X4))
+85,0.25573514577420986
+>> 48 Threshold(X4)
+162,0.259249100391275
+>> 287 DistanceTransform(ThresholdOtsu(X4))
+418,0.259249100391275
+>> 237 ThresholdOtsu(X4)
+481,0.3023470968819465
+>> 367 DistanceTransformAndThresh(X4)
+1000 893
+Final training score: 0.3023470968819465
+Final test score: 0.2644113069644342 with 1000 evaluations
+score: 0.18032034713400713
+>> 16 MorphBlackHat(MorphBlackHat(MorphBlackHat(X5)))
+2,0.2038680550205894
+>> 6 RobertCross(X2)
+23,0.24507624796625943
+>> 23 MedianBlur(BinaryInRange(X3))
+227,0.27858300749059517
+>> 206 Erode(X3)
+358,0.3041241421256432
+>> 685 Pyr(Erode(BitwiseXor(BitwiseXor(Laplacian(X2), X4), X3)))
+537,0.31361389785014754
+>> 1121 MedianBlur(log(DistanceTransformAndThresh(Sharpen(X2))))
+591,0.3152385073597331
+>> 1526 RelativeDifference(DistanceTransformAndThresh(X4))
+611,0.31846946293096023
+>> 1529 SquareRoot(Dilate(Max(DistanceTransformAndThresh(X4), DistanceTransformAndThresh(X4))))
+613,0.3196561079778531
+>> 1526 RelativeDifference(DistanceTransformAndThresh(X4))
+831,0.32174888254877215
+>> 1767 Erode(Embossing(DistanceTransformAndThresh(X4)))
+1000 930
+Final training score: 0.32174888254877215
+Final test score: 0.2032115978456297 with 1000 evaluations
+score: 0.0
+>> 43 ThresholdAt1(log(X2))
+5,0.18444901077338124
+>> 72 GaussianBlur(InRange(X4))
+28,0.2025479207522653
+>> 89 FillHoles(InRange(Dilate(X4)))
+36,0.2282578134978917
+>> 176 MorphGradient(Square(X4))
+116,0.2852958185186194
+>> 7 Sobel(FluoTopHat(X3))
+531,0.39297040353170154
+>> 82 DistanceTransformAndThresh(Embossing(X4))
+1000 788
+Final training score: 0.39297040353170154
+Final test score: 0.525884776339821 with 1000 evaluations
+score: 0.09047549405092022
+>> 6 ThresholdAt1(X3)
+12,0.16781099716888628
+>> 42 Open(Erode(X2))
+23,0.16781177030564337
+>> 27 BitwiseNot(X1)
+37,0.17437800882551832
+>> 302 BitwiseNot(RemoveSmallHoles(Canny(MorphGradient(X4))))
+51,0.17787140899570217
+>> 290 Min(MorphGradient(X4), X1)
+63,0.18741351370553763
+>> 16 MorphGradient(FluoTopHat(Denoizing(X5)))
+166,0.18992875590601538
+>> 100 MorphGradient(X4)
+192,0.2533014552202961
+>> 1526 BitwiseAndMask(SquareRoot(BinaryInRange(X2)), X2)
+213,0.259249100391275
+>> 1617 ThresholdOtsu(X4)
+368,0.26272955343810106
+>> 1795 AbsoluteDifference2(MedianBlur(RemoveSmallObjects(X3)), BitwiseAnd(MorphBlackHat(X5), BinaryInRange(X2)))
+576,0.2814797586235425
+>> 4888 Close(AbsoluteDifference2(MorphGradient(BitwiseAnd(SquareRoot(Canny(X5)), SquareRoot(Canny(X5)))), Threshold(Erode(BinaryInRange(X2)))))
+1000 945
+Final training score: 0.2814797586235425
+Final test score: 0.3010251545031271 with 1000 evaluations
+score: 0.0
+>> 65 BinaryInRange(BitwiseNot(MedianBlur(FillHoles(RemoveSmallObjects(AbsoluteDifference2(RobertCross(X2), RemoveSmallHoles(X4)))))))
+2,0.16781099716888628
+>> 86 SquareRoot(Square(AbsoluteDifference2(Mean(RemoveSmallObjects(AbsoluteDifference2(RobertCross(X2), RemoveSmallHoles(X4))), DistanceTransform(RemoveSmallObjects(AbsoluteDifference2(RobertCross(X2), RemoveSmallHoles(X4))))), RemoveSmallObjects(AbsoluteDifference2(RobertCross(X2), RemoveSmallHoles(X4))))))
+5,0.16781099716888628
+>> 47 log(Mean(X3, X5))
+14,0.16830660036118922
+>> 41 Sharpen(X2)
+19,0.2038680550205894
+>> 11 RobertCross(X2)
+47,0.2727113850028121
+>> 294 Open(Mean(InRange(AbsoluteDifference2(Canny(X2), RemoveSmallHoles(X3))), DistanceTransform((X1) - (X0))))
+67,0.2778121122640532
+>> 80 ThresholdOtsu((X1) - (X0))
+1000 923
+Final training score: 0.2778121122640532
+Final test score: 0.4882006228857582 with 1000 evaluations
+score: 0.16781099716888628
+>> 14 RemoveSmallObjects(X1)
+7,0.16781099716888628
+>> 26 Denoizing(BitwiseAndMask(X1, ContourArea(X0)))
+8,0.16796972146150127
+>> 55 MorphGradient(X1)
+15,0.1685179365735253
+>> 33 BitwiseXor(GaussianBlur(Denoizing(Dilate(DistanceTransform(X4)))), X4)
+50,0.21115677533897217
+>> 61 Threshold(Close(X4))
+307,0.4034152471724073
+>> 1510 Sobel(AbsoluteDifference2(Kirsch(Square(AbsoluteDifference(X1))), RelativeDifference(GaborFilter(Square(X1)))))
+356,0.480623319990645
+>> 1525 FluoTopHat(BinaryInRange(Dilate(GaborFilter(Square(X1)))))
+1000 935
+Final training score: 0.480623319990645
+Final test score: 0.3186030247925639 with 1000 evaluations
+score: 0.0
+>> 68 GaborFilter(RobertCross(RemoveSmallHoles(X2)))
+5,0.0
+>> 100 MedianBlur(ContourArea(X5))
+15,0.16781099716888628
+>> 92 Close(Mean(X0, X5))
+33,0.16781099716888628
+>> 153 log(log(((X2) - (X2)) + (X2)))
+46,0.16781280037736573
+>> 294 Max(ThresholdAt1(Pyr(BinaryInRange(X1))), AbsoluteDifference(X0))
+56,0.17186650165828463
+>> 619 Pyr(MorphTopHat(X1))
+92,0.19099628195360624
+>> 81 Kirsch(X1)
+179,0.20018421253050925
+>> 1380 BitwiseAnd(BitwiseOr(MorphBlackHat(Laplacian(BitwiseAnd(X4, X2))), DistanceTransformAndThresh(MorphBlackHat((MorphBlackHat(Laplacian(BitwiseAnd(X4, X2)))) - (Denoizing(AbsoluteDifference(X3)))))), RemoveSmallHoles(Max((ThresholdAt1(Laplacian(BitwiseAnd(X4, X2)))) - (RelativeDifference(X4)), RemoveSmallHoles(GaborFilter(X3)))))
+311,0.20832950977220843
+>> 2388 Mean(ContourArea(Sharpen(X5)), MorphTopHat(X0))
+379,0.34963263912223497
+>> 1870 Open(BitwiseNot(Canny(X3)))
+1000 908
+Final training score: 0.34963263912223497
+Final test score: 0.427203134842116 with 1000 evaluations
+score: 0.16781099716888628
+>> 36 BitwiseOr(BitwiseOr(FluoTopHat(InRange(Pyr(X0))), X2), Sharpen(X2))
+2,0.16781383998490193
+>> 31 AbsoluteDifference(X2)
+4,0.19215250752105384
+>> 38 RobertCross((MorphTopHat(X5)) + (InRange(Pyr(X0))))
+17,0.19238864425740945
+>> 10 MorphGradient(Pyr(X0))
+69,0.2164107886511683
+>> 13 Sobel(X5)
+183,0.3135586246256617
+>> 28 DistanceTransformAndThresh(X4)
+1000 902
+Final training score: 0.3135586246256617
+Final test score: 0.31582236436863065 with 1000 evaluations
+score: 0.17279153383365492
+>> 26 BitwiseAnd((X5) + (X4), BitwiseAndMask(X2, X3))
+24,0.2038680550205894
+>> 193 BitwiseAndMask(RobertCross(X2), GaussianBlur(AbsoluteDifference(BinaryInRange(Kirsch(X3)))))
+83,0.20439960358034584
+>> 190 Max(RobertCross(X2), BinaryInRange(MedianBlur(MedianBlur(X0))))
+84,0.21460479113297892
+>> 209 ContourArea(RobertCross(X2))
+270,0.2437135144777279
+>> 578 InRange(BitwiseAnd(Embossing(X2), Erode(X0)))
+294,0.25804771406758836
+>> 759 BinaryInRange(MedianBlur(MedianBlur(X1)))
+398,0.3085382026491509
+>> 895 DistanceTransformAndThresh(MedianBlur(Kirsch(exp((log(Close(MedianBlur(X1)))) + (X4)))))
+1000 948
+Final training score: 0.3085382026491509
+Final test score: 0.23190697097367283 with 1000 evaluations
+score: 0.16884112729224723
+>> 64 ThresholdAt1(BitwiseAndMask(X0, X0))
+8,0.17120513536009158
+>> 85 Embossing(SquareRoot(X3))
+9,0.17277955445873577
+>> 48 Mean(MedianBlur(RemoveSmallHoles(Sobel(Threshold(Dilate(X0))))), SquareRoot(X3))
+19,0.18430841543363446
+>> 149 Sobel(exp(Open(Pyr(AbsoluteDifference(X0)))))
+46,0.20780858464111499
+>> 97 (SquareRoot(X3)) - (Kirsch(SquareRoot(X3)))
+48,0.26639655515886645
+>> 75 Laplacian(ThresholdOtsu(Erode(X5)))
+607,0.362885923905773
+>> 3967 RemoveSmallObjects(BitwiseAndMask(DistanceTransformAndThresh(Min(X0, X3)), BitwiseOr(Kirsch(Kirsch(AbsoluteDifference2(MedianBlur(X1), MedianBlur(X1)))), AbsoluteDifference(X3))))
+687,0.37510301811343677
+>> 4654 BitwiseAndMask(DistanceTransformAndThresh(Min(X0, X3)), BitwiseOr(Kirsch(Kirsch(AbsoluteDifference2(MedianBlur(X1), MedianBlur(X1)))), Kirsch(X4)))
+1000 933
+Final training score: 0.37510301811343677
+Final test score: 0.3084111294162833 with 1000 evaluations
+score: 0.15503635094919405
+>> 74 Min(MorphBlackHat(Dilate(X4)), ThresholdOtsu((AbsoluteDifference(X5)) - (X1)))
+2,0.1676612342772113
+>> 50 AbsoluteDifference(Sobel(SquareRoot(X3)))
+14,0.1681613910334957
+>> 40 Dilate(X4)
+57,0.20034043453099165
+>> 147 Square(BitwiseAndMask(Sobel(X1), RobertCross(X1)))
+118,0.20218609779468855
+>> 972 FillHoles(FillHoles(BitwiseAndMask(X5, RobertCross(X1))))
+197,0.21340301997575684
+>> 2054 Threshold(Sharpen(BitwiseAnd(BitwiseAndMask(X0, RobertCross(X1)), X5)))
+283,0.259249100391275
+>> 26 ThresholdOtsu(X4)
+388,0.3533441293456207
+>> 2519 ThresholdOtsu(DistanceTransform(Threshold(Sharpen(GaussianBlur(BitwiseAndMask(X5, RobertCross(X1)))))))
+1000 942
+Final training score: 0.3533441293456207
+Final test score: 0.255921121323851 with 1000 evaluations
+score: 0.18380541022469168
+>> 16 SquareRoot(DistanceTransformAndThresh(X4))
+83,0.18634545309889688
+>> 43 Laplacian(X2)
+119,0.38599733018625515
+>> 1773 Open(Sharpen(X4))
+222,0.4111694095592314
+>> 2344 BitwiseOr(BitwiseAnd(Max(X3, X0), InRange(Open(Sharpen(X4)))), ThresholdAt1(BitwiseAndMask(Open(Sharpen(X4)), FillHoles(X5))))
+605,0.41389985692069986
+>> 8782 BitwiseAnd(AbsoluteDifference(X3), ThresholdOtsu(Open(Sharpen(X4))))
+1000 898
+Final training score: 0.41389985692069986
+Final test score: 0.26141907609785214 with 1000 evaluations
+score: 0.16781581943881105
+>> 102 Embossing(AbsoluteDifference(ContourArea(X4)))
+2,0.1679017912916539
+>> 51 RemoveSmallObjects(RelativeDifference(ThresholdAt1(Threshold(X1))))
+8,0.1692030711786941
+>> 46 Sobel(RelativeDifference(GaussianBlur(Laplacian(X4))))
+9,0.1743051075986081
+>> 10 GaussianBlur(Laplacian(X4))
+18,0.18439551394229037
+>> 335 exp(GaussianBlur(Erode(X4)))
+35,0.2103357730408447
+>> 316 RemoveSmallHoles((RelativeDifference(GaussianBlur(Erode(X4)))) + (GaussianBlur(Erode(X4))))
+83,0.267775278945376
+>> 889 Dilate(DistanceTransformAndThresh(DistanceTransform(X4)))
+847,0.2680876439169252
+>> 1597 SquareRoot(Square(X4))
+865,0.2680876439169252
+>> 7339 Max(SquareRoot(Square(X4)), Threshold(Square(X4)))
+903,0.28243030070441855
+>> 7612 DistanceTransform(Threshold(DistanceTransformAndThresh(X4)))
+1000 933
+Final training score: 0.28243030070441855
+Final test score: 0.4295125943971643 with 1000 evaluations
+score: 0.0
+>> 76 SquareRoot(RemoveSmallHoles(DistanceTransform(X0)))
+6,0.177444545186342
+>> 95 Sharpen(log(X4))
+94,0.1823076783414203
+>> 461 Sharpen(X4)
+99,0.259249100391275
+>> 80 ThresholdOtsu(BitwiseNot(BitwiseNot(X4)))
+506,0.259249100391275
+>> 1785 SquareRoot(ThresholdOtsu(X4))
+526,0.2840738647783999
+>> 1344 Erode((X5) - (X3))
+1000 941
+Final training score: 0.2840738647783999
+Final test score: 0.3653599038421314 with 1000 evaluations
+score: 0.06486153825562427
+>> 63 Kirsch(BitwiseNot(GaussianBlur(RelativeDifference(BitwiseNot(X2)))))
+2,0.16781099716888628
+>> 25 Embossing(ThresholdAt1(RemoveSmallObjects(RemoveSmallHoles(X2))))
+6,0.31152350183314953
+>> 74 RemoveSmallHoles(BitwiseNot(BitwiseNot(MorphGradient(Dilate(Kirsch(X3))))))
+55,0.33060044756245555
+>> 61 BitwiseNot(BitwiseNot(MorphGradient(Dilate(Kirsch(X3)))))
+1000 919
+Final training score: 0.33060044756245555
+Final test score: 0.3142439479252583 with 1000 evaluations
+score: 0.05063018577725474
+>> 73 FluoTopHat(RobertCross((RelativeDifference(ThresholdOtsu(Embossing(BitwiseAndMask(X4, BitwiseOr(X3, X3)))))) - (BitwiseAnd(DistanceTransformAndThresh(RobertCross(X1)), log(BinaryInRange(X5))))))
+2,0.18292928003199266
+>> 90 MorphBlackHat(X5)
+7,0.1829427475936662
+>> 15 BinaryInRange(X5)
+9,0.2049910517030212
+>> 57 SquareRoot(RobertCross(X1))
+35,0.210726798900722
+>> 117 Embossing(BinaryInRange(X5))
+63,0.23649593883860032
+>> 41 DistanceTransformAndThresh(BitwiseOr(X3, X3))
+157,0.2923029360898662
+>> 91 InRange(SquareRoot(Close(X2)))
+320,0.3320667071409128
+>> 475 MedianBlur(Erode(DistanceTransform(X3)))
+673,0.35815032546040176
+>> 1304 ThresholdOtsu(DistanceTransform(X3))
+795,0.35854289630284675
+>> 1305 MedianBlur(ThresholdOtsu(DistanceTransform(X3)))
+1000 980
+994,0.5616605645987623
+>> 1449 InRange(SquareRoot(MorphGradient(X5)))
+Final training score: 0.5616605645987623
+Final test score: 0.34106051008273225 with 1000 evaluations
+score: 0.14925019071279805
+>> 8 FluoTopHat(X1)
+2,0.1699744439319592
+>> 11 FillHoles(X4)
+3,0.17516892301213055
+>> 18 Open(ContourArea(X3))
+23,0.20943377364995092
+>> 22 MorphTopHat(FluoTopHat(X1))
+46,0.2680876439169252
+>> 13 Square(X4)
+262,0.3217668141471121
+>> 71 DistanceTransformAndThresh(X4)
+1000 913
+Final training score: 0.3217668141471121
+Final test score: 0.2243968652972793 with 1000 evaluations
+score: 0.16781099716888628
+>> 10 BitwiseOr(X1, X4)
+2,0.16781099716888628
+>> 14 log(BitwiseOr(X1, X4))
+3,0.16781099716888628
+>> 16 Max(InRange(X0), BitwiseOr(X1, X4))
+4,0.16781099716888628
+>> 25 Dilate(log(BitwiseOr(X1, X4)))
+7,0.24011222700627632
+>> 12 InRange(X0)
+586,0.24200740900864362
+>> 27 FillHoles(InRange(X0))
+670,0.25810539597983967
+>> 26 (InRange(X0)) - (X4)
+677,0.2643743440451128
+>> 357 log(InRange(X0))
+833,0.2676878091203628
+>> 26 (InRange(X0)) - (X4)
+1000 950
+Final training score: 0.2676878091203628
+Final test score: 0.24627950056664935 with 1000 evaluations
+score: 0.1590607350876271
+>> 14 BinaryInRange(X0)
+2,0.16781099716888628
+>> 40 BitwiseAndMask(RelativeDifference(GaussianBlur(X1)), BitwiseNot(Square(GaussianBlur(X1))))
+4,0.1953740198410227
+>> 38 MorphGradient(GaussianBlur(Square(RelativeDifference(GaussianBlur(X1)))))
+54,0.240397450100221
+>> 39 RemoveSmallHoles(BinaryInRange(X0))
+322,0.24102821495403098
+>> 14 BinaryInRange(X0)
+1000 931
+Final training score: 0.24102821495403098
+Final test score: 0.24689480818989626 with 1000 evaluations
+score: 0.16781099716888628
+>> 8 Denoizing(X1)
+3,0.16788041660852043
+>> 41 (Denoizing(X1)) - (Threshold(AbsoluteDifference(Close(X1))))
+4,0.1823076783414203
+>> 9 Sharpen(X4)
+49,0.18385661666016226
+>> 31 MorphGradient(X3)
+55,0.2580648655984022
+>> 138 Pyr(Square(X4))
+70,0.2680876439169252
+>> 133 Square(X4)
+1000 903
+Final training score: 0.2680876439169252
+Final test score: 0.2243968652972793 with 1000 evaluations
+score: 0.16762953354178875
+>> 10 BitwiseXor(X0, Erode(X3))
+4,0.17308239571734857
+>> 29 RemoveSmallObjects(Sobel(X2))
+17,0.1739784051552733
+>> 8 MorphGradient(X3)
+25,0.21657766704625825
+>> 16 Sobel(X2)
+31,0.23251705209422086
+>> 70 BitwiseAnd(Square(Mean(ThresholdOtsu(X4), DistanceTransform(X4))), BitwiseAndMask((X5) + (X5), X5))
+41,0.29380885293498127
+>> 64 Threshold(Close(DistanceTransform(X4)))
+60,0.31585999774218626
+>> 141 ContourArea(Threshold(Sharpen(DistanceTransform(X4))))
+62,0.33796106934146725
+>> 118 BitwiseAnd(Square(DistanceTransformAndThresh(ThresholdOtsu(X4))), BitwiseAndMask(Mean(X5, X5), X5))
+219,0.37422457942123216
+>> 482 Square(DistanceTransformAndThresh(log(X4)))
+308,0.389267812086125
+>> 498 BitwiseAnd(FillHoles(DistanceTransformAndThresh(log(X4))), BitwiseNot(Mean(X5, BitwiseXor(X4, DistanceTransform(X4)))))
+375,0.4302847987775035
+>> 497 FillHoles(DistanceTransformAndThresh(log(X4)))
+450,0.45274779878171084
+>> 481 DistanceTransformAndThresh(log(X4))
+595,0.4773910477123893
+>> 1160 BitwiseAnd(Sharpen(DistanceTransformAndThresh(Square(X4))), FillHoles(X4))
+1000 934
+995,0.47791456728899495
+>> 988 RemoveSmallObjects(DistanceTransformAndThresh(Square(X4)))
+Final training score: 0.47791456728899495
+Final test score: 0.519231748330767 with 1000 evaluations
+{'p_node': np.float64(0.5), 'p_edge': np.float64(0.2), 'n_nodes': 30}
