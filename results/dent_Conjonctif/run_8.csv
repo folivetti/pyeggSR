@@ -30165,4 +30165,176 @@ score: 0.16465811666875663
 47947,0.5112107793417027
 >> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
 47948,0.5112107793417027
->> 681335 
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47951,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47959,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47962,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47963,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47967,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47971,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47974,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47976,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47978,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47978,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47979,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47979,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47982,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47982,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47983,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47995,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47996,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47996,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47997,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47999,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47999,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47999,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+47999,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+48005,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+48006,0.5112107793417027
+>> 681335 Denoizing(Min(Erode(Laplacian(X3)), Threshold(FluoTopHat(BitwiseXor(DistanceTransform(Denoizing(X1)), X2)))))
+95000 48218
+96000 48719
+97000 49063
+98000 49380
+99000 49625
+100000 49817
+49863,0.16465811666875663
+>> 715672 RemoveSmallHoles(MedianBlur(X2))
+49863,0.16465811666875663
+>> 715672 RemoveSmallHoles(MedianBlur(X2))
+49864,0.16473151834795188
+>> 715695 RemoveSmallHoles(BitwiseXor(GaussianBlur(X3), Dilate(X4)))
+49866,0.16483089497848974
+>> 715729 RemoveSmallHoles(BitwiseXor(GaussianBlur(X3), DistanceTransform(X4)))
+49868,0.16483089497848974
+>> 715729 RemoveSmallHoles(BitwiseXor(GaussianBlur(X3), DistanceTransform(X4)))
+49868,0.16483089497848974
+>> 715729 RemoveSmallHoles(BitwiseXor(GaussianBlur(X3), DistanceTransform(X4)))
+49868,0.16483089497848974
+>> 715729 RemoveSmallHoles(BitwiseXor(GaussianBlur(X3), DistanceTransform(X4)))
+49870,0.16569791852829915
+>> 715818 RemoveSmallHoles(Sobel(X2))
+49870,0.16569791852829915
+>> 715818 RemoveSmallHoles(Sobel(X2))
+49870,0.16569791852829915
+>> 715818 RemoveSmallHoles(Sobel(X2))
+49873,0.16569791852829915
+>> 715818 RemoveSmallHoles(Sobel(X2))
+49873,0.16569791852829915
+>> 715818 RemoveSmallHoles(Sobel(X2))
+49875,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49876,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49877,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49877,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49880,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49883,0.1782786702945031
+>> 715873 RemoveSmallHoles(Sobel(X4))
+49884,0.18276406153500033
+>> 715979 RemoveSmallHoles(Erode(X4))
+49885,0.18276406153500033
+>> 715979 RemoveSmallHoles(Erode(X4))
+49887,0.1938575991163256
+>> 716018 Denoizing(Erode(X4))
+49887,0.1938575991163256
+>> 716018 Denoizing(Erode(X4))
+49898,0.1938575991163256
+>> 716018 Denoizing(Erode(X4))
+49902,0.20324865381560514
+>> 716194 Denoizing(BinaryInRange(X4))
+49912,0.20566745777593184
+>> 437370 Denoizing(BinaryInRange(X1))
+49915,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49918,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49921,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49921,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49927,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49928,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49934,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49934,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49935,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49935,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49938,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49938,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49942,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49943,0.22100333273763528
+>> 289827 Denoizing(BinaryInRange(X0))
+49949,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49949,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49949,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49953,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49958,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49958,0.23403436627249216
+>> 715602 RobertCross((BinaryInRange(X2)) + (X1))
+49963,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49963,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49964,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49966,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49970,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49971,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49971,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49971,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49987,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49993,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49994,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+49997,0.3273307826663216
+>> 716906 RobertCross(AbsoluteDifference(BinaryInRange(X2)))
+Final training score: 0.5507327168481728
+Final test score: 0.5882857850874776 with 50000 evaluations
