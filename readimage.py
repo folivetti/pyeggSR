@@ -4,8 +4,11 @@ from roifile import ImagejRoi
 import numpy as np 
 import os 
 
+TRAIN_SCALE = 0.1
+TEST_SCALE = 0.1
+
 def _read_inputs(input_filename, isTest=False):
-    scale = 1.0 if isTest else 0.25 
+    scale = TEST_SCALE if isTest else TRAIN_SCALE
 
     in_image_origin = cv2.imread(input_filename)
     in_image_origin_size = in_image_origin.shape
@@ -19,7 +22,7 @@ def _read_inputs(input_filename, isTest=False):
         
             
 def _read_mask(roi_filename, img_size, isTest=False):
-    scale = 1.0 if isTest else 0.25
+    scale = TEST_SCALE if isTest else TRAIN_SCALE
     mask = np.zeros(img_size)
     if roi_filename[-4:]=='.roi':
         polygons = read_polygons_from_roi(roi_filename)

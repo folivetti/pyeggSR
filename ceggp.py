@@ -25,7 +25,7 @@ cache_fitness = {}
 cache_params = {}
 count = 0 
 DEBUG = False 
-P_INTRON = 0.1 # 0.25
+P_INTRON = 0.25 # 0.25
 
 def get_enode(egraph, eid):
     return next(iter(egraph.map_class[eid].enodes))
@@ -42,9 +42,10 @@ def create_operator(op, children):
         field_values[f.name] = c 
     return op(**field_values)
 
-def get_fst_rnd_egraph(size):
+def get_fst_rnd_egraph(size, egraph=None):
     terminals, operators = get_terminals_and_operators(Expr)
-    egraph = EGraph()
+    if egraph is None:
+        egraph = EGraph()
     # insert all variables up to d
     eids = {}
     eids[0] = []
@@ -258,10 +259,10 @@ def step(egraph, eids, out, imgs, masks, best_score, it, p_node = 0.25, p_edge =
     for root in roots:
         old_count = count
         score = calc_score(egraph, root, imgs, masks, recalc)
-        if score >= best_score and out != orig_out:
+        if score >= best_score: # or out != orig_out:
             if score >= best_score:
-                if count > old_count:
-                    print(f"{count},{score}")
+                #if count > old_count:
+                print(f"{count},{score}")
                 #print(f"New best score: {score} at iteration {it} with {count} evaluations")
                 print(">>", root, showEGraph(egraph, root))
             #if score > best_score or egraph.map_class[egraph.find(root)].height <= egraph.map_class[egraph.find(max(cache_fitness, key=cache_fitness.get))].height:
@@ -301,12 +302,22 @@ def test_evo(n_nodes, p_node, p_edge, n_evals, max_iter):
 
     # for iteration in range(1000):
     iteration = 0 
+    last_restart = 0
     #while count < 5000 and iteration < 5550:
     while count < n_evals and iteration < max_iter:
-        egraph, eids, best_score, out = step(egraph, eids, out, imgs, masks, best_score, iteration, p_node, p_edge)
+        if last_restart > 10000:
+            egraph, eids, out = get_fst_rnd_egraph(n_nodes, egraph)
+            last_restart = 0
+            best_score = 0.0
+        else:
+            old_score = best_score
+            egraph, eids, best_score, out = step(egraph, eids, out, imgs, masks, best_score, iteration, p_node, p_edge)
+            last_restart += 1 if best_score == old_score else 0
         iteration += 1
         if iteration % 1000 == 0:
             print(iteration, count)
+    root = max(cache_fitness, key=lambda k: cache_fitness.get(k))
+    best_score = cache_fitness[root]
     print(f"Final training score: {best_score}")
     test_score = calc_test_score(egraph, test_imgs, test_masks)
     print(f"Final test score: {test_score} with {count} evaluations")
@@ -321,13 +332,15 @@ def objective(trial):
     p_out = trial.suggest_categorical('p_edge', list(np.arange(0.1, 0.3, 0.1)))
     p_edge = min(0.1, 1.0 - p_node - p_out)
     n_nodes = trial.suggest_categorical('n_nodes', [20, 30, 50, 100])
-    return test_evo(n_nodes, p_node, p_edge, 1000, 2000)
+    return test_evo(n_nodes, p_node, p_edge, 2000, 4000)
 
 if __name__ == "__main__":
 
     if len(sys.argv) < 3 or sys.argv[2] != "optuna":
         # test_evo(20, 0.5, 0.3, 100000, 200000) # melanoma
-        test_evo(30, 0.5, 0.3, 100000, 200000) # Dent
+        # test_evo(30, 0.7, 0.2, 50000, 400000) # Dent
+        # test_evo(100, 0.5, 0.4, 50000, 400000) # Epithelium
+        test_evo(100, 0.7, 0.2, 50000, 400000) # Conjonctif
     else:
         study = optuna.create_study(direction='maximize')
         study.optimize(objective, n_trials=100)

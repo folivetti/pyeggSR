@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 342, in <module>
+    test_evo(100, 0.5, 0.4, 50000, 400000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 291, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 276, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/10/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.95, Peak Memory: 196808 KB
+Traceback (most recent call last):
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 342, in <module>
+    test_evo(100, 0.5, 0.4, 50000, 400000) # Dent
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 291, in test_evo
+    imgs, masks, test_imgs, test_masks = load_datasets(sys.argv[1])
+  File "/home/olivetti/projects/pyeggSR/ceggp.py", line 276, in load_datasets
+    df = pd.read_csv(f"datasets/{dirname}/dataset.csv", sep=";")
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/olivetti/.local/pyenv/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/10/dataset.csv'
+Command exited with non-zero status 1
+Time: 0:00.99, Peak Memory: 197152 KB

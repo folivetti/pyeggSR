@@ -1,0 +1,294 @@
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:47:28, Peak Memory: 2345756 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:08:26, Peak Memory: 2575044 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 5:00:47, Peak Memory: 2452508 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+Time: 3:24:43, Peak Memory: 2630508 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:14:08, Peak Memory: 2474596 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:39:06, Peak Memory: 2300792 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:59:12, Peak Memory: 2543592 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:06:23, Peak Memory: 2338824 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+Time: 5:34:56, Peak Memory: 2502504 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:54:18, Peak Memory: 2434120 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+Time: 3:39:49, Peak Memory: 2454500 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:51:17, Peak Memory: 2275868 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:18:40, Peak Memory: 2566540 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:46:48, Peak Memory: 2260384 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:59:24, Peak Memory: 2435644 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:46:26, Peak Memory: 2539244 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:14:20, Peak Memory: 2259912 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:56:40, Peak Memory: 2736048 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+Time: 4:47:08, Peak Memory: 2807128 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 5:14:19, Peak Memory: 2918800 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:07:44, Peak Memory: 3242612 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+Time: 4:22:46, Peak Memory: 2819260 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:37:18, Peak Memory: 2890952 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:15:54, Peak Memory: 2322892 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+Time: 3:53:33, Peak Memory: 2666384 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+Time: 4:21:50, Peak Memory: 2731864 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 3:36:42, Peak Memory: 3239944 KB
+Time: 3:35:11, Peak Memory: 2689212 KB
+/home/olivetti/projects/pyeggSR/evaluate.py:561: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 1, 0, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:562: RuntimeWarning: invalid value encountered in cast
+  return cv2.Sobel(args[0], cv2.CV_64F, 0, 1, ksize=ksize).astype(np.uint8)
+/home/olivetti/projects/pyeggSR/evaluate.py:596: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  kur = np.mean(kurtosis(img, fisher=True))
+/home/olivetti/projects/pyeggSR/evaluate.py:597: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  skew1 = np.mean(skew(img))
+Time: 4:10:35, Peak Memory: 3186168 KB
+Time: 3:37:46, Peak Memory: 2389672 KB
